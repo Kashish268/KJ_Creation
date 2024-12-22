@@ -20,7 +20,8 @@ alert("Welcome to the admin panel!");
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <!-- CSS -->
-    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="style3.css">
+    
     <title>AdminHub</title>
 </head>
 <body>
@@ -30,7 +31,7 @@ alert("Welcome to the admin panel!");
     <!-- CONTENT -->
     <section id="content">
         <?php include 'navbar.php'; ?>
-
+<!-- 
         <!-- MAIN -->
         <main>
             <div class="head-title">
@@ -76,9 +77,9 @@ alert("Welcome to the admin panel!");
                 </li>
             </ul>
         </main>
-    </section>
+    </section> -->
 
     <!-- Script -->
-    <script src="script.js"></script>
+    <script src="script1.js"></script>
 </body>
 </html>

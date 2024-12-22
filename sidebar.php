@@ -7,8 +7,8 @@
 <!-- Boxicons -->
 <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 <!-- My CSS -->
-<link rel="stylesheet" href="style2.css">
-<link rel="stylesheet" href="script.js">
+<link rel="stylesheet" href="style3.css">
+<link rel="stylesheet" href="script1.js">
 <section id="sidebar">
     <a href="#" class="brand">
         <i class='bx bxs-smile'></i>

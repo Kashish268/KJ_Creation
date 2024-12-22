@@ -9,7 +9,8 @@
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <!-- CSS -->
-    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="script1.js">
     <title>Products</title>
 </head>
 <body>
@@ -27,7 +28,7 @@
                     <h1>Products</h1>
                     <ul class="breadcrumb">
                         <li>
-                            <a href="index.php">Dashboard</a>
+                            <a href="dashboard.php">Dashboard</a>
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>

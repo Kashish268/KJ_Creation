@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="style2.css">
-<link rel="stylesheet" href="script.js">
+<link rel="stylesheet" href="style3.css">
+<link rel="stylesheet" href="script1.js">
 
 <!-- navbar.php -->
 <nav id="navbar">
@@ -18,7 +18,7 @@
     </div>
 </nav>
 
-<script>
+<!-- <script>
 document.addEventListener('DOMContentLoaded', function() {
     const sidebar = document.getElementById('sidebar');
     const toggleBtn = document.getElementById('menu-toggle');
@@ -27,4 +27,4 @@ document.addEventListener('DOMContentLoaded', function() {
         sidebar.classList.toggle('hide');
     });
 });
-</script>
+</script> -->
