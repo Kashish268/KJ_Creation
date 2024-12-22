@@ -1,7 +1,10 @@
+<link rel="stylesheet" href="style2.css">
+<link rel="stylesheet" href="script.js">
+
 <!-- navbar.php -->
 <nav id="navbar">
     <!-- Sidebar Toggle Button -->
-    <i class='bx bx-menu' id="menu-toggle"></i>
+    <i class='bx bx-menu' id="menu-toggle" aria-label="Toggle Sidebar"></i>
     <!-- Right-Side Content -->
     <div class="nav-right">
         <a href="#" class="notification">
@@ -15,11 +18,10 @@
     </div>
 </nav>
 
-<!-- JavaScript -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const sidebar = document.getElementById('sidebar');
-    const toggleBtn = document.getElementById('menu-toggle'); 
+    const toggleBtn = document.getElementById('menu-toggle');
 
     toggleBtn.addEventListener('click', function() {
         sidebar.classList.toggle('hide');
