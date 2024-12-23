@@ -123,7 +123,6 @@ if (isset($_POST['submit'])) {
         }
 
         .login-container input[type="submit"]:hover {
-            background: rgb(214, 71, 5);
         }
 
         .error-message {

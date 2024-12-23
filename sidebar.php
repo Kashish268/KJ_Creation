@@ -7,12 +7,12 @@
 <!-- Boxicons -->
 <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 <!-- My CSS -->
-<link rel="stylesheet" href="style3.css">
-<link rel="stylesheet" href="script1.js">
+<link rel="stylesheet" href="style1.css">
 <section id="sidebar">
     <a href="#" class="brand">
-        <i class='bx bxs-smile'></i>
-        <span class="text">AdminHub</span>
+        <!-- <i class='bx bxs-smile'></i> -->
+         <!-- Replace the text with an image -->
+         <img src="img/kj_1.png" alt="AdminPanel Logo" class="brand-logo">
     </a>
     <ul class="side-menu top">
         <!-- Dashboard Link -->
@@ -54,3 +54,4 @@
         </li>
     </ul>
 </section>
+<link rel="stylesheet" href="script1.js">

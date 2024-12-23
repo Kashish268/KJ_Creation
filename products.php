@@ -1,6 +1,11 @@
+
 <?php
-    // products.php
-?>
+include 'database/config.php'; // Corrected the path
+session_start();
+if (!isset($_SESSION['admin'])) {
+    header('Location:login.php');
+    exit();
+}?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +14,7 @@
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <!-- CSS -->
-    <link rel="stylesheet" href="style3.css">
-    <link rel="stylesheet" href="script1.js">
+    <link rel="stylesheet" href="style1.css">
     <title>Products</title>
 </head>
 <body>
@@ -36,7 +40,7 @@
                         </li>
                     </ul>
                 </div>
-                <a href="#" class="btn-download">
+                <a href="add_products.php" class="btn-download">
                     <i class='bx bxs-plus-circle'></i>
                     <span class="text">Add Product</span>
                 </a>
@@ -81,6 +85,6 @@
     </section>
 
     <!-- Script -->
-    <script src="script.js"></script>
+    <script src="script1.js"></script>
 </body>
 </html>

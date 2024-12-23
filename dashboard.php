@@ -20,7 +20,7 @@ alert("Welcome to the admin panel!");
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <!-- CSS -->
-    <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="style1.css">
     
     <title>AdminHub</title>
 </head>
@@ -47,35 +47,35 @@ alert("Welcome to the admin panel!");
                         </li>
                     </ul>
                 </div>
-                <a href="#" class="btn-download">
+                <!-- <a href="#" class="btn-download">
                     <i class='bx bxs-cloud-download'></i>
                     <span class="text">Download PDF</span>
-                </a>
+                </a> -->
             </div>
-
             <ul class="box-info">
-                <li>
-                    <i class='bx bxs-calendar-check'></i>
-                    <span class="text">
-                        <h3>1020</h3>
-                        <p>New Orders</p>
-                    </span>
-                </li>
-                <li>
-                    <i class='bx bxs-group'></i>
-                    <span class="text">
-                        <h3>2834</h3>
-                        <p>Visitors</p>
-                    </span>
-                </li>
-                <li>
-                    <i class='bx bxs-dollar-circle'></i>
-                    <span class="text">
-                        <h3>$2543</h3>
-                        <p>Total Sales</p>
-                    </span>
-                </li>
-            </ul>
+    <li>
+        <i class='bx bxs-package'></i>
+        <span class="text">
+            <h3>150</h3>
+            <p>Products Available</p>
+        </span>
+    </li>
+    <li>
+        <i class='bx bxs-offer'></i>
+        <span class="text">
+            <h3>320</h3>
+            <p>Total Offers</p>
+        </span>
+    </li>
+    <li>
+        <i class='bx bxs-envelope'></i>
+        <span class="text">
+            <h3>45</h3>
+            <p>Total Messages</p>
+        </span>
+    </li>
+</ul>
+
         </main>
     </section> -->
 
