@@ -1,9 +1,44 @@
 <?php
-include 'database/config.php'; // Corrected the path
+include 'database/config.php'; // Ensure this file has the correct database connection
 session_start();
+
 if (!isset($_SESSION['admin'])) {
-    header('Location:login.php');
+    header('Location: login.php');
     exit();
+}
+
+if (isset($_POST['sub'])) {
+    $p_name = $_POST['productName'];
+    $price = $_POST['price'];
+    $description = $_POST['description'];
+    $shopname = $_POST['shopName'];
+    $img = $_FILES['productImage']['name'];
+    $tem_img = $_FILES['productImage']['tmp_name'];
+
+    // Get file extension
+    $file_extension = strtolower(pathinfo($img, PATHINFO_EXTENSION));
+    $allowed_extensions = ['jpg', 'jpeg', 'png'];
+
+    if (!in_array($file_extension, $allowed_extensions)) {
+        echo "<script>alert('File must be in .jpg, .jpeg, or .png format.');</script>";
+    } else {
+        // Validate file upload directory
+        $upload_dir = "uploaded_images/";
+        if (!is_dir($upload_dir)) {
+            mkdir($upload_dir, 0755, true);
+        }
+
+        if (move_uploaded_file($tem_img, $upload_dir . $img)) {
+            $q = "INSERT INTO products(name, des, price, shopname, IMAGE) VALUES ('$p_name', '$description', '$price', '$shopname', '$img')";
+            if (mysqli_query($conn, $q)) {
+                echo "<script>alert('Add Product!'); window.location.href='products.php';</script>";
+            } else {
+                echo "<script>alert('Failed to add product. Error: " . mysqli_error($conn) . "');</script>";
+            }
+        } else {
+            echo "<script>alert('Failed to upload image.');</script>";
+        }
+    }
 }
 ?>
 
@@ -15,7 +50,7 @@ if (!isset($_SESSION['admin'])) {
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <!-- CSS -->
-    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="style.css">
     
     <title>AdminHub</title>
     <style>
@@ -57,7 +92,7 @@ if (!isset($_SESSION['admin'])) {
             min-height: 100px;
         }
 
-        form .button {
+        form .btn {
             font-family: 'Poppins', sans-serif;
             font-size: 16px;
             padding: 12px 20px;
@@ -70,7 +105,7 @@ if (!isset($_SESSION['admin'])) {
             width: 100%;
         }
 
-        form .button:hover {
+        form .btn:hover {
             background: rgb(214, 71, 5);
         }
 
@@ -104,7 +139,7 @@ if (!isset($_SESSION['admin'])) {
                 font-size: 14px;
             }
 
-            form .button {
+            form .btn {
                 font-size: 14px;
                 padding: 10px 15px;
             }
@@ -121,7 +156,7 @@ if (!isset($_SESSION['admin'])) {
                 padding: 10px;
             }
 
-            form .button {
+            form .btn {
                 font-size: 14px;
                 padding: 10px 15px;
             }
@@ -137,12 +172,17 @@ if (!isset($_SESSION['admin'])) {
 
     <section id="content">
         <?php include 'navbar.php'; ?>
-
         <main>
-        
-            <h2 style="text-align: center; color: rgb(244, 107, 44); margin-bottom: 20px;">Add Product</h2>
-            <form id="productForm" method="post">
-                <label for="productName">Product Name</label>
+    <div style="margin-bottom: 30px;">
+        <h2 style="text-align: left; color: rgb(244, 107, 44); font-size:  36px; font-weight: 600; margin-bottom: 10px;">Add Product</h2>
+        <p style="text-align: left; color: #c4c4c4; font-size: 1rem;">
+            <a href="products.php" style="text-decoration: none; color: #c4c4c4;">Products</a> 
+            <span style="margin: 0 8px;">&gt;</span>
+            <span style="color: rgb(244, 107, 44);">Add Product</span>
+        </p>
+    </div>
+    <form id="productForm" method="post" enctype="multipart/form-data">
+    <label for="productName">Product Name</label>
                 <input type="text" id="productName" name="productName" placeholder="Enter product name">
                 
                 <label for="price">Price</label>
@@ -155,9 +195,9 @@ if (!isset($_SESSION['admin'])) {
                 <input type="text" id="shopName" name="shopName" placeholder="Enter shop name">
                 
                 <label for="productImage">Upload Product Image</label>
-                <input type="file" id="productImage" name="productImage" accept=".jpg, .jpeg, .png">
+                <input type="file" id="productImage" name="productImage">
                 
-                <input class="button" type="submit">
+                <input type="submit"  name="sub" class="btn">
             </form>
         </main>
     </section> 
@@ -167,106 +207,7 @@ if (!isset($_SESSION['admin'])) {
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- jQuery Validation -->
-    <script>
-        $(document).ready(function() {
-            $("#productForm").on("submit", function(e) {
-                e.preventDefault(); // Prevent form submission
-                let isValid = true;
-                $(".error").remove(); // Remove previous error messages
+    <script src="validation.js"></script> <!-- Include the separate validation file -->
 
-                // Validate Product Name
-                if ($("#productName").val().trim() === "") {
-                    isValid = false;
-                    $("#productName").after("<div class='error'>Product Name is required.</div>");
-                }
-
-                // Validate Price
-                if ($("#price").val().trim() === "" || $("#price").val() <= 0) {
-                    isValid = false;
-                    $("#price").after("<div class='error'>Please enter a valid price.</div>");
-                }
-
-                // Validate Description
-                if ($("#description").val().trim() === "") {
-                    isValid = false;
-                    $("#description").after("<div class='error'>Description is required.</div>");
-                }
-
-                // Validate Shop Name
-                if ($("#shopName").val().trim() === "") {
-                    isValid = false;
-                    $("#shopName").after("<div class='error'>Shop Name is required.</div>");
-                }
-
-                // Validate File Upload
-                if ($("#productImage").val().trim() === "") {
-                    isValid = false;
-                    $("#productImage").after("<div class='error'>Please upload an image.</div>");
-                }
-
-                // If valid, submit the form (you can add AJAX here if needed)
-                if (isValid) {
-                    alert("Product added successfully!");
-                    this.reset(); // Reset the form
-                }
-            });
-
-            // Remove error messages on focus
-            $("input, textarea").on("focus", function() {
-                $(this).next(".error").remove();
-            });
-        });
-    </script>
 </body>
 </html>
-
-<?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $p_name = $_POST['productName'];
-    $price = $_POST['price'];
-    $description = $_POST['description'];
-    $shopname = $_POST['shopName'];
-    $img = $_FILES['productImage'];
-
-    $allowed_extensions = ['jpg', 'jpeg', 'png'];
-    $fileExtension = strtolower(pathinfo($img['name'], PATHINFO_EXTENSION));
-    $image_size = $img['size'];
-    $newFileName = uniqid() . '.' . $fileExtension;
-    $uploadPath = 'uploaded/' . $newFileName;
-
-    // Check if an image is uploaded
-    if (!empty($img['name'])) {
-        // Validate file extension
-        if (!in_array($fileExtension, $allowed_extensions)) {
-            echo "<script>alert('Invalid image format. Please upload a JPG, JPEG, or PNG file.');</script>";
-            exit();
-        }
-
-        // Validate file size
-        if ($image_size > 2000000) { // 2MB
-            echo "<script>alert('Image size is too large. Please upload an image smaller than 2MB.');</script>";
-            exit();
-        }
-
-        // Upload file and insert into database
-        if (move_uploaded_file($img['tmp_name'], $uploadPath)) {
-            $stmt = $conn->prepare("INSERT INTO products (name, price, des, shopname, image) VALUES (?, ?, ?, ?, ?)");
-            $stmt->bind_param("sdsss", $p_name, $price, $description, $shopname, $uploadPath);
-
-            if ($stmt->execute()) {
-                echo "<script>alert('Product added successfully!'); window.location.href='products.php';</script>";
-            } else {
-                echo "<script>alert('Failed to add product. Please try again.');</script>";
-            }
-
-            $stmt->close();
-        } else {
-            echo "<script>alert('Failed to upload image. Please try again.');</script>";
-            exit();
-        }
-    } else {
-        echo "<script>alert('Please upload an image.');</script>";
-        exit();
-    }
-}
-?>

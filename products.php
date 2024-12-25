@@ -5,16 +5,23 @@ session_start();
 if (!isset($_SESSION['admin'])) {
     header('Location:login.php');
     exit();
-}?>
+}
+
+$q="select * from products";
+$result = mysqli_query($conn,$q);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Boxicons -->
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <!-- CSS -->
-    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="style2.css">
     <title>Products</title>
 </head>
 <body>
@@ -47,44 +54,84 @@ if (!isset($_SESSION['admin'])) {
             </div>
 
             <div class="table-data">
-                <div class="order">
-                    <div class="head">
-                        <h3>Product List</h3>
-                        <i class='bx bx-search'></i>
-                        <i class='bx bx-filter'></i>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Product Name</th>
-                                <th>Price</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Product 1</td>
-                                <td>$100</td>
-                                <td><span class="status completed">Available</span></td>
-                            </tr>
-                            <tr>
-                                <td>Product 2</td>
-                                <td>$200</td>
-                                <td><span class="status pending">Out of Stock</span></td>
-                            </tr>
-                            <tr>
-                                <td>Product 3</td>
-                                <td>$150</td>
-                                <td><span class="status process">Processing</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+	<div class="order">
+		<div class="head">
+			<h3>Product List</h3>
+			<input type="text" id="search" placeholder="Search Product..." onkeyup="filterTable()" />
+		</div>
+		<table id="productTable">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Product Name</th>
+					<th>Price</th>
+					<th>Description</th>
+					<th>Shop Name</th>
+					<th>Image</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+                
+            <?php while($row = mysqli_fetch_assoc($result)) { ?>
+<tr>
+    <td><?php echo $row['id']; ?></td>
+    <td><?php echo $row['name']; ?></td>
+    <td><?php echo $row['price']; ?></td>
+    <td><?php echo $row['des']; ?></td>
+    <td><?php echo $row['shopname']; ?></td>
+    <td><img src="<?php echo 'uploaded_images/' . $row['IMAGE']; ?>" alt="Product Image"></td>
+    <td>
+        <span class="action-btn edit-btn"><i class="bx bx-edit"></i></span>
+        <span class="action-btn delete-btn"><i class="bx bx-trash"></i></span>
+    </td>
+</tr>
+<?php } ?>
+
+				<!-- <tr>
+					<td>2</td>
+					<td>Product 2</td>
+					<td>$200</td>
+					<td>Sample Description</td>
+					<td>Shop B</td>
+					<td><img src="product2.jpg" alt="Product Image"></td>
+					<td>
+						<span class="action-btn edit-btn"><i class="bx bx-edit"></i></span>
+						<span class="action-btn delete-btn"><i class="bx bx-trash"></i></span>
+					</td>
+				</tr> -->
+			</tbody>
+		</table>
+	</div>
+</div>
+
             </div>
         </main>
     </section>
 
     <!-- Script -->
     <script src="script1.js"></script>
+    <script>
+        function filterTable() {
+	const input = document.getElementById('search');
+	const filter = input.value.toLowerCase();
+	const table = document.getElementById('productTable');
+	const rows = table.getElementsByTagName('tr');
+
+	for (let i = 1; i < rows.length; i++) {
+		const cells = rows[i].getElementsByTagName('td');
+		let match = false;
+
+		for (let j = 0; j < cells.length; j++) {
+			if (cells[j].innerText.toLowerCase().includes(filter)) {
+				match = true;
+				break;
+			}
+		}
+		rows[i].style.display = match ? '' : 'none';
+	}
+}
+
+    </script>
 </body>
 </html>

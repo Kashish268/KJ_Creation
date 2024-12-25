@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="style1.css">
+<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="script1.js">
 
 <!-- navbar.php -->

@@ -20,7 +20,7 @@ alert("Welcome to the admin panel!");
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <!-- CSS -->
-    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="style.css">
     
     <title>AdminHub</title>
 </head>

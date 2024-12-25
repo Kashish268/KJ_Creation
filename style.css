@@ -380,6 +380,7 @@ body {
 
 
 
+/* General Table Styles */
 #content main .table-data {
 	display: flex;
 	flex-wrap: wrap;
@@ -388,106 +389,125 @@ body {
 	width: 100%;
 	color: var(--dark);
 }
+
 #content main .table-data > div {
 	border-radius: 20px;
-	background: var(--light);
+	background: #f0f0f0; /* Light grey background */
 	padding: 24px;
 	overflow-x: auto;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 #content main .table-data .head {
 	display: flex;
 	align-items: center;
-	grid-gap: 16px;
+	justify-content: space-between;
 	margin-bottom: 24px;
 }
+
 #content main .table-data .head h3 {
-	margin-right: auto;
 	font-size: 24px;
 	font-weight: 600;
+	color: #333;
 }
-#content main .table-data .head .bx {
-	cursor: pointer;
+
+#content main .table-data .head input {
+	width: 200px;
+	padding: 8px 12px;
+	border-radius: 10px;
+	border: 1px solid #ccc;
+	font-size: 14px;
 }
 
 #content main .table-data .order {
 	flex-grow: 1;
 	flex-basis: 500px;
 }
-#content main .table-data .order table {
+
+/* Table Styles */
+/* General Table Styles */
+#productTable {
 	width: 100%;
 	border-collapse: collapse;
-}
-#content main .table-data .order table th {
-	padding-bottom: 12px;
-	font-size: 13px;
-	text-align: left;
-	border-bottom: 1px solid var(--grey);
-}
-#content main .table-data .order table td {
-	padding: 16px 0;
-}
-#content main .table-data .order table tr td:first-child {
-	display: flex;
-	align-items: center;
-	grid-gap: 12px;
-	padding-left: 6px;
-}
-#content main .table-data .order table td img {
-	width: 36px;
-	height: 36px;
-	border-radius: 50%;
-	object-fit: cover;
-}
-#content main .table-data .order table tbody tr:hover {
-	background: var(--grey);
-}
-#content main .table-data .order table tr td .status {
-	font-size: 10px;
-	padding: 6px 16px;
-	color: var(--light);
-	border-radius: 20px;
-	font-weight: 700;
-}
-#content main .table-data .order table tr td .status.completed {
-	background: var(--blue);
-}
-#content main .table-data .order table tr td .status.process {
-	background: var(--yellow);
-}
-#content main .table-data .order table tr td .status.pending {
-	background: var(--orange);
-}
-
-
-#content main .table-data .todo {
-	flex-grow: 1;
-	flex-basis: 300px;
-}
-#content main .table-data .todo .todo-list {
-	width: 100%;
-}
-#content main .table-data .todo .todo-list li {
-	width: 100%;
-	margin-bottom: 16px;
-	background: var(--grey);
+	background-color: #f9f9f9; /* Light grey background for the table */
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 	border-radius: 10px;
-	padding: 14px 20px;
-	display: flex;
-	justify-content: space-between;
+	overflow: hidden;
+  }
+  
+  /* Table Header */
+  #productTable thead tr {
+	background-color: var(--blue); /* Blue header background */
+	color: white;
+	text-align: left;
+  }
+  
+  #productTable thead th {
+	padding: 15px;
+	font-size: 16px;
+  }
+  
+  /* Table Body */
+  #productTable tbody tr {
+	transition: background-color 0.3s;
+  }
+  
+  #productTable tbody tr:nth-child(even) {
+	background-color: #f2f2f2; /* Alternate row color */
+  }
+  
+  #productTable tbody tr:hover {
+	background-color: #d6e4f2; /* Hover effect */
+  }
+  
+  #productTable tbody td {
+	padding: 15px;
+	font-size: 14px;
+  }
+  
+  /* Product Images */
+  #productTable tbody td img {
+	max-width: 60px;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Action Buttons */
+  .action-btn {
+	display: inline-flex;
+	justify-content: center;
 	align-items: center;
-}
-#content main .table-data .todo .todo-list li .bx {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
 	cursor: pointer;
-}
-#content main .table-data .todo .todo-list li.completed {
-	border-left: 10px solid var(--blue);
-}
-#content main .table-data .todo .todo-list li.not-completed {
-	border-left: 10px solid var(--orange);
-}
-#content main .table-data .todo .todo-list li:last-child {
-	margin-bottom: 0;
-}
+	margin: 0 5px;
+	transition: background-color 0.3s;
+  }
+  
+  .edit-btn {
+	background-color: #4edd6f; /* Green for edit */
+	color: white;
+  }
+  
+  .edit-btn:hover {
+	background-color: #218838;
+  }
+  
+  .delete-btn {
+	background-color: #dc3545; /* Red for delete */
+	color: white;
+  }
+  
+  .delete-btn:hover {
+	background-color: #c82333;
+  }
+  
+  /* Icons */
+  .action-btn i {
+	font-size: 18px;
+  }
+  
 /* MAIN */
 /* CONTENT */
 
