@@ -56,21 +56,63 @@ alert("Welcome to the admin panel!");
     <li>
         <i class='bx bxs-package'></i>
         <span class="text">
-            <h3>150</h3>
+        <?php
+
+// Use a valid MySQL query
+$select_users = "SELECT * FROM products";
+$result = mysqli_query($conn, $select_users);
+
+if ($result) {
+    $numbers_of_users = mysqli_num_rows($result); // Get the number of rows
+} else {
+    $numbers_of_users = 0; // Default value if query fails
+}
+
+?>
+           <h3><?php echo $numbers_of_users; ?></h3>
+
             <p>Products Available</p>
         </span>
     </li>
     <li>
         <i class='bx bxs-offer'></i>
         <span class="text">
-            <h3>320</h3>
+        <?php
+
+// Use a valid MySQL query
+$select_users = "SELECT * FROM offers";
+$result = mysqli_query($conn, $select_users);
+
+if ($result) {
+    $numbers_of_users = mysqli_num_rows($result); // Get the number of rows
+} else {
+    $numbers_of_users = 0; // Default value if query fails
+}
+
+?>
+           <h3><?php echo $numbers_of_users; ?></h3>
+
             <p>Total Offers</p>
         </span>
     </li>
     <li>
         <i class='bx bxs-envelope'></i>
         <span class="text">
-            <h3>45</h3>
+        <?php
+
+// Use a valid MySQL query
+$select_users = "SELECT * FROM meassage";
+$result = mysqli_query($conn, $select_users);
+
+if ($result) {
+    $numbers_of_users = mysqli_num_rows($result); // Get the number of rows
+} else {
+    $numbers_of_users = 0; // Default value if query fails
+}
+
+?>
+           <h3><?php echo $numbers_of_users; ?></h3>
+
             <p>Total Messages</p>
         </span>
     </li>

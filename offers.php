@@ -1,3 +1,4 @@
+
 <?php
 include 'database/config.php'; // Corrected the path
 session_start();
@@ -6,7 +7,7 @@ if (!isset($_SESSION['admin'])) {
     exit();
 }
 
-$q="select * from products";
+$q="select * from offers";
 $result = mysqli_query($conn,$q);
 
 ?>
@@ -35,43 +36,41 @@ $result = mysqli_query($conn,$q);
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>Products</h1>
+                    <h1>Offers</h1>
                     <ul class="breadcrumb">
                         <li>
                             <a href="dashboard.php">Dashboard</a>
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>
-                            <a class="active" href="products.php">Products</a>
+                            <a class="active" href="products.php">Offers</a>
                         </li>
                     </ul>
                 </div>
-                <a href="add_products.php" class="btn-download">
+                <a href="add_offers.php" class="btn-download">
                     <i class='bx bxs-plus-circle'></i>
-                    <span class="text">Add Product</span>
+                    <span class="text">Add Offers</span>
                 </a>
             </div>
 
             <div class="table-data">
 	<div class="order">
-    <div class="head" style="display: flex; justify-content: space-between; align-items: center;">
-    <h3>Product List</h3>
-    <input type="text" id="search" placeholder="Search Product..." onkeyup="filterTable()" style="width:270px"/ >
-    <form action="products.php" method="post" style="display: inline;">
-        <button type="submit" name="delete_all" class="btn-delete-all" style="margin-left: auto;">
-            <i class="bx bx-trash"></i> Delete All
-        </button>
-    </form>
-</div>
-
+		<div class="head">
+			<h3>FeedBack</h3>
+             <!-- Delete All Button -->
+             <form action="offers.php" method="post" style="display: inline;">
+                            <button type="submit" name="delete_all" class="btn-delete-all">
+                                <i class="bx bx-trash"></i> Delete All
+                            </button>
+                        </form>
+		</div>
 		<table id="productTable">
 			<thead>
 				<tr>
 					<th>ID</th>
-					<th>Product Name</th>
-					<th>Price</th>
+					<th>Title</th>
 					<th>Description</th>
-					<th>Shop Name</th>
+					<th>Offer Percentage</th>
 					<th>Image</th>
 					<th>Actions</th>
 				</tr>
@@ -81,22 +80,21 @@ $result = mysqli_query($conn,$q);
             <?php while($row = mysqli_fetch_assoc($result)) { ?>
 <tr>
     <td><?php echo $row['id']; ?></td>
-    <td><?php echo $row['name']; ?></td>
-    <td><?php echo $row['price']; ?></td>
-    <td><?php echo $row['des']; ?></td>
-    <td><?php echo $row['shopname']; ?></td>
-    <td><img src="<?php echo 'uploaded_images/' . $row['IMAGE']; ?>" alt="Product Image"></td>
+    <td><?php echo $row['title']; ?></td>
+    <td><?php echo $row['description']; ?></td>
+    <td><?php echo $row['offer_percentage']; ?></td>
+    <td><img src="<?php echo 'uploaded_images/' . $row['image']; ?>" alt="Offer Image"></td>
     <td>
-    <form action="edit_product.php" method="post" style="display: inline;">
+    <form action="edit_offer.php" method="post" style="display: inline;">
     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
     <button type="submit" class="action-btn edit-btn">
         <i class="bx bx-edit"></i>
     </button>
 </form>
 
-<form action="delete_product.php" method="post" style="display: inline;">
+<form action="offers.php" method="post" style="display: inline;">
     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-    <button type="submit" class="action-btn delete-btn">
+    <button type="submit" name="delete_row" class="action-btn delete-btn">
         <i class="bx bx-trash"></i>
     </button>
 </form>
@@ -118,42 +116,40 @@ $result = mysqli_query($conn,$q);
 
     <!-- Script -->
     <script src="script1.js"></script>
-    <script>
-        function filterTable() {
-	const input = document.getElementById('search');
-	const filter = input.value.toLowerCase();
-	const table = document.getElementById('productTable');
-	const rows = table.getElementsByTagName('tr');
-
-	for (let i = 1; i < rows.length; i++) {
-		const cells = rows[i].getElementsByTagName('td');
-		let match = false;
-
-		for (let j = 0; j < cells.length; j++) {
-			if (cells[j].innerText.toLowerCase().includes(filter)) {
-				match = true;
-				break;
-			}
-		}
-		rows[i].style.display = match ? '' : 'none';
-	}
-}
+   
 
     </script>
 </body>
 </html>
 <?php
+if(isset($_POST['delete_row'])){
+    $id=$_POST['id'];
+    $q="delete from offers where id=$id";
+    if (mysqli_query($conn, $q)) {
+        echo "<script>
+            alert('Product deleted successfully');
+            window.location.href = 'offers.php';
+        </script>";
+    } else {
+        echo "<script>
+            alert('Error deleting product');
+            window.location.href = 'offers.php';
+        </script>";
+    }
+
+}
+
 if (isset($_POST['delete_all'])) {
-    $q = "DELETE FROM products";
+    $q = "DELETE FROM offers";
     if (mysqli_query($conn, $q)) {
         echo "<script>
             alert('All offers deleted successfully');
-            window.location.href = 'products.php';
+            window.location.href = 'offers.php';
         </script>";
     } else {
         echo "<script>
             alert('Error deleting all offers');
-            window.location.href = 'products.php';
+            window.location.href = 'offers.php';
         </script>";
     }
 }

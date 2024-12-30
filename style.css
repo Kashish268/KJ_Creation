@@ -392,10 +392,10 @@ body {
 
 #content main .table-data > div {
 	border-radius: 20px;
-	background: #f0f0f0; /* Light grey background */
+	background: #1e1e1edb; /* Light grey background */
 	padding: 24px;
 	overflow-x: auto;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #content main .table-data .head {
@@ -408,7 +408,7 @@ body {
 #content main .table-data .head h3 {
 	font-size: 24px;
 	font-weight: 600;
-	color: #333;
+	color: rgb(246, 240, 240);
 }
 
 #content main .table-data .head input {
@@ -440,15 +440,16 @@ body {
 	background-color: var(--blue); /* Blue header background */
 	color: white;
 	text-align: left;
+	
   }
   
   #productTable thead th {
 	padding: 15px;
-	font-size: 16px;
   }
   
   /* Table Body */
   #productTable tbody tr {
+	
 	transition: background-color 0.3s;
   }
   
@@ -457,12 +458,13 @@ body {
   }
   
   #productTable tbody tr:hover {
-	background-color: #d6e4f2; /* Hover effect */
+	background-color: #dde9f5; /* Hover effect */
   }
   
   #productTable tbody td {
+	color: #515050;
 	padding: 15px;
-	font-size: 14px;
+	font-size: 18px;
   }
   
   /* Product Images */
@@ -473,40 +475,91 @@ body {
   }
   
   /* Action Buttons */
-  .action-btn {
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	width: 30px;
-	height: 30px;
-	border-radius: 50%;
-	cursor: pointer;
-	margin: 0 5px;
-	transition: background-color 0.3s;
-  }
-  
-  .edit-btn {
-	background-color: #4edd6f; /* Green for edit */
-	color: white;
-  }
-  
-  .edit-btn:hover {
-	background-color: #218838;
-  }
-  
-  .delete-btn {
-	background-color: #dc3545; /* Red for delete */
-	color: white;
-  }
-  
-  .delete-btn:hover {
-	background-color: #c82333;
-  }
-  
-  /* Icons */
-  .action-btn i {
-	font-size: 18px;
-  }
+ /* Styling for submit buttons */
+/* Action Buttons */
+/* Existing Action Button Styles */
+.action-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0 px;
+    background: none; /* Remove background */
+    border: none; /* Remove border */
+    color: inherit; /* Keep default text/icon color */
+    padding: 0; /* Remove extra padding */
+    transition: transform 0.1s ease; /* Add subtle hover effect */
+}
+
+.action-btn:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+.edit-btn {
+	background-color: #25e853;
+    color: white; /* Green for edit */
+}
+
+.edit-btn:hover {
+    color: #218838; /* Darker green on hover */
+}
+
+.delete-btn {
+	background-color: #dc3545;
+
+    color: white; /* Red for delete */
+}
+
+.delete-btn:hover {
+    color: white; /* Darker red on hover */
+}
+
+/* Icons */
+.action-btn i {
+    font-size: 19px; /* Simple icon size */
+}
+
+/* Delete All Button */
+.btn-delete-all {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #dc3545; /* Red for delete all */
+    color: white; /* White text */
+    padding: 10px 20px; /* Adjust padding for larger size */
+    border-radius: 5px; /* Rounded corners */
+    border: none; /* Remove border */
+    cursor: pointer; /* Pointer on hover */
+    font-size: 16px; /* Larger text */
+    font-weight: bold; /* Make text bold */
+    transition: background-color 0.1s ease, transform 0.2s ease; /* Add hover effects */
+}
+
+.btn-delete-all:hover {
+    background-color: #c82333; /* Darker red on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .btn-delete-all {
+        padding: 8px 16px; /* Smaller padding */
+        font-size: 14px; /* Smaller font size */
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-delete-all {
+        padding: 6px 12px; /* Even smaller padding */
+        font-size: 12px; /* Smaller font size */
+    }
+}
+
+
+
   
 /* MAIN */
 /* CONTENT */

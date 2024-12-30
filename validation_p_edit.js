@@ -42,11 +42,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 validate: function () {
                     const fileInput = document.getElementById("productImage");
                     const file = fileInput.files[0];
-                    if (!file) return false; // Ensure a file is selected
+                    if (!file) return true; // Allow null (no file selected)
                     const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
                     return allowedExtensions.test(file.name);
                 },
-            },
+            }
         ];
 
         // Iterate over validation rules
@@ -66,5 +66,33 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!isValid) {
             e.preventDefault();
         }
+    });
+
+    // Real-time error removal
+    const fields = document.querySelectorAll("#productForm input, #productForm textarea");
+    fields.forEach((field) => {
+        field.addEventListener(field.type === "file" ? "change" : "input", function () {
+            const error = this.nextElementSibling;
+            if (error && error.classList.contains("error")) {
+                const validationRules = {
+                    productName: (value) => value.trim() !== "",
+                    price: (value) => value.trim() !== "" && parseFloat(value) > 0,
+                    description: (value) => value.trim() !== "",
+                    shopName: (value) => value.trim() !== "",
+                    productImage: () => {
+                        const fileInput = document.getElementById("productImage");
+                        const file = fileInput.files[0];
+                        if (!file) return false;
+                        const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+                        return allowedExtensions.test(file.name);
+                    },
+                };
+
+                const isValid = validationRules[this.id](this.value || this.files);
+                if (isValid) {
+                    error.remove();
+                }
+            }
+        });
     });
 });

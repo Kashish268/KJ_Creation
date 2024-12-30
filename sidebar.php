@@ -37,8 +37,8 @@
             </a>
         </li>
         <!-- Messages Link -->
-        <li class="<?= ($current_page == 'message.php') ? 'active' : ''; ?>">
-            <a href="message.php">
+        <li class="<?= ($current_page == 'meassage.php') ? 'active' : ''; ?>">
+            <a href="meassage.php">
                 <i class='bx bxs-message-dots'></i>
                 <span class="text">Messages</span>
             </a>

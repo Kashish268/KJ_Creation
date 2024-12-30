@@ -7,14 +7,15 @@
     <i class='bx bx-menu' id="menu-toggle" aria-label="Toggle Sidebar"></i>
     <!-- Right-Side Content -->
     <div class="nav-right">
-        <a href="#" class="notification">
+        <!-- <a href="#" class="notification">
             <i class='bx bxs-bell'></i>
             <span class="num">8</span>
-        </a>
+        </a> -->
+        <!-- 
         <input type="checkbox" id="switch-mode" hidden>
         <a href="#" class="profile">
             <img src="img/people.png" alt="Profile">
-        </a>
+        </a> -->
     </div>
 </nav>
 

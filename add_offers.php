@@ -9,9 +9,8 @@ if (!isset($_SESSION['admin'])) {
 
 if (isset($_POST['sub'])) {
     $p_name = $_POST['productName'];
-    $price = $_POST['price'];
     $description = $_POST['description'];
-    $shopname = $_POST['shopName'];
+    $price = $_POST['price'];
     $img = $_FILES['productImage']['name'];
     $tem_img = $_FILES['productImage']['tmp_name'];
 
@@ -29,9 +28,9 @@ if (isset($_POST['sub'])) {
         }
 
         if (move_uploaded_file($tem_img, $upload_dir . $img)) {
-            $q = "INSERT INTO products(name, des, price, shopname, IMAGE) VALUES ('$p_name', '$description', '$price', '$shopname', '$img')";
+            $q = "INSERT INTO offers(title, description, offer_percentage, image) VALUES ('$p_name', '$description', '$price',  '$img')";
             if (mysqli_query($conn, $q)) {
-                echo "<script>alert('Add Product!'); window.location.href='products.php';</script>";
+                echo "<script>alert('Add Offer Successfully!'); window.location.href='offers.php';</script>";
             } else {
                 echo "<script>alert('Failed to add product. Error: " . mysqli_error($conn) . "');</script>";
             }
@@ -174,27 +173,31 @@ if (isset($_POST['sub'])) {
         <?php include 'navbar.php'; ?>
         <main>
     <div style="margin-bottom: 30px;">
-        <h2 style="text-align: left; color: rgb(244, 107, 44); font-size:  36px; font-weight: 600; margin-bottom: 10px;">Add Product</h2>
+        <h2 style="text-align: left; color: rgb(244, 107, 44); font-size:  36px; font-weight: 600; margin-bottom: 10px;">Add Offers</h2>
         <p style="text-align: left; color: #c4c4c4; font-size: 1rem;">
-            <a href="products.php" style="text-decoration: none; color: #c4c4c4;">Products</a> 
+            <a href="products.php" style="text-decoration: none; color: #c4c4c4;">Offers</a> 
             <span style="margin: 0 8px;">&gt;</span>
-            <span style="color: rgb(244, 107, 44);">Add Product</span>
+            <span style="color: rgb(244, 107, 44);">Add Offers</span>
         </p>
     </div>
     <form id="productForm" method="post" enctype="multipart/form-data">
-    <label for="productName">Product Name</label>
-                <input type="text" id="productName" name="productName" placeholder="Enter product name">
-                
-                <label for="price">Price</label>
-                <input type="number" id="price" name="price" placeholder="Enter product price">
-                
+    <label for="productName">Offer title</label>
+                <input type="text" id="productName" name="productName" placeholder="Enter offer title">
+                 
                 <label for="description">Description</label>
-                <textarea id="description" name="description" placeholder="Enter product description" rows="4"></textarea>
+                <textarea id="description" name="description" placeholder="Enter offer description" rows="4"></textarea>
                 
-                <label for="shopName">Shop Name</label>
-                <input type="text" id="shopName" name="shopName" placeholder="Enter shop name">
-                
-                <label for="productImage">Upload Product Image</label>
+                <label for="price">Offer Percentage</label>
+<input 
+    type="text" 
+    id="price" 
+    name="price" 
+    placeholder="Enter offer Percentage (e.g., 10% or 10.5%)" 
+   
+>
+
+               
+                <label for="productImage">Upload Offer Image</label>
                 <input type="file" id="productImage" name="productImage">
                 
                 <input type="submit"  name="sub" class="btn">
@@ -207,7 +210,7 @@ if (isset($_POST['sub'])) {
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- jQuery Validation -->
-    <script src="validation_product.js"></script> <!-- Include the separate validation file -->
+    <script src="validation2.js"></script> <!-- Include the separate validation file -->
 
 </body>
 </html>
