@@ -112,7 +112,8 @@ if (isset($_POST['submit'])) {
         }
 
         .login-container input[type="submit"] {
-            background: rgb(244, 107, 44);
+            background: linear-gradient(90deg, #FF7F50, #d93c03); /* Darker orange hover gradient */
+  transform: scale(1.05);
             color: white;
             padding: 10px;
             border: none;
@@ -123,6 +124,9 @@ if (isset($_POST['submit'])) {
         }
 
         .login-container input[type="submit"]:hover {
+            background: linear-gradient(90deg, #FF6347, #d35e04); /* Darker gradient on hover */
+  color: white;
+  transform: scale(1.05);   
         }
 
         .error-message {
