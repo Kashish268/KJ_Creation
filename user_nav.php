@@ -25,7 +25,7 @@
   <link href="users/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="users/css/user.css" rel="stylesheet">
+  <link href="users/css/user2.css" rel="stylesheet">
 
   <!-- =======================================================
     Theme Name: BizPage
@@ -53,11 +53,12 @@
           <li><a href="#about">About Us</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#portfolio">Products</a></li>
-          <li><a href="#team">Team</a></li>
+          <!-- <li><a href="#team">Team</a></li> -->
           <li><a href="#contact">Contact</a></li>
           <li><a href="login.php" class="btn btn-primary" style=" background: linear-gradient(90deg, #FF7F50, #FF4500); 
           /* Orange gradient */
-  color: white; border:none">Login</a></li>
+  color: white; border:none ;  border-radius: 45px;
+">Login</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>

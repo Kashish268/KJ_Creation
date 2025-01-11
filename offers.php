@@ -7,6 +7,13 @@ if (!isset($_SESSION['admin'])) {
     exit();
 }
 
+// Query to check if there's at least one row in the 'offers' table
+$q = "SELECT COUNT(*) AS total_rows FROM offers";
+$result_count = mysqli_query($conn, $q);
+$row_count = mysqli_fetch_assoc($result_count)['total_rows'];
+
+
+
 $q="select * from offers";
 $result = mysqli_query($conn,$q);
 
@@ -18,12 +25,16 @@ $result = mysqli_query($conn,$q);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Boxicons -->
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Favicons -->
+  <link href="img/kj_1.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
-    <title>Products</title>
-</head>
+    <link rel="stylesheet" href="style_ad.css">
+    <title>KJ CRREATION</title>
+    </head>
 <body>
 
     <?php include 'sidebar.php'; ?>
@@ -47,7 +58,8 @@ $result = mysqli_query($conn,$q);
                         </li>
                     </ul>
                 </div>
-                <a href="add_offers.php" class="btn-download">
+                <a href="add_offers.php" class="btn-download <?= ($row_count > 0) ? 'disabled' : ''; ?>" 
+                <?= ($row_count > 0) ? 'onclick="return false;"' : ''; ?>>
                     <i class='bx bxs-plus-circle'></i>
                     <span class="text">Add Offers</span>
                 </a>
@@ -56,13 +68,13 @@ $result = mysqli_query($conn,$q);
             <div class="table-data">
 	<div class="order">
 		<div class="head">
-			<h3>FeedBack</h3>
+			<h3>Offers</h3>
              <!-- Delete All Button -->
-             <form action="offers.php" method="post" style="display: inline;">
+             <!-- <form action="offers.php" method="post" style="display: inline;">
                             <button type="submit" name="delete_all" class="btn-delete-all">
                                 <i class="bx bx-trash"></i> Delete All
                             </button>
-                        </form>
+                        </form> -->
 		</div>
 		<table id="productTable">
 			<thead>

@@ -48,8 +48,12 @@ if (isset($_POST['sub'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Favicons -->
+  <link href="img/kj_1.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_ad.css">
     
     <title>AdminHub</title>
     <style>
@@ -175,7 +179,7 @@ if (isset($_POST['sub'])) {
     <div style="margin-bottom: 30px;">
         <h2 style="text-align: left; color: rgb(244, 107, 44); font-size:  36px; font-weight: 600; margin-bottom: 10px;">Add Offers</h2>
         <p style="text-align: left; color: #c4c4c4; font-size: 1rem;">
-            <a href="products.php" style="text-decoration: none; color: #c4c4c4;">Offers</a> 
+            <a href="offers.php" style="text-decoration: none; color: #c4c4c4;">Offers</a> 
             <span style="margin: 0 8px;">&gt;</span>
             <span style="color: rgb(244, 107, 44);">Add Offers</span>
         </p>

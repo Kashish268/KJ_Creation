@@ -27,7 +27,6 @@ if (isset($_POST['sub'])) {
         if (!is_dir($upload_dir)) {
             mkdir($upload_dir, 0755, true);
         }
-
         if (move_uploaded_file($tem_img, $upload_dir . $img)) {
             $q = "INSERT INTO products(name, des, price, shopname, IMAGE) VALUES ('$p_name', '$description', '$price', '$shopname', '$img')";
             if (mysqli_query($conn, $q)) {
@@ -49,8 +48,12 @@ if (isset($_POST['sub'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Favicons -->
+  <link href="img/kj_1.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_ad.css">
     
     <title>AdminHub</title>
     <style>

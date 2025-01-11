@@ -17,10 +17,14 @@ $result = mysqli_query($conn,$q);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Boxicons -->
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Favicons -->
+  <link href="img/kj_1.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_ad.css">
     <title>Products</title>
 </head>
 <body>
@@ -57,11 +61,11 @@ $result = mysqli_query($conn,$q);
     <div class="head" style="display: flex; justify-content: space-between; align-items: center;">
     <h3>Product List</h3>
     <input type="text" id="search" placeholder="Search Product..." onkeyup="filterTable()" style="width:270px"/ >
-    <form action="products.php" method="post" style="display: inline;">
+    <!-- <form action="products.php" method="post" style="display: inline;">
         <button type="submit" name="delete_all" class="btn-delete-all" style="margin-left: auto;">
             <i class="bx bx-trash"></i> Delete All
         </button>
-    </form>
+    </form> -->
 </div>
 
 		<table id="productTable">

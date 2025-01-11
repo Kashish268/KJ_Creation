@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style_ad.css">
 <link rel="stylesheet" href="script1.js">
 
 <!-- navbar.php -->
@@ -16,6 +16,11 @@
         <a href="#" class="profile">
             <img src="img/people.png" alt="Profile">
         </a> -->
+
+        <a href="index.php" class="home-button" aria-label="Home" action="logout.php">
+            <i class='bx bx-home'></i>
+            <span class="tooltip">Home Page</span>
+        </a>
     </div>
 </nav>
 

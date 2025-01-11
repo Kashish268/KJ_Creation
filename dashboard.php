@@ -20,8 +20,12 @@ alert("Welcome to the admin panel!");
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_ad.css">
     
+    <!-- Favicons -->
+  <link href="img/kj_1.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
     <title>AdminHub</title>
 </head>
 <body>

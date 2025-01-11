@@ -29,16 +29,37 @@ include 'database/config.php';
   <link href="users/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="users/css/user.css" rel="stylesheet">
+  <link href="users/css/user2.css" rel="stylesheet">
 
 </head>
 
-<body>
+<body  onload="myFunction()">
+<div id="loading"></div> <!-- Preloader -->
+  <div id="popUpMain" class="hidden">
+    <div id="popup">
+      <!-- Left Image Section -->
+      <div id="popupImage">
+        <img src="" alt="Popup Image" />
+      </div>
+
+      <!-- Right Content Section -->
+      <div id="popupContent">
+        <button id="closePopup">&times;</button>
+        <h1></h1>
+        <h2><span></span></h2>
+        <p></p>
+      </div>
+    </div>
+  </div>
+
+
 
   <!--==========================
     Header
   ============================-->
  <?php include 'user_nav.php'; ?>
+
+ 
    <!--==========================
     Intro Section
   ============================-->
@@ -69,7 +90,7 @@ include 'database/config.php';
                 <p>Discover custom gift solutions designed to inspire, 
                 impress, and leave a lasting impression. Crafted with creativity and care, 
                 our gifts are as unique as you are.</p>
-                <a href="#featured-services" class="btn-get-started scrollto">Show</a>
+                <a href="#portfolio" class="btn-get-started scrollto">Show</a>
               </div>
             </div>
           </div>
@@ -80,7 +101,7 @@ include 'database/config.php';
               <div class="carousel-content">
                 <h2>Where Innovation Meets Affordability!</h2>
                 <p>Discover the perfect balance of creativity and value with our innovative products, designed to impress without the high price tag. Quality and affordability, all in one!</p>
-                <a href="#featured-services" class="btn-get-started scrollto">Show</a>
+                <a href="#portfolio" class="btn-get-started scrollto">Show</a>
               </div>
             </div>
           </div>
@@ -388,165 +409,112 @@ include 'database/config.php';
     <!--==========================
       Portfolio Section
     ============================-->
-    <section id="portfolio"  class="section-bg" >
-      <div class="container">
+    <?php
 
+
+// Fetch products from the database
+$sql = "SELECT * FROM products";
+$result = $conn->query($sql);
+$products = [];
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $products[] = $row;
+    }
+}
+
+// Get the total number of products
+$totalProducts = count($products);
+?>
+
+<section id="portfolio" class="section-bg">
+    <div class="container">
         <header class="section-header">
-          <h3 class="section-title">Our Products</h3>
+            <h3 class="section-title" style="color:black;">Our Products</h3>
         </header>
-<br>
-        <!-- <div class="row">
-          <div class="col-lg-12">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
-            </ul>
-          </div>
-        </div> -->
+        <br>
 
-        <div class="row portfolio-container">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
+        <div class="row portfolio-container" id="product-container">
+    <?php
+    // Display the first 6 products
+    for ($i = 0; $i < min(6, $totalProducts); $i++) {
+        $product = $products[$i];
+        ?>
+        <div class="col-lg-4 col-md-4 portfolio-item wow fadeInUp">
             <div class="portfolio-wrap">
-              <figure>
-                <img src="img/portfolio/app1.jpg" class="img-fluid" alt="">
-                <a href="img/portfolio/app1.jpg" data-lightbox="portfolio" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="#">App 1</a></h4>
-                <p>App</p>
-              </div>
+                <figure>
+                    <img src="uploaded_images/<?php echo $product['IMAGE']; ?>" class="img-fluid" alt="<?php echo $product['name']; ?>">
+                    <a href="uploaded_images/<?php echo $product['IMAGE']; ?>" data-lightbox="portfolio" data-title="<?php echo $product['name']; ?>" class="link-preview" title="Preview">
+                        <i class="ion ion-eye"></i>
+                    </a>
+                    <a href="#" class="link-details" title="More Details">
+                        <i class="ion ion-android-open"></i>
+                    </a>
+                </figure>
+                <div class="portfolio-info">
+                    <h4 style="color: #333; font-weight: bold;">
+                        <a href="#" style="text-decoration: none;"><?php echo $product['name']; ?></a>
+                    </h4>
+                    <p style="color: #666; font-size: 14px;"><?php echo $product['price']; ?></p>
+                </div>
             </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="img/portfolio/web3.jpg" class="img-fluid" alt="">
-                <a href="img/portfolio/web3.jpg" class="link-preview" data-lightbox="portfolio" data-title="Web 3" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="#">Web 3</a></h4>
-                <p>Web</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="img/portfolio/app2.jpg" class="img-fluid" alt="">
-                <a href="img/portfolio/app2.jpg" class="link-preview" data-lightbox="portfolio" data-title="App 2" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="#">App 2</a></h4>
-                <p>App</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="img/portfolio/card2.jpg" class="img-fluid" alt="">
-                <a href="img/portfolio/card2.jpg" class="link-preview" data-lightbox="portfolio" data-title="Card 2" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="#">Card 2</a></h4>
-                <p>Card</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="img/portfolio/web2.jpg" class="img-fluid" alt="">
-                <a href="img/portfolio/web2.jpg" class="link-preview" data-lightbox="portfolio" data-title="Web 2" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="#">Web 2</a></h4>
-                <p>Web</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="img/portfolio/app3.jpg" class="img-fluid" alt="">
-                <a href="img/portfolio/app3.jpg" class="link-preview" data-lightbox="portfolio" data-title="App 3" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="#">App 3</a></h4>
-                <p>App</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="img/portfolio/card1.jpg" class="img-fluid" alt="">
-                <a href="img/portfolio/card1.jpg" class="link-preview" data-lightbox="portfolio" data-title="Card 1" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="#">Card 1</a></h4>
-                <p>Card</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp" data-wow-delay="0.1s">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="img/portfolio/card3.jpg" class="img-fluid" alt="">
-                <a href="img/portfolio/card3.jpg" class="link-preview" data-lightbox="portfolio" data-title="Card 3" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="#">Card 3</a></h4>
-                <p>Card</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.2s">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="img/portfolio/web1.jpg" class="img-fluid" alt="">
-                <a href="img/portfolio/web1.jpg" class="link-preview" data-lightbox="portfolio" data-title="Web 1" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="#">Web 1</a></h4>
-                <p>Web</p>
-              </div>
-            </div>
-          </div>
-
         </div>
+        <?php
+    }
+    ?>
+</div>
 
-      </div>
-    </section><!-- #portfolio -->
+<div class="text-center mt-3">
+    <?php if ($totalProducts > 6): ?>
+        <button id="view-more-btn" class="btn btn-primary">View More</button>
+    <?php else: ?>
+        <button id="view-more-btn" class="btn btn-primary" disabled>No More Products</button>
+    <?php endif; ?>
+</div>
+</div>
+
+<?php if ($totalProducts > 6): ?>
+<script>
+    // Handle the View More button click
+    document.getElementById('view-more-btn').addEventListener('click', () => {
+        const productContainer = document.getElementById('product-container');
+
+        // Add all remaining products
+        <?php
+        for ($i = 6; $i < $totalProducts; $i++) {
+            $product = $products[$i];
+            ?>
+            productContainer.innerHTML += `
+                <div class="col-lg-4 col-md-6 portfolio-item wow fadeInUp">
+                    <div class="portfolio-wrap">
+                        <figure>
+                            <img src="uploaded_images/<?php echo $product['IMAGE']; ?>" class="img-fluid" alt="<?php echo $product['name']; ?>">
+                        <a href="uploaded_images/<?php echo $product['IMAGE']; ?>" data-lightbox="portfolio" data-title="<?php echo $product['name']; ?>" class="link-preview" title="Preview">
+                            <i class="ion ion-eye"></i>
+                        </a>
+                        <a href="#" class="link-details" title="More Details">
+                            <i class="ion ion-android-open"></i>
+                        </a>
+                    </figure>
+                    <div class="portfolio-info">
+                        <h4 style="color: #333; font-weight: bold;">
+                            <a href="#" style="text-decoration: none;"><?php echo $product['name']; ?></a>
+                        </h4>
+    <p style="color: #666; font-size: 14px;">₹<?php echo $product['price']; ?></p>
+                    </div>
+                </div>
+            </div>
+        `;
+        <?php } ?>
+
+        // Hide the View More button
+        document.getElementById('view-more-btn').style.display = 'none';
+    });
+</script>
+<?php endif; ?>
+
+</section>
+<!-- #portfolio -->
 
     <!--==========================
       Clients Section
@@ -576,7 +544,7 @@ include 'database/config.php';
     <!--==========================
       Clients Section
     ============================-->
-    <section id="testimonials" class="section-bg wow fadeInUp">
+    <!-- <section id="testimonials" class="section-bg wow fadeInUp">
       <div class="container">
 
         <header class="section-header">
@@ -643,12 +611,12 @@ include 'database/config.php';
         </div>
 
       </div>
-    </section><!-- #testimonials -->
+    </section>#testimonials -->
 
     <!--==========================
       Team Section
     ============================-->
-    <section id="team">
+    <!-- <section id="team">
       <div class="container">
         <div class="section-header wow fadeInUp">
           <h3>Team</h3>
@@ -732,7 +700,7 @@ include 'database/config.php';
         </div>
 
       </div>
-    </section><!-- #team -->
+    </section>#team -->
 
     <!--==========================
       Contact Section
@@ -794,7 +762,7 @@ Get in touch with us today to explore our premium custom gift solutions and make
       <div class="error-message" id="message-error" style="color: red; display: none;"></div>
     </div>
     <div class="text-center">
-      <button type="submit">Send Message</button>
+      <button type="submit" style="border-radius: 50px;">Send Message</button>
     </div>
   </form>
 </div>
@@ -828,11 +796,11 @@ Get in touch with us today to explore our premium custom gift solutions and make
           <div class="col-lg-4 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">About us</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Services</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#home">Home</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#about">About us</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#services">Services</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="##portfolio">Products</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#contact">Contact</a></li>
             </ul>
           </div>
 
@@ -903,7 +871,7 @@ Get in touch with us today to explore our premium custom gift solutions and make
   <script src="users/lib/lightbox/js/lightbox.min.js"></script>
   <script src="users/lib/touchSwipe/jquery.touchSwipe.min.js"></script>
   <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
   <!-- Contact Form JavaScript File -->
   <!-- <script src="users/contactform/contactform.js"></script> -->
 
@@ -1028,7 +996,116 @@ $(document).ready(function () {
 
 </script>
 
+<script>
+  // Hide the preloader when the page is fully loaded
+  var preloader = document.getElementById("loading");
+  function myFunction() {
+    preloader.style.display = "none";
+  }
 
+  // Show the pop-up after 1 second
+  document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(function () {
+      document.getElementById("popUpMain").style.display = "flex";
+    }, 1000); // Delay in milliseconds
+  });
+
+  // Close the pop-up when the close button is clicked
+  document.getElementById("closePopup").addEventListener("click", function () {
+    document.getElementById("popUpMain").style.display = "none";
+  });
 </script>
+
+<!-- <script>
+document.addEventListener("DOMContentLoaded", function () {
+  // Fetch data from the backend
+  fetch("fetch_offers.php")
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success && data.offer) {
+        const offer = data.offer;
+
+        // Update the pop-up content with the offer details
+        document.querySelector("#popupContent h1").textContent = offer.title;
+        document.querySelector("#popupContent h2").innerHTML = `🎉 Save <span>${offer.discount "Off"}</span>`;
+        document.querySelector("#popupContent p").textContent =
+          offer.description;
+        document.querySelector("#popupImage img").src = offer.image_url ;
+
+        // Show the pop-up after 1 second
+        setTimeout(function () {
+          document.getElementById("popUpMain").style.display = "flex";
+        }, 1000);
+      } else if (!data.offer) { -->
+        <!-- console.log("No offers available.");
+      } else {
+        console.error(data.message || "An error occurred while fetching offers.");
+      }
+    })
+    .catch((error) => console.error("Error fetching offers:", error));
+});
+
+// Hide the preloader when the page is fully loaded
+var preloader = document.getElementById("loading");
+function myFunction() {
+  preloader.style.display = "none";
+}
+
+// Close the pop-up when the close button is clicked
+document.getElementById("closePopup").addEventListener("click", function () {
+  document.getElementById("popUpMain").style.display = "none";
+});
+
+</script> -->
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Fetch data from the backend
+    fetch("fetch_offers.php")
+      .then((response) => response.json())
+      .then((data) => {
+        const popupMain = document.getElementById("popUpMain");
+
+        if (data.success && data.offer) {
+          // Populate the pop-up with fetched data
+          document.querySelector("#popupContent h1").innerText = data.offer.title;
+          document.querySelector("#popupContent h2 span").innerText = data.offer.discount;
+          document.querySelector("#popupContent p").innerText = data.offer.description;
+          document.querySelector("#popupImage img").src = data.offer.image_url;
+
+          // Remove the 'hidden' class to show the popup
+          popupMain.classList.remove("hidden");
+
+          // Show the pop-up after 1 second
+          setTimeout(function () {
+            popupMain.style.display = "flex";
+          }, 1000);
+        } else {
+          // Add the 'hidden' class to ensure the popup is not displayed
+          popupMain.classList.add("hidden");
+          console.log(data.message || "No offers available, popup will not open.");
+        }
+      })
+      .catch((error) => {
+        // Ensure popup remains hidden on error
+        document.getElementById("popUpMain").classList.add("hidden");
+        console.error("Error fetching offers:", error);
+      });
+  });
+
+  // Hide the preloader when the page is fully loaded
+  function myFunction() {
+    document.getElementById("loading").style.display = "none";
+  }
+
+  // Close the pop-up when the close button is clicked
+  document.getElementById("closePopup").addEventListener("click", function () {
+    document.getElementById("popUpMain").classList.add("hidden");
+  });
+</script>
+
+
 </body>
 </html>
