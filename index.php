@@ -741,7 +741,7 @@ Get in touch with us today to explore our premium custom gift solutions and make
 </div>
 
 <div class="form">
-  <div id="sendmessage" style="display: none; color: green;">Your message has been sent. Thank you!</div>
+  <div id="sendmessage" style="display: none; color: green;">Thanks for getting in touch! We've received your message and will respond soon.</div>
   <form id="contactForm" action="contactform.php" method="POST">
     <div class="form-row">
       <div class="form-group col-md-6">
@@ -904,20 +904,20 @@ $(document).ready(function () {
   });
 
   // Real-time validation for Contact Number
-  $("#contact").on("input", function () {
-    const contact = $(this).val().trim();
-    if (contact === "") {
-      $("#contact-error").text("Please enter your contact number.").show();
-    } else if (!/^\d+$/.test(contact)) {
-      $("#contact-error").text("Contact number can only contain digits.").show();
-    } else if (contact.length < 10) {
-      $("#contact-error").text("Contact number must be exactly 10 digits.").show();
-    } else if (contact.length > 10) {
-      $("#contact-error").text("Contact number cannot exceed 10 digits.").show();
-    } else {
-      $("#contact-error").hide();
-    }
-  });
+  // $("#contact").on("input", function () {
+  //   const contact = $(this).val().trim();
+  //   if (contact === "") {
+  //     $("#contact-error").text("Please enter your contact number.").show();
+  //   } else if (!/^\d+$/.test(contact)) {
+  //     $("#contact-error").text("Contact number can only contain digits.").show();
+  //   } else if (contact.length < 10) {
+  //     $("#contact-error").text("Contact number must be exactly 10 digits.").show();
+  //   } else if (contact.length > 10) {
+  //     $("#contact-error").text("Contact number cannot exceed 10 digits.").show();
+  //   } else {
+  //     $("#contact-error").hide();
+  //   }
+  // });
 
   // Real-time validation for Message
   $("#message").on("input", function () {
@@ -929,7 +929,7 @@ $(document).ready(function () {
     }
   });
 
-  // Form submission validation
+  //Form submission validation
   $("#contactForm").submit(function (e) {
     e.preventDefault(); // Prevent default form submission
 
@@ -956,14 +956,14 @@ $(document).ready(function () {
     }
 
     // Contact Validation
-    const contact = $("#contact").val().trim();
-    if (contact === "") {
-      $("#contact-error").text("Please enter your contact number.").show();
-      isValid = false;
-    } else if (!/^\d{10}$/.test(contact)) {
-      $("#contact-error").text("Please enter a valid 10-digit contact number.").show();
-      isValid = false;
-    }
+    // const contact = $("#contact").val().trim();
+    // if (contact === "") {
+    //   $("#contact-error").text("Please enter your contact number.").show();
+    //   isValid = false;
+    // } else if (!/^\d{10}$/.test(contact)) {
+    //   $("#contact-error").text("Please enter a valid 10-digit contact number.").show();
+    //   isValid = false;
+    // }
 
     // Message Validation
     const message = $("#message").val().trim();
