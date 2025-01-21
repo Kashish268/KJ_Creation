@@ -1,22 +1,13 @@
-
 <?php
-include 'database/config.php'; // Corrected the path
+include 'database/config.php'; // Ensure this file has the correct database connection
 session_start();
+
 if (!isset($_SESSION['admin'])) {
-    header('Location:login.php');
+    header('Location: login.php');
     exit();
 }
-
-// Query to check if there's at least one row in the 'offers' table
-$q = "SELECT COUNT(*) AS total_rows FROM offers";
-$result_count = mysqli_query($conn, $q);
-$row_count = mysqli_fetch_assoc($result_count)['total_rows'];
-
-
-
-$q="select * from offers";
+$q="SELECT * FROM f_image ORDER BY id DESC";
 $result = mysqli_query($conn,$q);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,8 +24,8 @@ $result = mysqli_query($conn,$q);
 
     <!-- CSS -->
     <link rel="stylesheet" href="style_admin.css">
-    <title>KJ CRREATION</title>
-    </head>
+    <title>KJ Creation</title>
+</head>
 <body>
 
     <?php include 'sidebar.php'; ?>
@@ -47,42 +38,40 @@ $result = mysqli_query($conn,$q);
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>Offers</h1>
+                    <h1>Images</h1>
                     <ul class="breadcrumb">
                         <li>
                             <a href="dashboard.php">Dashboard</a>
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>
-                            <a class="active" href="products.php">Offers</a>
+                            <a class="active" href="footer_image.php">Images</a>
                         </li>
                     </ul>
                 </div>
-                <a href="add_offers.php" class="btn-download <?= ($row_count > 0) ? 'disabled' : ''; ?>" 
-                <?= ($row_count > 0) ? 'onclick="return false;"' : ''; ?>>
+                <a href="add_footer_image.php" class="btn-download">
                     <i class='bx bxs-plus-circle'></i>
-                    <span class="text">Add Offers</span>
+                    <span class="text">Add Image</span>
                 </a>
             </div>
 
             <div class="table-data">
 	<div class="order">
-		<div class="head">
-			<h3>Offers</h3>
-             <!-- Delete All Button -->
-             <!-- <form action="offers.php" method="post" style="display: inline;">
-                            <button type="submit" name="delete_all" class="btn-delete-all">
-                                <i class="bx bx-trash"></i> Delete All
-                            </button>
-                        </form> -->
-		</div>
+    <div class="head" style="display: flex; justify-content: space-between; align-items: center;">
+    <h3>Image List</h3>
+    <!-- <input type="text" id="search" placeholder="Search Product..." onkeyup="filterTable()" style="width:270px"/ > -->
+    <!-- <form action="products.php" method="post" style="display: inline;">
+        <button type="submit" name="delete_all" class="btn-delete-all" style="margin-left: auto;">
+            <i class="bx bx-trash"></i> Delete All
+        </button>
+    </form> -->
+</div>
+
 		<table id="productTable">
 			<thead>
 				<tr>
 					<th>ID</th>
-					<th>Title</th>
-					<th>Description</th>
-					<th>Offer Percentage</th>
+					<th>Product Name</th>
 					<th>Image</th>
 					<th>Actions</th>
 				</tr>
@@ -93,18 +82,16 @@ $result = mysqli_query($conn,$q);
 <tr>
     <td><?php echo $row['id']; ?></td>
     <td><?php echo $row['title']; ?></td>
-    <td><?php echo $row['description']; ?></td>
-    <td><?php echo $row['offer_percentage']; ?></td>
-    <td><img src="<?php echo 'uploaded_images/' . $row['image']; ?>" alt="Offer Image"></td>
+    <td><img src="<?php echo 'uploaded_images/' . $row['image']; ?>" alt="Product Image"></td>
     <td>
-    <form action="edit_offer.php" method="post" style="display: inline;">
+    <form action="edit_footer_image.php" method="post" style="display: inline;">
     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
     <button type="submit" class="action-btn edit-btn">
         <i class="bx bx-edit"></i>
     </button>
 </form>
 
-<form action="offers.php" method="post" style="display: inline;">
+<form action="footer_image.php" method="post" style="display: inline;">
     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
     <button type="submit" name="delete_row" class="action-btn delete-btn">
         <i class="bx bx-trash"></i>
@@ -121,48 +108,27 @@ $result = mysqli_query($conn,$q);
 		</table>
 	</div>
 </div>
-
-            </div>
+      </div>
         </main>
     </section>
-
-    <!-- Script -->
     <script src="script1.js"></script>
-   
-
-    </script>
-</body>
-</html>
+    </body>
+    </html>
 <?php
-if(isset($_POST['delete_row'])){
+    if(isset($_POST['delete_row'])){
     $id=$_POST['id'];
-    $q="delete from offers where id=$id";
+    $q="delete from f_image where id=$id";
     if (mysqli_query($conn, $q)) {
         echo "<script>
-            alert('Product deleted successfully');
-            window.location.href = 'offers.php';
+            alert('Image deleted successfully');
+            window.location.href = 'footer_image.php';
         </script>";
     } else {
         echo "<script>
-            alert('Error deleting product');
-            window.location.href = 'offers.php';
+            alert('Error deleting Image');
+            window.location.href = 'footer_image.php';
         </script>";
     }
 
-}
-
-if (isset($_POST['delete_all'])) {
-    $q = "DELETE FROM offers";
-    if (mysqli_query($conn, $q)) {
-        echo "<script>
-            alert('All offers deleted successfully');
-            window.location.href = 'offers.php';
-        </script>";
-    } else {
-        echo "<script>
-            alert('Error deleting all offers');
-            window.location.href = 'offers.php';
-        </script>";
-    }
 }
 ?>

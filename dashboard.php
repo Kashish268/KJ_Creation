@@ -20,7 +20,7 @@ alert("Welcome to the admin panel!");
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <!-- CSS -->
-    <link rel="stylesheet" href="style_ad.css">
+    <link rel="stylesheet" href="style_admin.css">
     
     <!-- Favicons -->
   <link href="img/kj_1.png" rel="icon">

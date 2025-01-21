@@ -1604,22 +1604,22 @@ body.mobile-nav-active #mobile-nav-toggle {
   padding: 12px 15px;
   border-radius: 5px;
   border: 1px solid rgb(80, 80, 80); /* Light grey border */
-  background: #333; /* Slightly lighter grey */
-  color: white; /* White text inside inputs */
+  background: #fdfcfcee; /* Slightly lighter grey */
+  color: #292929; /* White text inside inputs */
   margin-bottom: 15px;
   transition: all 0.3s ease;
 }
 
 #contact .form input::placeholder,
 #contact .form textarea::placeholder {
-  color: #aaa; /* Light grey placeholders */
+  color: #292929; /* Light grey placeholders */
 }
 
 #contact .form input:focus,
 #contact .form textarea:focus {
   outline: none;
   border-color: rgb(244, 107, 44); /* Orange border on focus */
-  background: #444; /* Slightly brighter grey on focus */
+  background: #fdfcfcee; /* Slightly brighter grey on focus */
   box-shadow: 0 0 8px rgba(244, 107, 44, 0.6); /* Glow effect on focus */
 }
 
@@ -1695,7 +1695,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 #footer .footer-top {
   background: #111;
-  padding: 60px 0 30px 0;
+  padding: 60px 15px 30px 0;
 }
 
 #footer .footer-top .footer-info {
@@ -1811,6 +1811,8 @@ body.mobile-nav-active #mobile-nav-toggle {
   font-size: 13px;
   color: #ddd;
 }
+
+
 
 /*--------------------------------------------------------------
 # Responsive Media Queries

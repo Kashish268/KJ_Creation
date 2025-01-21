@@ -53,7 +53,7 @@ if (isset($_POST['sub'])) {
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="style_ad.css">
+    <link rel="stylesheet" href="style_admin.css">
     
     <title>AdminHub</title>
     <style>

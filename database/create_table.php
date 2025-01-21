@@ -26,14 +26,20 @@ include 'config.php';
 //     message TEXT NOT NULL
 //     );";
 
-$query="
-create table if not EXISTS offers(
-  id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    description TEXT NOT NULL,
-    offer_percentage VARCHAR(255) NOT NULL,
-    image VARCHAR(255) NOT NULL
-);";
+// $query="
+// create table if not EXISTS offers(
+//   id INT AUTO_INCREMENT PRIMARY KEY,
+//     title VARCHAR(255) NOT NULL,
+//     description TEXT NOT NULL,
+//     offer_percentage VARCHAR(255) NOT NULL,
+//     image VARCHAR(255) NOT NULL
+// );";
+
+$query= "create table if not EXISTS f_image(
+ id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  image VARCHAR(255) NOT NULL
+  )";
 
 if ($conn->query($query) === TRUE) {
     echo "Table  created successfully";

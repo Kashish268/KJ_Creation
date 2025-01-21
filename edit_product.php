@@ -30,7 +30,7 @@ if (mysqli_num_rows($result) > 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="style_ad.css">
+    <link rel="stylesheet" href="style_admin.css">
     <title>AdminHub</title>
     <style>
         /* Add your CSS styles here */
@@ -132,7 +132,7 @@ if (mysqli_num_rows($result) > 0) {
 
     <script src="script1.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="validation_edit.js"></script>
+    
     <script>
         // Preview image before form submission
         function previewImage(input) {
@@ -145,9 +145,8 @@ if (mysqli_num_rows($result) > 0) {
             }
         }
     </script>
+
+    <script></script>
 </body>
 </html>
-<?php
 
-
-?>

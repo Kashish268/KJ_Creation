@@ -25,7 +25,7 @@
   <link href="users/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="users/css/user2.css" rel="stylesheet">
+  <link href="users/css/user.css" rel="stylesheet">
 
   <!-- =======================================================
     Theme Name: BizPage

@@ -7,7 +7,7 @@
 <!-- Boxicons -->
 <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 <!-- My CSS -->
-<link rel="stylesheet" href="style_ad.css">
+<link rel="stylesheet" href="style_admin.css">
 <section id="sidebar">
     <a href="#" class="brand">
         <!-- <i class='bx bxs-smile'></i> -->
@@ -18,7 +18,7 @@
         <!-- Dashboard Link -->
         <li class="<?= ($current_page == 'dashboard.php') ? 'active' : 
             (($current_page == 'product.php' || $current_page == 'add_product.php' || 
-              $current_page == 'offers.php' || $current_page == 'add_offers.php' || 
+              $current_page == 'offers.php' || $current_page == 'add_offers.php' ||  $current_page == 'footer_image.php'||
               $current_page == 'meassage.php') ? '' : ''); ?>">
 
             <a href="dashboard.php">
@@ -43,11 +43,21 @@
         <!-- Messages Link -->
         <li class="<?= ($current_page == 'meassage.php') ? 'active' : 
             (($current_page == 'product.php' || $current_page == 'add_product.php' || 
-              $current_page == 'offers.php' || $current_page == 'add_offers.php' || 
+              $current_page == 'offers.php' || $current_page == 'add_offers.php' ||  $current_page == 'footer_image.php'||
               $current_page == 'dashboard.php') ? '' : ''); ?>">
             <a href="meassage.php">
                 <i class='bx bxs-message-dots'></i>
                 <span class="text">Messages</span>
+            </a>
+        </li>
+
+        <li class="<?= ($current_page == 'footer_image.php')  || $current_page == 'add_footer_image.php' ? 'active' : 
+            (($current_page == 'product.php' || $current_page == 'add_product.php' || 
+              $current_page == 'offers.php' || $current_page == 'add_offers.php' ||  $current_page == 'meassage.php'||
+              $current_page == 'dashboard.php') ? '' : ''); ?>">
+            <a href="footer_image.php">
+                <i class='bx bxs-image'></i>
+                <span class="text">Footer Image</span>
             </a>
         </li>
     </ul>

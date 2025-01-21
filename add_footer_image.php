@@ -9,8 +9,6 @@ if (!isset($_SESSION['admin'])) {
 
 if (isset($_POST['sub'])) {
     $p_name = $_POST['productName'];
-    $description = $_POST['description'];
-    $price = $_POST['price'];
     $img = $_FILES['productImage']['name'];
     $tem_img = $_FILES['productImage']['tmp_name'];
 
@@ -26,13 +24,12 @@ if (isset($_POST['sub'])) {
         if (!is_dir($upload_dir)) {
             mkdir($upload_dir, 0755, true);
         }
-
         if (move_uploaded_file($tem_img, $upload_dir . $img)) {
-            $q = "INSERT INTO offers(title, description, offer_percentage, image) VALUES ('$p_name', '$description', '$price',  '$img')";
+            $q = "INSERT INTO f_image(title,image) VALUES ('$p_name','$img')";
             if (mysqli_query($conn, $q)) {
-                echo "<script>alert('Add Offer Successfully!'); window.location.href='offers.php';</script>";
+                echo "<script>alert('Add Image Successfully!'); window.location.href='footer_image.php';</script>";
             } else {
-                echo "<script>alert('Failed to add product. Error: " . mysqli_error($conn) . "');</script>";
+                echo "<script>alert('Failed to add image. Error: " . mysqli_error($conn) . "');</script>";
             }
         } else {
             echo "<script>alert('Failed to upload image.');</script>";
@@ -81,8 +78,8 @@ if (isset($_POST['sub'])) {
             border: 1px solid #444; /* Darker border */
             border-radius: 4px;
             outline: none;
-            background-color: #333; /* Dark input fields */
-            color: white; /* White text in inputs */
+            background-color: #f5f5f5; /* Dark input fields */
+            color: #000; /* White text in inputs */
             transition: border-color 0.3s ease;
         }
 
@@ -177,31 +174,17 @@ if (isset($_POST['sub'])) {
         <?php include 'navbar.php'; ?>
         <main>
     <div style="margin-bottom: 30px;">
-        <h2 style="text-align: left; color: rgb(244, 107, 44); font-size:  36px; font-weight: 600; margin-bottom: 10px;">Add Offers</h2>
-        <p style="text-align: left; color: #c4c4c4; font-size: 1rem;">
-            <a href="offers.php" style="text-decoration: none; color: #c4c4c4;">Offers</a> 
+        <h2 style="text-align: left; color: rgb(244, 107, 44); font-size:  36px; font-weight: 600; margin-bottom: 10px;">Add Product</h2>
+        <p style="text-align: left; color: #c4c4c4; font-size: 1rem;">Images</a> 
             <span style="margin: 0 8px;">&gt;</span>
-            <span style="color: rgb(244, 107, 44);">Add Offers</span>
+            <span style="color: rgb(244, 107, 44);">Add Image</span>
         </p>
     </div>
     <form id="productForm" method="post" enctype="multipart/form-data">
-    <label for="productName">Offer title</label>
-                <input type="text" id="productName" name="productName" placeholder="Enter offer title">
-                 
-                <label for="description">Description</label>
-                <textarea id="description" name="description" placeholder="Enter offer description" rows="4"></textarea>
+    <label for="productName">Enter Name</label>
+                <input type="text" id="productName" name="productName" placeholder="Enter name">
                 
-                <label for="price">Offer Percentage</label>
-<input 
-    type="text" 
-    id="price" 
-    name="price" 
-    placeholder="Enter offer Percentage (e.g., 10% or 10.5%)" 
-   
->
-
-               
-                <label for="productImage">Upload Offer Image</label>
+                <label for="productImage">Upload Image</label>
                 <input type="file" id="productImage" name="productImage">
                 
                 <input type="submit"  name="sub" class="btn">
@@ -214,7 +197,85 @@ if (isset($_POST['sub'])) {
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- jQuery Validation -->
-    <script src="validation2.js"></script> <!-- Include the separate validation file -->
+    <!-- <script src="validation_product.js"></script> Include the separate validation file -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("productForm");
 
+    form.addEventListener("submit", function (e) {
+        let isValid = true;
+        const errors = document.querySelectorAll(".error");
+        errors.forEach((error) => error.remove()); // Remove previous error messages
+
+        // Validation rules for the offer form
+        const validationRules = [
+            {
+                field: "productName",
+                message: "Title is required.",
+                validate: function (value) {
+                    return value.trim() !== "";
+                },
+            },
+           
+            
+            {
+                field: "productImage",
+                message: "Please upload a valid image file (jpg, jpeg, png).",
+                validate: function () {
+                    const fileInput = document.getElementById("productImage");
+                    const file = fileInput.files[0];
+                    if (!file) return false; // Ensure a file is selected
+                    const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+                    return allowedExtensions.test(file.name);
+                },
+            },
+        ];
+
+        // Iterate over validation rules
+        validationRules.forEach(function (rule) {
+            const field = document.getElementById(rule.field);
+            const fieldValue = field.type === "file" ? field.files : field.value; // Handle file inputs correctly
+            if (!rule.validate(fieldValue)) {
+                isValid = false;
+                const error = document.createElement("div");
+                error.className = "error";
+                error.textContent = rule.message;
+                field.parentNode.insertBefore(error, field.nextSibling);
+            }
+        });
+
+        // If not valid, prevent form submission
+        if (!isValid) {
+            e.preventDefault();
+        }
+    });
+
+    // Real-time error removal
+    const fields = document.querySelectorAll("#productForm input, #productForm textarea");
+    fields.forEach((field) => {
+        field.addEventListener(field.type === "file" ? "change" : "input", function () {
+            const error = this.nextElementSibling;
+            if (error && error.classList.contains("error")) {
+                const validationRules = {
+                    productName: (value) => value.trim() !== "",
+                    productImage: () => {
+                        const fileInput = document.getElementById("productImage");
+                        const file = fileInput.files[0];
+                        if (!file) return false;
+                        const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+                        return allowedExtensions.test(file.name);
+                    },
+                };
+
+                const isValid = validationRules[this.id](this.value);
+                if (isValid) {
+                    error.remove();
+                }
+            }
+        });
+    });
+});
+
+</script>
 </body>
 </html>
