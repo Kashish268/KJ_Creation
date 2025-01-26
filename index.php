@@ -29,7 +29,7 @@ include 'database/config.php';
   <link href="users/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="users/css/user.css" rel="stylesheet">
+  <link href="users/css/user2.css" rel="stylesheet">
 
 </head>
 
@@ -64,85 +64,73 @@ include 'database/config.php';
     Intro Section
   ============================-->
   <section id="intro">
-    <div class="intro-container">
-      <div id="introCarousel" class="carousel  slide carousel-fade" data-ride="carousel">
-
-        <ol class="carousel-indicators"></ol>
-
-        <div class="carousel-inner" role="listbox">
-
-          <div class="carousel-item active">
-            <div class="carousel-background"><img src="users/myimg/corosole1.jpg" alt=""></div>
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2>Unique Designs, Crafted for You!</h2>
-                <p>At KJ Creation, we offer custom products designed to reflect your style and personality. Explore our collection of innovative, high-quality designs tailored just for you.</p>
-                <a href="#portfolio" class="btn-get-started scrollto">Show</a>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Left Column: Carousel -->
+      <div class="col-md-8 col-12">
+        <div id="introCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+          <ol class="carousel-indicators"></ol>
+          <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+              <div class="carousel-background">
+                <img src="users/myimg/corosole1.jpg" alt="">
+              </div>
+              <div class="carousel-container">
+                <div class="carousel-content">
+                  <h2>Unique Designs, Crafted for You!</h2>
+                  <p>At KJ Creation, we offer custom products designed to reflect your style and personality. Explore our collection of innovative, high-quality designs tailored just for you.</p>
+                  <a href="#portfolio" class="btn-get-started scrollto">Show</a>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-background">
+                <img src="users/myimg/corosole2.jpg" alt="">
+              </div>
+              <div class="carousel-container">
+                <div class="carousel-content">
+                  <h2>Creative, Custom & Timeless!</h2>
+                  <p>Discover custom gift solutions designed to inspire, impress, and leave a lasting impression. Crafted with creativity and care, our gifts are as unique as you are.</p>
+                  <a href="#portfolio" class="btn-get-started scrollto">Show</a>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-background">
+                <img src="users/myimg/corosole3.jpg" alt="">
+              </div>
+              <div class="carousel-container">
+                <div class="carousel-content">
+                  <h2>Where Innovation Meets Affordability!</h2>
+                  <p>Discover the perfect balance of creativity and value with our innovative products, designed to impress without the high price tag. Quality and affordability, all in one!</p>
+                  <a href="#portfolio" class="btn-get-started scrollto">Show</a>
+                </div>
               </div>
             </div>
           </div>
-
-          <div class="carousel-item">
-            <div class="carousel-background"><img src="users/myimg/corosole2.jpg" alt=""></div>
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2>Creative, Custom & Timeless!</h2>
-                <p>Discover custom gift solutions designed to inspire, 
-                impress, and leave a lasting impression. Crafted with creativity and care, 
-                our gifts are as unique as you are.</p>
-                <a href="#portfolio" class="btn-get-started scrollto">Show</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="carousel-item">
-            <div class="carousel-background"><img src="users/myimg/corosole3.jpg" alt=""></div>
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2>Where Innovation Meets Affordability!</h2>
-                <p>Discover the perfect balance of creativity and value with our innovative products, designed to impress without the high price tag. Quality and affordability, all in one!</p>
-                <a href="#portfolio" class="btn-get-started scrollto">Show</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- <div class="carousel-item">
-            <div class="carousel-background"><img src="img/intro-carousel/4.jpg" alt=""></div>
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2>Nam libero tempore</h2>
-                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum.</p>
-                <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
-              </div>
-            </div>
-          </div> -->
-
-          <!-- <div class="carousel-item">
-            <div class="carousel-background"><img src="img/intro-carousel/5.jpg" alt=""></div>
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2>Magnam aliquam quaerat</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
-              </div>
-            </div>
-          </div> -->
-
+          <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
+      </div>
 
-        <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon ion-chevron-left" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-
-        <a class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
-          <span class="carousel-control-next-icon ion-chevron-right" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-
+      <!-- Right Column: Two Images -->
+      <div class="col-md-4 col-12 d-flex flex-column">
+        <div class="image-wrapper mb-4">
+          <img src="users/myimg/corosole3.jpg" alt="Right Image 1" class="img-fluid">
+        </div>
+        <div class="image-wrapper">
+          <img src="users/myimg/corosole3.jpg" alt="Right Image 2" class="img-fluid">
+        </div>
       </div>
     </div>
-  </section><!-- #intro -->
+  </div>
+</section>
 
   <main id="main">
 
