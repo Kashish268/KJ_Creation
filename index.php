@@ -35,22 +35,18 @@ include 'database/config.php';
 
 <body  onload="myFunction()">
 <div id="loading"></div> <!-- Preloader -->
-  <div id="popUpMain" class="hidden">
-    <div id="popup">
-      <!-- Left Image Section -->
-      <div id="popupImage">
-        <img src="" alt="Popup Image" />
-      </div>
-
-      <!-- Right Content Section -->
-      <div id="popupContent">
-        <button id="closePopup">&times;</button>
-        <h1></h1>
-        <h2><span></span></h2>
-        <p></p>
-      </div>
+<div id="popUpMain" class="hidden">
+  <div id="popup">
+    <!-- Left Image Section -->
+    <div id="popupImage">
+      <img src="" alt="Popup Image" />
     </div>
+    <!-- Close Button -->
+    <button id="closePopup">&times;</button>
   </div>
+</div>
+
+
 
 
 
@@ -971,41 +967,36 @@ document.getElementById("closePopup").addEventListener("click", function () {
 </script> -->
 
 
-
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Fetch data from the backend
-    fetch("fetch_offers.php")
-      .then((response) => response.json())
-      .then((data) => {
-        const popupMain = document.getElementById("popUpMain");
+document.addEventListener("DOMContentLoaded", function () {
+  // Fetch data from the backend
+  fetch("fetch_offers.php")
+    .then((response) => response.json())
+    .then((data) => {
+      const popupMain = document.getElementById("popUpMain");
 
-        if (data.success && data.offer) {
-          // Populate the pop-up with fetched data
-          document.querySelector("#popupContent h1").innerText = data.offer.title;
-          document.querySelector("#popupContent h2 span").innerText = data.offer.discount;
-          document.querySelector("#popupContent p").innerText = data.offer.description;
-          document.querySelector("#popupImage img").src = data.offer.image_url;
+      if (data.success && data.offer) {
+        // Populate the pop-up with fetched data
+        document.querySelector("#popupImage img").src = data.offer.image_url;
 
-          // Remove the 'hidden' class to show the popup
-          popupMain.classList.remove("hidden");
+        // Remove the 'hidden' class to show the popup
+        popupMain.classList.remove("hidden");
 
-          // Show the pop-up after 1 second
-          setTimeout(function () {
-            popupMain.style.display = "flex";
-          }, 1000);
-        } else {
-          // Add the 'hidden' class to ensure the popup is not displayed
-          popupMain.classList.add("hidden");
-          console.log(data.message || "No offers available, popup will not open.");
-        }
-      })
-      .catch((error) => {
-        // Ensure popup remains hidden on error
-        document.getElementById("popUpMain").classList.add("hidden");
-        console.error("Error fetching offers:", error);
-      });
-  });
+        // Show the pop-up after 1 second
+        setTimeout(function () {
+          popupMain.style.display = "flex";
+        }, 1000);
+      } else {
+        // Add the 'hidden' class to ensure the popup is not displayed
+        popupMain.classList.add("hidden");
+        console.log(data.message || "No offers available, popup will not open.");
+      }
+    })
+    .catch((error) => {
+      // Ensure popup remains hidden on error
+      document.getElementById("popUpMain").classList.add("hidden");
+      console.error("Error fetching offers:", error);
+    });
 
   // Hide the preloader when the page is fully loaded
   function myFunction() {
@@ -1016,6 +1007,8 @@ document.getElementById("closePopup").addEventListener("click", function () {
   document.getElementById("closePopup").addEventListener("click", function () {
     document.getElementById("popUpMain").classList.add("hidden");
   });
+});
+
 </script>
 
 

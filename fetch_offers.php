@@ -1,7 +1,7 @@
 <?php
 include 'database/config.php';
 
-$sql = "SELECT title, description, offer_percentage, image FROM offers LIMIT 1";
+$sql = "SELECT image FROM popup_image LIMIT 1";
 $result = $conn->query($sql);
 if ($result && $result->num_rows > 0) {
     $row = $result->fetch_assoc();
@@ -10,9 +10,9 @@ if ($result && $result->num_rows > 0) {
     echo json_encode([
         "success" => true,
         "offer" => [
-            "title" => $row["title"],
-            "description" => $row["description"],
-            "discount" => $row["offer_percentage"],
+            // "title" => $row["title"],
+            // "description" => $row["description"],
+            // "discount" => $row["offer_percentage"],
             "image_url" => $imagePath
         ]
     ]);

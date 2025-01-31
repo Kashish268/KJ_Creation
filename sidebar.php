@@ -60,6 +60,42 @@
                 <span class="text">Footer Image</span>
             </a>
         </li>
+
+        <li class="<?= ($current_page == 'popup_offers.php')  || $current_page == 'add_popup_image.php' ? 'active' : 
+            (($current_page == 'product.php' || $current_page == 'add_product.php' || 
+              $current_page == 'offers.php' || $current_page == 'add_offers.php' ||  $current_page == 'meassage.php'||
+              $current_page == 'dashboard.php'||$current_page == 'footer_image.php' ||$current_page == 'add_footer_image.php'||$current_page == 'popup_offers.php'
+               || $current_page == 'add_popup_image.php')  ? '' : ''); ?>">
+            <a href="popup_offers.php">
+                <i class='bx bxs-offer'></i>
+                <span class="text">Popup Offer</span>
+            </a>
+        </li>
+
+        <li class="<?= ($current_page == 'homepage_corosole.php')  || $current_page == 'add_homepage_corosole.php' ? 'active' : 
+            (($current_page == 'product.php' || $current_page == 'add_product.php' || 
+              $current_page == 'offers.php' || $current_page == 'add_offers.php' ||  $current_page == 'meassage.php'||
+              $current_page == 'dashboard.php'||$current_page == 'footer_image.php' ||$current_page == 'add_footer_image.php'
+              ||$current_page == 'popup_offers.php'
+              || $current_page == 'add_popup_image.php'|| $current_page == 'homepage.php' || $current_page == 'add_homeside_image.php')  ? '' : ''); ?>">
+            <a href="homepage_corosole.php">
+                <i class='bx bxs-image'></i>
+                <span class="text">Home Corousole</span>
+            </a>
+        </li>
+
+        <li class="<?= ($current_page == 'homepage.php')  || $current_page == 'add_homeside_image.php' ? 'active' : 
+            (($current_page == 'product.php' || $current_page == 'add_product.php' || 
+              $current_page == 'offers.php' || $current_page == 'add_offers.php' ||  $current_page == 'meassage.php'||
+              $current_page == 'dashboard.php'||$current_page == 'footer_image.php' ||$current_page == 'add_footer_image.php'||$current_page == 'popup_offers.php'
+              || $current_page == 'add_popup_image.php'|| $current_page == 'homepage_corosole.php' || $current_page == 'add_homepage_corosole.php')  ? '' : ''); ?>">
+            <a href="homepage.php">
+                <i class='bx bxs-home'></i>
+                <span class="text">Home Edit</span>
+            </a>
+        </li>
+
+        
     </ul>
     <ul class="side-menu">
         <!-- Logout Link -->

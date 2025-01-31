@@ -42,7 +42,6 @@ body.dark {
 
 body {
 	background: var(--light);
-
 	overflow-x: hidden;
 }
 

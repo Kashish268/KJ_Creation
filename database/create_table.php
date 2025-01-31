@@ -35,12 +35,39 @@ include 'config.php';
 //     image VARCHAR(255) NOT NULL
 // );";
 
-$query= "create table if not EXISTS f_image(
- id INT AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
-  image VARCHAR(255) NOT NULL
-  )";
+// $query= "create table if not EXISTS f_image(
+//  id INT AUTO_INCREMENT PRIMARY KEY,
+//   title VARCHAR(255) NOT NULL,
+//   image VARCHAR(255) NOT NULL
+//   )";
 
+
+  // $query= "create table if not EXISTS popup_image(
+  //   id INT AUTO_INCREMENT PRIMARY KEY,
+  //    title VARCHAR(255) NOT NULL,
+  //    image VARCHAR(255) NOT NULL
+  //    )";
+
+
+  // $query= "create table if not EXISTS home_above(
+  //   id INT AUTO_INCREMENT PRIMARY KEY,
+  //    title VARCHAR(255) NOT NULL,
+  //    image VARCHAR(255) NOT NULL
+  //    )";
+
+  // $query= "create table if not EXISTS home_side_image(
+  //   id INT AUTO_INCREMENT PRIMARY KEY,
+  //    image_position VARCHAR(255) NOT NULL,
+  //    image VARCHAR(255) NOT NULL
+  //    )";
+
+     $query= "create table if not EXISTS home_slider(
+      id INT AUTO_INCREMENT PRIMARY KEY,
+       main_text VARCHAR(255) NOT NULL,
+        p_text VARCHAR(255) NOT NULL,
+       image VARCHAR(255) NOT NULL
+       )";
+     
 if ($conn->query($query) === TRUE) {
     echo "Table  created successfully";
 } else {
