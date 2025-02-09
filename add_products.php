@@ -8,35 +8,44 @@ if (!isset($_SESSION['admin'])) {
 }
 
 if (isset($_POST['sub'])) {
+    // Retrieve Product Details
     $p_name = $_POST['productName'];
     $price = $_POST['price'];
     $description = $_POST['description'];
     $shopname = $_POST['shopName'];
     $img = $_FILES['productImage']['name'];
     $tem_img = $_FILES['productImage']['tmp_name'];
+    $Categories = $_POST['categories'];
+    $p_code = $_POST['p_code'];
+    // Handle File Upload
+    $upload_dir = "uploaded_images/";
+    if (!is_dir($upload_dir)) {
+        mkdir($upload_dir, 0755, true);
+    }
+    move_uploaded_file($tem_img, $upload_dir . $img);
 
-    // Get file extension
-    $file_extension = strtolower(pathinfo($img, PATHINFO_EXTENSION));
-    $allowed_extensions = ['jpg', 'jpeg', 'png'];
+    // ✅ Directly Convert Questions & Answers to JSON
+    $questions = $_POST['questions'] ?? [];
+    $answers = $_POST['answers'] ?? [];
 
-    if (!in_array($file_extension, $allowed_extensions)) {
-        echo "<script>alert('File must be in .jpg, .jpeg, or .png format.');</script>";
+    $qa_array = [];
+    foreach ($questions as $index => $question) {
+        $qa_array[] = [
+            "question" => $question,
+            "answer" => $answers[$index] ?? ""
+        ];
+    }
+
+    $qa_json = json_encode($qa_array); // 🔹 Convert array to JSON
+
+    // ✅ Insert Data into Database
+    $query = "INSERT INTO products (p_code,name, des, price, shopname, categories,IMAGE, question) 
+              VALUES ('$p_code','$p_name', '$description', '$price', '$shopname', '$Categories','$img', '$qa_json')";
+
+    if (mysqli_query($conn, $query)) {
+        echo "<script>alert('Product Added!'); window.location.href='products.php';</script>";
     } else {
-        // Validate file upload directory
-        $upload_dir = "uploaded_images/";
-        if (!is_dir($upload_dir)) {
-            mkdir($upload_dir, 0755, true);
-        }
-        if (move_uploaded_file($tem_img, $upload_dir . $img)) {
-            $q = "INSERT INTO products(name, des, price, shopname, IMAGE) VALUES ('$p_name', '$description', '$price', '$shopname', '$img')";
-            if (mysqli_query($conn, $q)) {
-                echo "<script>alert('Add Product!'); window.location.href='products.php';</script>";
-            } else {
-                echo "<script>alert('Failed to add product. Error: " . mysqli_error($conn) . "');</script>";
-            }
-        } else {
-            echo "<script>alert('Failed to upload image.');</script>";
-        }
+        echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
     }
 }
 ?>
@@ -168,6 +177,17 @@ if (isset($_POST['sub'])) {
         /* Style for the back arrow */
 
     </style>
+     <script>
+        function addQAField() {
+            let container = document.getElementById("qa-container");
+            let div = document.createElement("div");
+            div.innerHTML = `
+                <input type="text" name="questions[]" placeholder="Enter question" style="width:100%;" /required><br><br>
+                <input type="text" name="answers[]" placeholder="Enter answer" style="width:100%;"/required><br><br>
+            `;
+            container.appendChild(div);
+        }
+    </script>
 </head>
 <body>
 
@@ -187,7 +207,8 @@ if (isset($_POST['sub'])) {
     <form id="productForm" method="post" enctype="multipart/form-data">
     <label for="productName">Product Name</label>
                 <input type="text" id="productName" name="productName" placeholder="Enter product name">
-                
+                <label>Product Code:</label>
+                <input type="text" name="p_code" id="p_code" placeholder="Enter product code">
                 <label for="price">Price</label>
                 <input type="number" id="price" name="price" placeholder="Enter product price">
                 
@@ -196,10 +217,21 @@ if (isset($_POST['sub'])) {
                 
                 <label for="shopName">Shop Name</label>
                 <input type="text" id="shopName" name="shopName" placeholder="Enter shop name">
-                
+                <label>Categories:</label>
+        <select name="categories">
+        <option value="">Select a Category</option>
+            <option value="Handicraft">Handicraft</option>
+            <option value="Purse">Purse</option>
+            <option value="Jewelry">Jewellery</option>
+            <option value="Accessories">Accessories</option>
+        </select>
                 <label for="productImage">Upload Product Image</label>
                 <input type="file" id="productImage" name="productImage">
-                
+                <label>Questions & Answers: (Click on Add button)</label>
+        <div id="qa-container"></div>
+        <button type="button" onclick="addQAField()" style="
+        background: rgb(244, 107, 44); 
+        color: white; border: none; padding: 15px;border-radius:4px; cursor:pointer; font-size:15px">Add Q & A</button>
                 <input type="submit"  name="sub" class="btn">
             </form>
         </main>

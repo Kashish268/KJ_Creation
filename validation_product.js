@@ -15,6 +15,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     return value.trim() !== "";
                 },
             },
+
+            {
+                field: "p_code",
+                message: "Product Code is required.",
+                validate: function (value) {
+                    return value.trim() !== "";
+                },
+            },
             {
                 field: "price",
                 message: "Please enter a valid price.",
@@ -35,6 +43,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 validate: function (value) {
                     return value.trim() !== "";
                 },
+            },
+            {
+                field: "categories",
+                message: "Please select a category.",
+                validate: value => value.trim() !== "",
             },
             {
                 field: "productImage",
@@ -75,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const error = this.nextElementSibling;
             if (error && error.classList.contains("error")) {
                 const validationRules = {
-                    productName: (value) => value.trim() !== "",
+                    productName: (value) => value.trim() !== "",         
                     price: (value) => value.trim() !== "" && parseFloat(value) > 0,
                     description: (value) => value.trim() !== "",
                     shopName: (value) => value.trim() !== "",

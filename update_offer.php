@@ -11,6 +11,7 @@ $product = mysqli_fetch_assoc($result);
 if (isset($_POST['update_btn'])) {
     $id = $_POST['id']; 
     $p_name = $_POST['productName'];
+    $offer_code = $_POST['offercode'];
     $price = $_POST['price'];
     $description = $_POST['description'];
 
@@ -35,7 +36,8 @@ if (isset($_POST['update_btn'])) {
 
     // Update the database
     $sql = "UPDATE offers SET 
-            title = '$p_name', 
+            title = '$p_name',
+            offer_code = '$offer_code', 
             offer_percentage = '$price', 
             description = '$description', 
             image = '$imageFileName'

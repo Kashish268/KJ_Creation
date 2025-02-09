@@ -89,6 +89,18 @@ if (mysqli_num_rows($result) > 0) {
             }
         }
     </style>
+
+<script>
+        function addQAField() {
+            let container = document.getElementById("qa-container");
+            let div = document.createElement("div");
+            div.innerHTML = `
+                <input type="text" name="questions[]" placeholder="Enter question" style="width:100%;" /required><br><br>
+                <input type="text" name="answers[]" placeholder="Enter answer" style="width:100%;"/required><br><br>
+            `;
+            container.appendChild(div);
+        }
+    </script>
 </head>
 <body>
 
@@ -109,6 +121,9 @@ if (mysqli_num_rows($result) > 0) {
                 <label for="productName">Product Name</label>
                 <input type="text" id="productName" name="productName" value="<?php echo  $a['name']; ?>">
 
+                <label>Product Code:</label>
+                <input type="text" name="p_code" id="p_code" value="<?php echo $a['p_code'];?>" /required>
+
                 <label for="price">Price</label>
                 <input type="number" id="price" name="price" value="<?php echo $a['price']; ?>">
 
@@ -118,10 +133,37 @@ if (mysqli_num_rows($result) > 0) {
                 <label for="shopName">Shop Name</label>
                 <input type="text" id="shopName" name="shopName" value="<?php echo $a['shopname']; ?>">
 
+                <label for="categories">Select categories</label>
+
+                <select name="categories">
+        <option value="<?php echo $a['categories'];?>"><?php echo $a['categories'];?></option>
+            <option value="Handicraft">Handicraft</option>
+            <option value="Purse">Purse</option>
+            <option value="Jewelry">Jewelry</option>
+            <option value="Accessories">Accessories</option>
+        </select>
                 <label for="productImage">Upload Product Image</label>
-    <img src="uploaded_images/<?php echo $a['IMAGE']; ?>" alt="Product Image" style="max-width: 150px; height: auto;" name="pImage" id="imagePreview">
+    <img src="uploaded_images/<?php echo $a['image']; ?>" alt="Product Image" style="max-width: 150px; height: auto;" name="pImage" id="imagePreview">
         
 <input type="file" id="productImage" name="productImage"  onchange="previewImage(this)">
+
+<label>Questions & Answers:</label>
+    <div id="qa-container">
+        <?php
+        if (!empty($a['question'])) {
+            $qaData = json_decode($a['question'], true);
+            if (is_array($qaData)) {
+                foreach ($qaData as $index => $qa) {
+                    echo '<div class="qa-item">';
+                    echo '<input type="text" name="questions[]" placeholder="Question" value="' . htmlspecialchars($qa['question']) . '" style="width:100%"><br><br>';
+                    echo '<input type="text" name="answers[]" placeholder="Answer" value="' . htmlspecialchars($qa['answer']) . '" style="width:100%"><br><br>';
+                    echo '</div>';
+                }
+            }
+        }
+        ?>
+    </div>
+    <button type="button" onclick="addQAField()" style="background: rgb(244, 107, 44); color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer; font-size: 14px;">Add Q & A</button>
 
                 <!-- You can't set a value for a file input, so we leave it as is -->
                 <input type="hidden" name="id" value="<?php echo $a['id']; ?>">

@@ -73,10 +73,13 @@ $result = mysqli_query($conn,$q);
 				<tr>
 					<th>ID</th>
 					<th>Product Name</th>
+                    <th>Product Code</th>
 					<th>Price</th>
 					<th>Description</th>
 					<th>Shop Name</th>
+                    <th>Product Category</th>
 					<th>Image</th>
+                    <th>Que & Ans</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -86,10 +89,25 @@ $result = mysqli_query($conn,$q);
 <tr>
     <td><?php echo $row['id']; ?></td>
     <td><?php echo $row['name']; ?></td>
+    <td><?php echo $row['p_code']; ?></td>
     <td><?php echo $row['price']; ?></td>
     <td><?php echo $row['des']; ?></td>
     <td><?php echo $row['shopname']; ?></td>
-    <td><img src="<?php echo 'uploaded_images/' . $row['IMAGE']; ?>" alt="Product Image"></td>
+    <td><?php echo $row['categories'];?></td>
+    <td><img src="uploaded_images/<?php echo $row['image']; ?>" alt="Product Image"></td>
+    <td>
+    <?php
+    $questions = json_decode($row['question'], true); // Convert JSON to PHP array
+    if (!empty($questions)) {
+        foreach ($questions as $index => $qa) {
+            echo ($index + 1) . ". <b>Q:</b> " . htmlspecialchars($qa['question']) . "<br>";
+            echo "&nbsp;&nbsp;&nbsp;<b>A:</b> " . htmlspecialchars($qa['answer']) . "<br><br>";
+        }
+    } else {
+        echo "No Questions Available";
+    }
+    ?>
+</td>
     <td>
     <form action="edit_product.php" method="post" style="display: inline;">
     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
@@ -97,7 +115,7 @@ $result = mysqli_query($conn,$q);
         <i class="bx bx-edit"></i>
     </button>
 </form>
-
+<br><br>
 <form action="delete_product.php" method="post" style="display: inline;">
     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
     <button type="submit" class="action-btn delete-btn">

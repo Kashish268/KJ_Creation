@@ -16,6 +16,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
             },
             {
+                field: "offercode",
+                message: "Offer code is required.",
+                validate: function (value) {
+                    return value.trim() !== "";
+                },
+            },
+            
+            {
                 field: "price",
                 message: "Please enter a valid offer percentage (e.g., 10% or 10.5%).",
                 validate: function (value) {
@@ -70,6 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (error && error.classList.contains("error")) {
                 const validationRules = {
                     productName: (value) => value.trim() !== "",
+                    offercode: (value) => value.trim() !== "",
                     price: (value) => /^\d+(\.\d{1,2})?%$/.test(value.trim()),
                     description: (value) => value.trim() !== "",
                     productImage: () => {

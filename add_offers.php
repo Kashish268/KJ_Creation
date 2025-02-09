@@ -9,6 +9,7 @@ if (!isset($_SESSION['admin'])) {
 
 if (isset($_POST['sub'])) {
     $p_name = $_POST['productName'];
+    $offer_code = $_POST['productName'];
     $description = $_POST['description'];
     $price = $_POST['price'];
     $img = $_FILES['productImage']['name'];
@@ -28,7 +29,7 @@ if (isset($_POST['sub'])) {
         }
 
         if (move_uploaded_file($tem_img, $upload_dir . $img)) {
-            $q = "INSERT INTO offers(title, description, offer_percentage, image) VALUES ('$p_name', '$description', '$price',  '$img')";
+            $q = "INSERT INTO offers(title, offer_code, description, offer_percentage, image) VALUES ('$p_name', '$offer_code','$description', '$price',  '$img')";
             if (mysqli_query($conn, $q)) {
                 echo "<script>alert('Add Offer Successfully!'); window.location.href='offers.php';</script>";
             } else {
@@ -188,6 +189,9 @@ if (isset($_POST['sub'])) {
     <label for="productName">Offer title</label>
                 <input type="text" id="productName" name="productName" placeholder="Enter offer title">
                  
+                <label for="offercode">Offer Code</label>
+                <input type="text" id="offercode" name="offercode" placeholder="Enter offer code">
+                 
                 <label for="description">Description</label>
                 <textarea id="description" name="description" placeholder="Enter offer description" rows="4"></textarea>
                 
@@ -214,7 +218,7 @@ if (isset($_POST['sub'])) {
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- jQuery Validation -->
-    <script>
+    <script src="validation_offers.js">
         
     </script> <!-- Include the separate validation file -->
 

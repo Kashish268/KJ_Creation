@@ -22,7 +22,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    z-index: 2000;
   }
   
   /* Pop-Up Container */
@@ -212,7 +212,7 @@ h6 {
 # Header
 --------------------------------------------------------------*/
 
-#header {
+/* #header {
   padding: 30px 0;
   height: 92px;
   position: fixed;
@@ -232,7 +232,7 @@ h6 {
 
 #header #logo {
   float: left;
-}
+} */
 
 /* #header #logo h1 {
   font-size: 34px;
@@ -261,11 +261,11 @@ h6 {
 --------------------------------------------------------------*/
 
 #intro {
-  padding: 20px 40px; /* Added padding to section */
+  padding: 80px 20px; /* Added padding to section */
   display: table;
   width: 100%;
   height: 100vh;
-  background: #000;
+  background: #fdf4f4e4;
 }
 
 #intro .carousel-item {
@@ -274,6 +274,13 @@ h6 {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  position: relative;
+}
+.carousel-caption {
+  top: 50%;
+  transform: translateY(-50%);
+  bottom: auto; /* Override any bottom positioning */
+  text-align: center; /* Ensure text is centered horizontally */
 }
 
 #intro .carousel-item::before {
@@ -297,6 +304,7 @@ h6 {
   top: 0;
   left: 0;
   right: 0;
+  z-index: 1; /* Ensures content appears above overlay */
 }
 
 #intro .carousel-background img {
@@ -305,13 +313,14 @@ h6 {
 
 #intro .carousel-content {
   text-align: center;
-  margin-top: 100px;
+  color: white; /* Text color for the content */
+  z-index: 2; /* Ensures content appears above overlay */
 }
 
-#intro h2 {
+#intro h3 {
   color: #fff;
   margin-bottom: 30px;
-  font-size: 48px;
+  font-size: 43px;
   font-weight: 700;
 }
 
@@ -342,19 +351,41 @@ h6 {
 }
 
 /* Right column styling */
+/* Default styles for larger screens */
+/* Default styling */
 #intro .col-md-4 img {
-  max-height: 60%; /* Reduce image size */
-  width: auto;
+  width: 100%;          
+  height: 50vh;  
   object-fit: cover;
   border-radius: 10px;
 }
 
 .image-wrapper {
-  height: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  /* Override Bootstrap's flex-column */
+  .responsive-container {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center;
+  }
+  
+  .image-wrapper {
+    width: 48% !important; /* Allow two images side by side */
+    margin: 1%;
+  }
+  
+  #intro .col-md-4 img {
+    height: auto !important;
+  }
+}
+
+
 
 /* Fix for carousel controls visibility */
 #intro .carousel-control-prev,
@@ -507,77 +538,36 @@ h6 {
   border: none;
 }
 
-
-/* Nav Menu Styling */
+/*  */
 
 .nav-menu a {
   padding: 0 8px 10px 8px;
   text-decoration: none;
   display: inline-block;
-  color: #fff;
+  color: #fff; /* Default link color */
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 13px;
   text-transform: uppercase;
   outline: none;
-}
-
-.nav-menu li:hover > a,
-.nav-menu > .menu-active > a {
-  color: rgb(244, 107, 44);
-}
-
-.nav-menu > li {
-  margin-left: 10px;
-}
-
-.nav-menu ul {
-  margin: 4px 0 0 0;
-  padding: 10px;
-  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-  background: #fff;
-}
-
-.nav-menu ul li {
-  transition: 0.3s;
-}
-
-.nav-menu ul li a {
-  padding: 10px;
-  color: #333;
-  transition: 0.3s;
-  display: block;
-  font-size: 13px;
-  text-transform: none;
-}
-
-.nav-menu ul li:hover > a {
-  color: rgb(244, 107, 44);
-}
-
-.nav-menu ul ul {
-  margin: 0;
-}
-
-/* Active Section Styling */
-/* Active Section Styling */
-.nav-menu > .menu-active > a {
-  color: rgb(244, 107, 44) !important; /* Force the color to apply */
-  font-weight: bold; /* Optional: Make the active link bold */
-  /* border-bottom: 2px solid rgb(244, 107, 44); Optional: Add an underline */
-  transition: color 0.3s ease, border-bottom 0.3s ease; /* Smooth transitions */
-}
-
-/* Ensure hover effect doesn't override active color */
-.nav-menu > .menu-active > a:hover {
-  color: rgb(244, 107, 44) !important; /* Maintain active color on hover */
-  /* border-bottom: 2px solid rgb(244, 107, 44); */
-}
-
-/* Reset styles for other links to avoid conflicts */
-.nav-menu li a {
-  color: #fff; /* Default color for inactive links */
   transition: color 0.3s ease;
+}
+
+.nav-menu li:hover > a {
+  color: rgb(244, 107, 44); /* Hover effect */
+}
+
+/* Ensure the active class remains highlighted */
+.nav-menu .menu-active a {
+  color: rgb(244, 107, 44) !important; /* Active link color */
+  font-weight: bold;
+  border-bottom: 2px solid rgb(244, 107, 44);
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+/* Prevent hover from removing active color */
+.nav-menu .menu-active a:hover {
+  color: rgb(244, 107, 44) !important;
 }
 
 
@@ -727,7 +717,9 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 /* Sections Header
 --------------------------------*/
-
+#main{
+  padding-top: 180px;
+}
 .section-header h3 {
   font-size: 32px;
   color: #ffffff;
@@ -736,6 +728,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   font-weight: 700;
   position: relative;
   padding-bottom: 15px;
+  padding-top: 70px;
 }
 
 .section-header h3::before {
@@ -1134,6 +1127,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #portfolio .portfolio-item figure {
+  
   background: #000;
   overflow: hidden;
   height: 240px;
@@ -1143,6 +1137,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #portfolio .portfolio-item figure:hover img {
+ 
   opacity: 0.4;
   transition: 0.3s;
 }
@@ -1339,7 +1334,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #testimonials .owl-dot.active {
-  background-color: #18d26e;
+  background-color: rgb(244, 107, 44);
 }
 
 /* Team Section
@@ -1754,8 +1749,8 @@ body.mobile-nav-active #mobile-nav-toggle {
     max-height: 40px;
   }
 
-  #intro h2 {
-    font-size: 28px;
+  #intro h3 {
+    font-size: 20px;
   }
 
   #nav-menu-container {
@@ -1766,3 +1761,8 @@ body.mobile-nav-active #mobile-nav-toggle {
     display: inline;
   }
 }
+
+
+/* offers page  */
+
+  

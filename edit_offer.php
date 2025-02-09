@@ -110,6 +110,10 @@ if (mysqli_num_rows($result) > 0) {
                 <input type="text" id="productName" name="productName" value="<?php echo  $a['title']; ?>">
 
 
+                <label for="offercode">Offer Code</label>
+                <input type="text" id="offercode" name="offercode" placeholder="Enter offer code">
+                 
+                
                 <label for="description">Description</label>
                 <textarea id="description" name="description" rows="4"><?php echo $a['description']; ?></textarea>
 

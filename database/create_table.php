@@ -10,13 +10,18 @@ include 'config.php';
 //     isactive BOOLEAN NOT NULL DEFAULT TRUE
 // )";
 
-// $query="CREATE TABLE IF NOT EXISTS products(
-// id INT AUTO_INCREMENT PRIMARY KEY,
-// name varchar(255) not null,
-// des varchar(255) not null,
-// price int not null,
-// shopname varchar(255) not nulL,
-// IMAGE varchar(255) not null);";
+// $query="CREATE TABLE IF NOT EXISTS products (
+//     id INT AUTO_INCREMENT PRIMARY KEY,
+//     p_code VARCHAR(255) NOT NULL,
+//     name VARCHAR(255) NOT NULL,
+//     des VARCHAR(255) NOT NULL,
+//     price INT NOT NULL,
+//     shopname VARCHAR(255) NOT NULL,
+//     categories VARCHAR(255) NOT NULL,
+//     image VARCHAR(255) NOT NULL,
+//     question JSON,
+//     status VARCHAR(20) NOT NULL DEFAULT 'active' -- Added column with default value
+// );";
 
 // $query="create table if not EXISTS meassage(
 //  id INT AUTO_INCREMENT PRIMARY KEY,
@@ -30,6 +35,7 @@ include 'config.php';
 // create table if not EXISTS offers(
 //   id INT AUTO_INCREMENT PRIMARY KEY,
 //     title VARCHAR(255) NOT NULL,
+//     offer_code VARCHAR(255) NOT NULL,
 //     description TEXT NOT NULL,
 //     offer_percentage VARCHAR(255) NOT NULL,
 //     image VARCHAR(255) NOT NULL
@@ -61,12 +67,12 @@ include 'config.php';
   //    image VARCHAR(255) NOT NULL
   //    )";
 
-     $query= "create table if not EXISTS home_slider(
-      id INT AUTO_INCREMENT PRIMARY KEY,
-       main_text VARCHAR(255) NOT NULL,
-        p_text VARCHAR(255) NOT NULL,
-       image VARCHAR(255) NOT NULL
-       )";
+    //  $query= "create table if not EXISTS home_slider(
+    //   id INT AUTO_INCREMENT PRIMARY KEY,
+    //    main_text VARCHAR(255) NOT NULL,
+    //     p_text VARCHAR(255) NOT NULL,
+    //    image VARCHAR(255) NOT NULL
+    //    )";
      
 if ($conn->query($query) === TRUE) {
     echo "Table  created successfully";

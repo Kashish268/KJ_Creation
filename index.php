@@ -1,6 +1,25 @@
 <?php
 include 'database/config.php';
+
+$q = "SELECT * FROM home_slider ORDER BY id ASC"; // Ensure proper order
+$result = mysqli_query($conn, $q);
+
+$row = mysqli_fetch_assoc($result); 
+
+$slides = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $slides[] = $row;
+}
+
+// if ($result) {
+//   echo "Total Rows Fetched: " . $result->num_rows;
+// } else {
+//   echo "Query Failed: " . mysqli_error($conn);
+// }
+
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +66,10 @@ include 'database/config.php';
 </div>
 
 
-
+<!-- <div>
+  <h2><?php echo $row['main_text']?></h2>
+  <img src="uploaded_images/<?php echo $row['image']; ?>">
+</div> -->
 
 
   <!--==========================
@@ -60,75 +82,84 @@ include 'database/config.php';
     Intro Section
   ============================-->
   <section id="intro">
-  <div class="container-fluid">
-    <div class="row">
-      <!-- Left Column: Carousel -->
-      <div class="col-md-8 col-12">
-        <div id="introCarousel" class="carousel slide carousel-fade" data-ride="carousel">
-          <ol class="carousel-indicators"></ol>
-          <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-              <div class="carousel-background">
-                <img src="users/myimg/corosole1.jpg" alt="">
-              </div>
-              <div class="carousel-container">
-                <div class="carousel-content">
-                  <h2>Unique Designs, Crafted for You!</h2>
-                  <p>At KJ Creation, we offer custom products designed to reflect your style and personality. Explore our collection of innovative, high-quality designs tailored just for you.</p>
-                  <a href="#portfolio" class="btn-get-started scrollto">Show</a>
+    <?php if (count($slides) > 0) { ?>
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <!-- Left Column: Carousel (8 Columns on Desktop, Full Width on Mobile) -->
+            <div class="col-md-8 col-12">
+                <div id="introCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <?php
+                        mysqli_data_seek($result, 0); // Reset pointer to start
+                        $first = true;
+                        while ($row = $result->fetch_assoc()) {
+                        ?>
+                        <div class="carousel-item <?php echo $first ? 'active' : ''; ?>">
+                            <img src="uploaded_images/<?php echo $row['image']; ?>" 
+                                class="d-block w-100" 
+                                alt="Carousel Image" 
+                                style="height: 100vh; object-fit: cover;">
+                            <div class="carousel-caption">
+                                <h3><?php echo $row['main_text']; ?></h3>
+                                <p><?php echo $row['p_text']; ?></p>
+                                <a href="#portfolio" class="btn-get-started scrollto">Show</a>
+                            </div>
+                        </div>
+                        <?php
+                        $first = false;
+                        }
+                        ?>
+                    </div>
+                    <a class="carousel-control-prev" href="#introCarousel" role="button" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#introCarousel" role="button" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </a>
                 </div>
-              </div>
             </div>
-            <div class="carousel-item">
-              <div class="carousel-background">
-                <img src="users/myimg/corosole2.jpg" alt="">
-              </div>
-              <div class="carousel-container">
-                <div class="carousel-content">
-                  <h2>Creative, Custom & Timeless!</h2>
-                  <p>Discover custom gift solutions designed to inspire, impress, and leave a lasting impression. Crafted with creativity and care, our gifts are as unique as you are.</p>
-                  <a href="#portfolio" class="btn-get-started scrollto">Show</a>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="carousel-background">
-                <img src="users/myimg/corosole3.jpg" alt="">
-              </div>
-              <div class="carousel-container">
-                <div class="carousel-content">
-                  <h2>Where Innovation Meets Affordability!</h2>
-                  <p>Discover the perfect balance of creativity and value with our innovative products, designed to impress without the high price tag. Quality and affordability, all in one!</p>
-                  <a href="#portfolio" class="btn-get-started scrollto">Show</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-      </div>
 
-      <!-- Right Column: Two Images -->
-      <div class="col-md-4 col-12 d-flex flex-column">
-        <div class="image-wrapper mb-4">
-          <img src="users/myimg/corosole3.jpg" alt="Right Image 1" class="img-fluid">
-        </div>
-        <div class="image-wrapper">
-          <img src="users/myimg/corosole3.jpg" alt="Right Image 2" class="img-fluid">
-        </div>
-      </div>
-    </div>
+            <!-- Right Column: Two Static Images -->
+            <div class="col-md-4 col-12">
+  <div class="d-flex flex-md-column flex-row align-items-center responsive-container">
+  <?php
+// Include database connection
+
+
+// Query to fetch the highest ID image with position 'above'
+$sql_above = "SELECT * FROM home_side_image WHERE image_position = 'above' ORDER BY id DESC LIMIT 1";
+$result_above = mysqli_query($conn, $sql_above);
+$image_above = mysqli_fetch_assoc($result_above);
+
+// Query to fetch the highest ID image with position 'below'
+$sql_below = "SELECT * FROM home_side_image WHERE image_position = 'below' ORDER BY id DESC LIMIT 1";
+$result_below = mysqli_query($conn, $sql_below);
+$image_below = mysqli_fetch_assoc($result_below);
+?>
+
+<div class="image-wrapper mb-3">
+    <?php if ($image_above): ?>
+        <img src="uploaded_images/<?php echo $image_above['image']; ?>" alt="Right Image 1" class="img-fluid rounded">
+    <?php endif; ?>
+</div>
+
+<div class="image-wrapper">
+    <?php if ($image_below): ?>
+        <img src="uploaded_images/<?php echo $image_below['image']; ?>" alt="Right Image 2" class="img-fluid rounded">
+    <?php endif; ?>
+</div>
+
   </div>
+</div>
+
+
+
+        </div>
+    </div>
+    <?php } else { echo "<p class='text-center'>No images found!</p>"; } ?>
 </section>
 
-  <main id="main">
+  <!-- <main id="main"> -->
 
     <!--==========================
       Featured Services Section
@@ -162,149 +193,21 @@ include 'database/config.php';
     <!--==========================
       About Us Section
     ============================-->
-    <section id="about">
-      <div class="container">
-
-        <header class="section-header">
-          <h3>About Us</h3>
-          <p>Welcome to KJ Creation, your trusted partner for 
-            high-quality promotional, 
-            corporate, and custom gift items. 
-            <b>"Making Every Gift a Memorable Experience."</b> Whether you're looking to promote your brand, appreciate your employees, celebrate milestones, or create personalized gifts, we offer a wide range of products to suit every occasion and need. From innovative designs to unique creations, our products make a lasting impression. With years of experience in delivering 
-            excellence and a dedication to customer 
-            satisfaction, we ensure that every gift is crafted with care and precision. Let us help you connect with your audience through memorable and meaningful gifts.</p>
-        </header>
-
-        <div class="row about-cols">
-
-          <div class="col-md-4 wow fadeInUp">
-            <div class="about-col">
-              <div class="img">
-                <img src="" alt="" class="img-fluid">
-                <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
-              </div>
-              <h2 class="title"><a href="#">Our Mission</a></h2>
-              <p>
-              Our mission is to provide businesses and individuals with top-tier, customized gift solutions that reflect their unique identity. We aim to deliver products that not only meet but exceed expectations, ensuring customer satisfaction and lasting relationships.
-
-
-              </p>
-            </div>
-          </div>
-
-          <div class="col-md-4 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="about-col">
-              <div class="img">
-                <img src="" alt="" class="img-fluid">
-                <div class="icon"><i class="ion-ios-cart-outline"></i></div> 
-<!-- Icon for products -->
-              </div>
-              <h2 class="title"><a href="#">Our Products</a></h2>
-              <p>
-              We offer high-quality products crafted with precision, 
-              ensuring durability and exceptional standards. We make premium gifts accessible 
-              by offering them at competitive prices,
-               without compromising on quality. 
-               Plus, with our exclusive offers, 
-               you can enjoy even greater value on our products.
-              </p>
-            </div>
-          </div>
-
-          <div class="col-md-4 wow fadeInUp" data-wow-delay="0.2s">
-            <div class="about-col">
-              <div class="img">
-                <img src="" alt="" class="img-fluid">
-                <div class="icon"><i class="ion-ios-eye-outline"></i></div>
-              </div>
-              <h2 class="title"><a href="#">Our Vision</a></h2>
-              <p>
-              We aspire to be the go-to provider for personalized corporate and promotional gifts, renowned for creativity, quality, and exceptional service. Our vision is to create memorable experiences for our clients through innovative and tailor-made gift solutions.
-
-              </p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- #about -->
-
+   
     <!--==========================
       Services Section
     ============================-->
-    <section id="services">
-      <div class="container">
-
-        <header class="section-header wow fadeInUp">
-          <h3 style="color:black;">Services</h3>
-        
-        </header>
-<br>
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-analytics-outline"></i></div>
-            <h4 class="title"><a href="">Customization</a></h4>
-            <p class="description"> We offer full customization options to 
-              create products that resonate with your brand or personal style.
-            </p>
-          </div>
-          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-bookmarks-outline"></i></div>
-            <h4 class="title"><a href="">Quality</a></h4>
-            <p class="description">Every item is carefully crafted and quality-checked to ensure it meets the highest standards.
-
-</p>
-          </div>
-          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-paper-outline"></i></div>
-            <h4 class="title"><a href="">Affordability</a></h4>
-            <p class="description">Our products offer competitive pricing without compromising on quality.
-            </p>
-          </div>
-          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
-            <h4 class="title"><a href="">Wide Product Range</a></h4>
-            <p class="description">From branded merchandise to personalized keepsakes, we have something for everyone.
-
-</p>
-          </div>
-          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-barcode-outline"></i></div>
-            <h4 class="title"><a href="">Eco-Friendly Options</a></h4>
-            <p class="description">We offer sustainable and eco-conscious gift options, allowing you to promote your brand with a commitment to the environment.</p>
-          </div>
-          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-people-outline"></i></div>
-            <h4 class="title"><a href="">Exceptional Customer Support</a></h4>
-            <p class="description"> Our dedicated team is here to assist you every step of the way, ensuring a smooth and stress-free experience.</p>
-          </div>
-
-        </div>
-        <p style="font-size: 24px; font-weight: bold; background: -webkit-linear-gradient(45deg,rgb(246, 107, 73),rgb(238, 129, 46)); -webkit-background-clip: text; color: transparent; text-align: center; line-height: 1;">
-  <span style="font-size: 48px; font-weight: bold; color: black;">&#8220;</span> 
-  Delivering Excellence in 
-  <span style="display: block; font-size: 24px;">Every Product, Service, and Experience.  <span style="font-size: 48px; font-weight: bold; color: black;">&#8221;</span>
-  </span>
-</p>
-
-
-
-
-      </div>
-    </section><!-- #services -->
-
+    
     <!--==========================
       Call To Action Section
     ============================-->
-    <section id="call-to-action" class="wow fadeIn">
+    <!-- <section id="call-to-action" class="wow fadeIn">
       <div class="container text-center">
         <h3>Call To Action</h3>
         <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         <a class="cta-btn" href="#">Call To Action</a>
       </div>
-    </section>
+    </section> -->
 
     <!--==========================
       Skills Section
@@ -351,7 +254,7 @@ include 'database/config.php';
     <!--==========================
       Facts Section
     ============================-->
-    <section id="facts"  class="wow fadeIn">
+    <!-- <section id="facts"  class="wow fadeIn">
       <div class="container">
 
         <!-- <header class="section-header">
@@ -359,7 +262,7 @@ include 'database/config.php';
           <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
         </header> -->
 
-        <div class="row counters">
+        <!-- <div class="row counters">
 
   				<div class="col-lg-4 col-6 text-center">
             <span data-toggle="counter-up">200</span>
@@ -374,130 +277,24 @@ include 'database/config.php';
           <div class="col-lg-4 col-6 text-center">
             <span data-toggle="counter-up">24</span>
             <p>Hours Of Support</p>
-  				</div>
+  				</div> -->
 
           <!-- <div class="col-lg-3 col-6 text-center">
             <span data-toggle="counter-up"></span>
             <p>Hard Workers</p>
   				</div> -->
 
-  			</div>
+  			<!-- </div>
 
         <div class="facts-img">
           <img src="img/facts-img.png" alt="" class="img-fluid">
         </div>
 
       </div>
-    </section><!-- #facts -->
-
-    <!--==========================
-      Portfolio Section
-    ============================-->
-    <?php
+    </section> -->
+  
 
 
-// Fetch products from the database
-$sql = "SELECT * FROM products";
-$result = $conn->query($sql);
-$products = [];
-
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $products[] = $row;
-    }
-}
-
-// Get the total number of products
-$totalProducts = count($products);
-?>
-
-<section id="portfolio" class="section-bg">
-    <div class="container">
-        <header class="section-header">
-            <h3 class="section-title" style="color:black;">Our Products</h3>
-        </header>
-        <br>
-
-        <div class="row portfolio-container" id="product-container">
-    <?php
-    // Display the first 6 products
-    for ($i = 0; $i < min(6, $totalProducts); $i++) {
-        $product = $products[$i];
-        ?>
-        <div class="col-lg-4 col-md-4 portfolio-item wow fadeInUp">
-            <div class="portfolio-wrap">
-                <figure>
-                    <img src="uploaded_images/<?php echo $product['IMAGE']; ?>" class="img-fluid" alt="<?php echo $product['name']; ?>">
-                    <a href="uploaded_images/<?php echo $product['IMAGE']; ?>" data-lightbox="portfolio" data-title="<?php echo $product['name']; ?>" class="link-preview" title="Preview">
-                        <i class="ion ion-eye"></i>
-                    </a>
-                    <a href="#" class="link-details" title="More Details">
-                        <i class="ion ion-android-open"></i>
-                    </a>
-                </figure>
-                <div class="portfolio-info">
-                    <h4 style="color: #333; font-weight: bold;">
-                        <a href="#" style="text-decoration: none;"><?php echo $product['name']; ?></a>
-                    </h4>
-                    <p style="color: #666; font-size: 14px;"><?php echo $product['price']; ?></p>
-                </div>
-            </div>
-        </div>
-        <?php
-    }
-    ?>
-</div>
-
-<div class="text-center mt-3">
-    <?php if ($totalProducts > 6): ?>
-        <button id="view-more-btn" class="btn btn-primary">View More</button>
-    <?php else: ?>
-        <button id="view-more-btn" class="btn btn-primary" disabled>No More Products</button>
-    <?php endif; ?>
-</div>
-</div>
-
-<?php if ($totalProducts > 6): ?>
-<script>
-    // Handle the View More button click
-    document.getElementById('view-more-btn').addEventListener('click', () => {
-        const productContainer = document.getElementById('product-container');
-
-        // Add all remaining products
-        <?php
-        for ($i = 6; $i < $totalProducts; $i++) {
-            $product = $products[$i];
-            ?>
-            productContainer.innerHTML += `
-                <div class="col-lg-4 col-md-6 portfolio-item wow fadeInUp">
-                    <div class="portfolio-wrap">
-                        <figure>
-                            <img src="uploaded_images/<?php echo $product['IMAGE']; ?>" class="img-fluid" alt="<?php echo $product['name']; ?>">
-                        <a href="uploaded_images/<?php echo $product['IMAGE']; ?>" data-lightbox="portfolio" data-title="<?php echo $product['name']; ?>" class="link-preview" title="Preview">
-                            <i class="ion ion-eye"></i>
-                        </a>
-                        <a href="#" class="link-details" title="More Details">
-                            <i class="ion ion-android-open"></i>
-                        </a>
-                    </figure>
-                    <div class="portfolio-info">
-                        <h4 style="color: #333; font-weight: bold;">
-                            <a href="#" style="text-decoration: none;"><?php echo $product['name']; ?></a>
-                        </h4>
-    <p style="color: #666; font-size: 14px;">₹<?php echo $product['price']; ?></p>
-                    </div>
-                </div>
-            </div>
-        `;
-        <?php } ?>
-
-        // Hide the View More button
-        document.getElementById('view-more-btn').style.display = 'none';
-    });
-</script>
-<?php endif; ?>
-
-</section>
 <!-- #portfolio -->
 
     <!--==========================
@@ -528,75 +325,7 @@ $totalProducts = count($products);
     <!--==========================
       Clients Section
     ============================-->
-    <section id="testimonials" class="section-bg wow fadeInUp">
-      <div class="container">
-
-        <header class="section-header">
-          <h3>Testimonials</h3>
-        </header>
-
-        <div class="owl-carousel testimonials-carousel">
-
-          <div class="testimonial-item">
-            <img src="img/testimonial-1.jpg" class="testimonial-img" alt="">
-            <h3>Saul Goodman</h3>
-            <h4>Ceo &amp; Founder</h4>
-            <p>
-              <img src="img/quote-sign-left.png" class="quote-sign-left" alt="">
-              Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-              <img src="img/quote-sign-right.png" class="quote-sign-right" alt="">
-            </p>
-          </div>
-
-          <div class="testimonial-item">
-            <img src="img/testimonial-2.jpg" class="testimonial-img" alt="">
-            <h3>Sara Wilsson</h3>
-            <h4>Designer</h4>
-            <p>
-              <img src="img/quote-sign-left.png" class="quote-sign-left" alt="">
-              Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-              <img src="img/quote-sign-right.png" class="quote-sign-right" alt="">
-            </p>
-          </div>
-
-          <div class="testimonial-item">
-            <img src="img/testimonial-3.jpg" class="testimonial-img" alt="">
-            <h3>Jena Karlis</h3>
-            <h4>Store Owner</h4>
-            <p>
-              <img src="img/quote-sign-left.png" class="quote-sign-left" alt="">
-              Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-              <img src="img/quote-sign-right.png" class="quote-sign-right" alt="">
-            </p>
-          </div>
-
-          <div class="testimonial-item">
-            <img src="img/testimonial-4.jpg" class="testimonial-img" alt="">
-            <h3>Matt Brandon</h3>
-            <h4>Freelancer</h4>
-            <p>
-              <img src="img/quote-sign-left.png" class="quote-sign-left" alt="">
-              Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-              <img src="img/quote-sign-right.png" class="quote-sign-right" alt="">
-            </p>
-          </div>
-
-          <div class="testimonial-item">
-            <img src="img/testimonial-5.jpg" class="testimonial-img" alt="">
-            <h3>John Larson</h3>
-            <h4>Entrepreneur</h4>
-            <p>
-              <img src="img/quote-sign-left.png" class="quote-sign-left" alt="">
-              Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-              <img src="img/quote-sign-right.png" class="quote-sign-right" alt="">
-            </p>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
+   
     <!--==========================
       Team Section
     ============================-->
@@ -689,220 +418,39 @@ $totalProducts = count($products);
     <!--==========================
       Contact Section
     ============================-->
-    <section id="contact" class="section-bg wow fadeInUp">
-      <div class="container">
-
-        <div class="section-header">
-          <h3>Contact Us</h3>
-<p>
-Get in touch with us today to explore our premium custom gift solutions and make a lasting impression!
-</p>        </div>
-
-<div class="row contact-info">
-  <div class="col-md-4">
-    <div class="contact-address">
-      <i class="ion-ios-location-outline"></i>
-      <h3>Address</h3>
-      <address>A108 Adam Street, NY 535022, USA</address>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="contact-phone">
-      <i class="ion-ios-telephone-outline"></i>
-      <h3>Phone Number</h3>
-      <p><a href="tel:+155895548855">+1 5589 55488 55</a></p>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="contact-email">
-      <i class="ion-ios-email-outline"></i>
-      <h3>Email</h3>
-      <p><a href="mailto:info@example.com">info@example.com</a></p>
-    </div>
-  </div>
-</div>
-
-<div class="form">
-  <div id="sendmessage" style="display: none; color: green;">Thanks for getting in touch! We've received your message and will respond soon.</div>
-  <form id="contactForm" action="contactform.php" method="POST">
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" />
-        <div class="error-message" id="name-error" style="color: red; display: none;"></div>
-      </div>
-      <div class="form-group col-md-6">
-        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" />
-        <div class="error-message" id="email-error" style="color: red; display: none;"></div>
-      </div>
-    </div>
-    <div class="form-group">
-      <input type="text" class="form-control" name="contact" id="contact" placeholder="Your Contact Number" />
-      <div class="error-message" id="contact-error" style="color: red; display: none;"></div>
-    </div>
-    <div class="form-group">
-      <textarea class="form-control" name="message" rows="5" id="message" placeholder="Message"></textarea>
-      <div class="error-message" id="message-error" style="color: red; display: none;"></div>
-    </div>
-    <div class="text-center">
-      <button type="submit" style="border-radius: 50px;">Send Message</button>
-    </div>
-  </form>
-</div>
+   
+ 
 
 
+    <?php include 'footer.php'; ?>
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+<!-- Uncomment below i you want to use a preloader -->
+<!-- <div id="preloader"></div> -->
 
+<!-- JavaScript Libraries -->
+ <!-- Bootstrap JS (Make sure it's included) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-      </div>
-    </section><!-- #contact -->
+<script src="users/lib/jquery/jquery.min.js"></script>
+<script src="users/lib/jquery/jquery-migrate.min.js"></script>
+<script src="users/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="users/lib/easing/easing.min.js"></script>
+<script src="users/lib/superfish/hoverIntent.js"></script>
+<script src="users/lib/superfish/superfish.min.js"></script>
+<script src="users/lib/wow/wow.min.js"></script>
+<script src="users/lib/waypoints/waypoints.min.js"></script>
+<script src="users/lib/counterup/counterup.min.js"></script>
+<script src="users/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="users/lib/isotope/isotope.pkgd.min.js"></script>
+<script src="users/lib/lightbox/js/lightbox.min.js"></script>
+<script src="users/lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
+<!-- Contact Form JavaScript File -->
+<!-- <script src="users/contactform/contactform.js"></script> -->
 
-  </main>
-
-  <?php include 'footer.php'; ?>
-  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-  <!-- Uncomment below i you want to use a preloader -->
-  <!-- <div id="preloader"></div> -->
-
-  <!-- JavaScript Libraries -->
-  <script src="users/lib/jquery/jquery.min.js"></script>
-  <script src="users/lib/jquery/jquery-migrate.min.js"></script>
-  <script src="users/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="users/lib/easing/easing.min.js"></script>
-  <script src="users/lib/superfish/hoverIntent.js"></script>
-  <script src="users/lib/superfish/superfish.min.js"></script>
-  <script src="users/lib/wow/wow.min.js"></script>
-  <script src="users/lib/waypoints/waypoints.min.js"></script>
-  <script src="users/lib/counterup/counterup.min.js"></script>
-  <script src="users/lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="users/lib/isotope/isotope.pkgd.min.js"></script>
-  <script src="users/lib/lightbox/js/lightbox.min.js"></script>
-  <script src="users/lib/touchSwipe/jquery.touchSwipe.min.js"></script>
-  <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
-  <!-- Contact Form JavaScript File -->
-  <!-- <script src="users/contactform/contactform.js"></script> -->
-
-  <!-- Template Main Javascript File -->
-  <script src="users/js/main.js"></script>
-
-<script>
-$(document).ready(function () {
-  // Real-time validation for Name
-  $("#name").on("input", function () {
-    const name = $(this).val().trim();
-    if (name === "") {
-      $("#name-error").text("Please enter your name.").show();
-    } else {
-      $("#name-error").hide();
-    }
-  });
-
-  // Real-time validation for Email
-  $("#email").on("input", function () {
-    const email = $(this).val().trim();
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (email === "") {
-      $("#email-error").text("Please enter your email address.").show();
-    } else if (!emailPattern.test(email)) {
-      $("#email-error").text("Please enter a valid email address (e.g., name@example.com).").show();
-    } else {
-      $("#email-error").hide();
-    }
-  });
-
-  // Real-time validation for Contact Number
-  // $("#contact").on("input", function () {
-  //   const contact = $(this).val().trim();
-  //   if (contact === "") {
-  //     $("#contact-error").text("Please enter your contact number.").show();
-  //   } else if (!/^\d+$/.test(contact)) {
-  //     $("#contact-error").text("Contact number can only contain digits.").show();
-  //   } else if (contact.length < 10) {
-  //     $("#contact-error").text("Contact number must be exactly 10 digits.").show();
-  //   } else if (contact.length > 10) {
-  //     $("#contact-error").text("Contact number cannot exceed 10 digits.").show();
-  //   } else {
-  //     $("#contact-error").hide();
-  //   }
-  // });
-
-  // Real-time validation for Message
-  $("#message").on("input", function () {
-    const message = $(this).val().trim();
-    if (message === "") {
-      $("#message-error").text("Please write a message.").show();
-    } else {
-      $("#message-error").hide();
-    }
-  });
-
-  //Form submission validation
-  $("#contactForm").submit(function (e) {
-    e.preventDefault(); // Prevent default form submission
-
-    // Clear all error messages
-    $(".error-message").hide();
-    let isValid = true;
-
-    // Name Validation
-    const name = $("#name").val().trim();
-    if (name === "") {
-      $("#name-error").text("Please enter your name.").show();
-      isValid = false;
-    }
-
-    // Email Validation
-    const email = $("#email").val().trim();
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (email === "") {
-      $("#email-error").text("Please enter your email address.").show();
-      isValid = false;
-    } else if (!emailPattern.test(email)) {
-      $("#email-error").text("Please enter a valid email address (e.g., name@example.com).").show();
-      isValid = false;
-    }
-
-    // Contact Validation
-    // const contact = $("#contact").val().trim();
-    // if (contact === "") {
-    //   $("#contact-error").text("Please enter your contact number.").show();
-    //   isValid = false;
-    // } else if (!/^\d{10}$/.test(contact)) {
-    //   $("#contact-error").text("Please enter a valid 10-digit contact number.").show();
-    //   isValid = false;
-    // }
-
-    // Message Validation
-    const message = $("#message").val().trim();
-    if (message === "") {
-      $("#message-error").text("Please write a message.").show();
-      isValid = false;
-    }
-
-    // Submit the form if all fields are valid
-    if (isValid) {
-      $.ajax({
-        type: "POST",
-        url: $("#contactForm").attr("action"),
-        data: $("#contactForm").serialize(),
-        success: function (response) {
-          if (response === "OK") {
-            $("#sendmessage").show();
-            $("#contactForm")[0].reset();
-          } else {
-            $("#errormessage").text(response).show();
-          }
-        },
-        error: function () {
-          $("#errormessage").text("An error occurred while submitting the form.").show();
-        },
-      });
-    }
-  });
-});
-
-</script>
+<!-- Template Main Javascript File -->
+<script src="users/js/main.js"></script>
 
 <script>
   // Hide the preloader when the page is fully loaded

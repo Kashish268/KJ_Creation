@@ -8,9 +8,9 @@ if (!isset($_SESSION['admin'])) {
 }
 
 // Query to check if there's at least one row in the 'offers' table
-$q = "SELECT COUNT(*) AS total_rows FROM offers";
-$result_count = mysqli_query($conn, $q);
-$row_count = mysqli_fetch_assoc($result_count)['total_rows'];
+// $q = "SELECT COUNT(*) AS total_rows FROM offers";
+// $result_count = mysqli_query($conn, $q);
+// $row_count = mysqli_fetch_assoc($result_count)['total_rows'];
 
 
 
@@ -58,9 +58,8 @@ $result = mysqli_query($conn,$q);
                         </li>
                     </ul>
                 </div>
-                <a href="add_offers.php" class="btn-download <?= ($row_count > 0) ? 'disabled' : ''; ?>" 
-                <?= ($row_count > 0) ? 'onclick="return false;"' : ''; ?>>
-                    <i class='bx bxs-plus-circle'></i>
+                <a href="add_offers.php" class="btn-download" 
+                                    <i class='bx bxs-plus-circle'></i>
                     <span class="text">Add Offers</span>
                 </a>
             </div>
@@ -81,6 +80,7 @@ $result = mysqli_query($conn,$q);
 				<tr>
 					<th>ID</th>
 					<th>Title</th>
+                    <th>Offer Code</th>
 					<th>Description</th>
 					<th>Offer Percentage</th>
 					<th>Image</th>
@@ -93,6 +93,7 @@ $result = mysqli_query($conn,$q);
 <tr>
     <td><?php echo $row['id']; ?></td>
     <td><?php echo $row['title']; ?></td>
+    <td><?php echo $row['offer_code']; ?></td>
     <td><?php echo $row['description']; ?></td>
     <td><?php echo $row['offer_percentage']; ?></td>
     <td><img src="<?php echo 'uploaded_images/' . $row['image']; ?>" alt="Offer Image"></td>
