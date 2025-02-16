@@ -98,6 +98,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
       text-transform: uppercase;
       padding: 10px;
       transition: color 0.3s ease;
+      letter-spacing: 1px;
     }
     .nav-menu li a:hover,
     .nav-menu > .menu-active > a {
@@ -125,12 +126,12 @@ $current_page = basename($_SERVER['PHP_SELF']);
       z-index: 9999; /* Ensure the navbar stays on top */
     }
     .header-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000; /* Ensures it stays above regular content */
-  background: #fff; /* Add background color to prevent transparency */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000; /* Ensures it stays above regular content */
+      background: #fff; /* Add background color to prevent transparency */
 }
     
   </style>
@@ -143,14 +144,25 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <div class="container">
       
       <div class="top-left">
-        <span>Tuesday, January 4, 2025</span>
+      <span id="current-date"></span>
+      <script>
+    // Get current date
+    const today = new Date();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = today.toLocaleDateString('en-US', options);
+
+    // Display the date
+    document.getElementById('current-date').textContent = formattedDate;
+</script>
       </div>
       <div class="top-right">
-        <a href="#">Support</a>
-        <span>|</span>
-        <a href="#">Documentation</a>
-        <span>|</span>
-        <a href="#">Buy Now</a>
+      <div class="social-links">
+              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+       </div>
       </div>
     </div>
   </div>
@@ -168,45 +180,37 @@ $current_page = basename($_SERVER['PHP_SELF']);
   </div>
 
   <!-- Bottom Navbar -->
+   <header id="navbar">
   <div class="header-bottom" id="navbar">
     <div class="container">
     <nav id="nav-menu-container">
-        <ul class="nav-menu">
-          <li class=""><a href="index.php">Home</a></li>
-          <li><a href="about.php">About Us</a></li>
-          <li><a href="user_products.php">Products</a></li>
-          <li><a href="user_offers.php">Offers & Reviews</a></li>
-          <li><a href="contact.php">Contact</a></li>
-          <li><a href="login.php" class="btn btn-primary" style=" background: linear-gradient(90deg, #FF7F50, #FF4500); 
-          /* Orange gradient */
-  color: white; border:none ;  border-radius: 45px;
-">Login</a></li>
+    <ul class="nav-menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+    <li class="<?= ($current_page == 'index.php') ? 'menu-active':''?>"><a href="index.php">Home</a></li>
+          <li class="<?= ($current_page == 'about.php') ? 'menu-active':''?>"><a href="about.php">About Us</a></li>
+          <li class="<?= ($current_page == 'user_products.php') ? 'menu-active':''?>"><a href="user_products.php">Products</a></li>
+          <li class="<?= ($current_page == 'user_offers.php') ? 'menu-active':''?>"><a href="user_offers.php">Offers & Reviews</a></li>
+          <li class="<?= ($current_page == 'contact.php') ? 'menu-active':''?>"><a href="contact.php">Contact</a></li>
+          <li>
+          <a href="login.php" class="btn btn-primary"
+          style=" background: linear-gradient(90deg, #FF7F50, #FF4500); color: white; border:none ;  border-radius: 45px; padding-inline:20px;">Login</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
+      
     </div>
+    <br><br>
     <div class="marquee-container" id="marquee">
     <marquee behavior="scroll" direction="left" scrollamount="5">
       Welcome to KJ Website! Enjoy our products and services.
     </marquee>
   </div>
   </div>
+  </header>
 </div>
 </main>
-  <!-- Marquee -->
- 
+  
 
-  <!-- Sticky Navbar & Marquee Script -->
-  <!-- <script>
-    window.addEventListener("scroll", function () {
-      let navbar = document.getElementById("navbar");
 
-      if (window.scrollY > navbar.offsetTop) {
-        navbar.classList.add("sticky");
-      } else {
-        navbar.classList.remove("sticky");
-      }
-    });
-  </script> -->
-<script src="js/main.js"></script>
+
 </body>
+<script src="js/main.js"></script>
 </html>

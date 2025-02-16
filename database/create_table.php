@@ -23,13 +23,16 @@ include 'config.php';
 //     status VARCHAR(20) NOT NULL DEFAULT 'active' -- Added column with default value
 // );";
 
-// $query="create table if not EXISTS meassage(
-//  id INT AUTO_INCREMENT PRIMARY KEY,
-//     name VARCHAR(255) NOT NULL,
-//     contact_no VARCHAR(15) NOT NULL,
-//     email VARCHAR(255) NOT NULL,
-//     message TEXT NOT NULL
-//     );";
+$query="CREATE TABLE IF NOT EXISTS meassage (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    contact_no VARCHAR(15) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    message TEXT NOT NULL,
+    client_description VARCHAR(255) DEFAULT NULL,
+    isreviewed BOOL DEFAULT FALSE,
+    isresponded BOOL DEFAULT FALSE
+);";
 
 // $query="
 // create table if not EXISTS offers(

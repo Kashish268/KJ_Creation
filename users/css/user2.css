@@ -355,9 +355,9 @@ h6 {
 /* Default styling */
 #intro .col-md-4 img {
   width: 100%;          
-  height: 50vh;  
+  height: 40vh;  
   object-fit: cover;
-  border-radius: 10px;
+  /* border-radius: 10px; */
 }
 
 .image-wrapper {
@@ -561,7 +561,6 @@ h6 {
 .nav-menu .menu-active a {
   color: rgb(244, 107, 44) !important; /* Active link color */
   font-weight: bold;
-  border-bottom: 2px solid rgb(244, 107, 44);
   transition: color 0.3s ease, border-bottom 0.3s ease;
 }
 

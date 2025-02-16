@@ -1,4 +1,3 @@
-
 <?php
 include 'database/config.php'; // Corrected the path
 session_start();
@@ -7,7 +6,7 @@ if (!isset($_SESSION['admin'])) {
     exit();
 }
 
-$q="select * from meassage";
+$q="select * from meassage where isreviewed = 1";
 $result = mysqli_query($conn,$q);
 
 ?>
@@ -29,8 +28,7 @@ $result = mysqli_query($conn,$q);
     <link rel="stylesheet" href="style_admin.css">
     <title>Products</title>
     <style>
- /* Overlay Background */
-.popup {
+        .popup {
     display: none;
     position: fixed;
     top: 50%;
@@ -205,9 +203,8 @@ $result = mysqli_query($conn,$q);
     }
 }
 
-</style>
-
-</head>
+    </style>
+    </head>
 <body>
 
     <?php include 'sidebar.php'; ?>
@@ -252,13 +249,14 @@ $result = mysqli_query($conn,$q);
 					<th>Contact No</th>
 					<th>Email</th>
 					<th>Meassge</th>
+                    <th>Note</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
                 
             <?php while($row = mysqli_fetch_assoc($result)) { ?>
-                <tr style="background-color: <?php echo ($row['isreviewed'] == 1) ? '#d3d3d3' : 'transparent'; ?>;">
+                <tr style="background-color: <?php echo ($row['isresponded'] == 1) ? '#d3d3d3' : 'transparent'; ?>;">
 
     <td><?php echo $row['id']; ?></td>
     <td><?php echo $row['name']; ?></td>
@@ -275,56 +273,60 @@ $result = mysqli_query($conn,$q);
         window.open(gmailUrl, '_blank');
     }
 </script>
+
+
+
+
+
+  <!-- <td><a style="cursor:pointer;"><?php echo $row['email']; ?></a></td> -->
     <td><?php echo $row['message']; ?></td>
+    <td><?php echo $row['client_description']?></td>
     <td>
 
    
-    <button class="action-btn response-btn <?php echo ($row['isreviewed'] == 1) ? 'disabled-btn' : ''; ?>" 
+    <button class="action-btn response-btn <?php echo ($row['isresponded'] == 1) ? 'disabled-btn' : ''; ?>" 
         onclick="openPopup(this)" 
         data-id="<?php echo $row['id']; ?>" 
-        <?php echo ($row['isreviewed'] == 1) ? 'disabled' : ''; ?>>
+        <?php echo ($row['isresponded'] == 1) ? 'disabled' : ''; ?>>
             
-    <?php echo ($row['isreviewed'] == 1) ? '<span class="btn-text">Reviewed</span>' : '<i class="bx bx-message-dots"></i>'; ?>
+        <?php if ($row['isresponded'] == 1): ?>
+    <span class="btn btn-success" style="display: inline-block; padding: 5px 10px; border-radius: 5px;">
+        <i class="bx bx-check" style="color: white;"></i>
+    </span>
+<?php else: ?>
+    <button class="btn btn-primary respond-btn" data-id="<?= $row['id']; ?>" onclick="openPopup(this)" >
+    Respond
+</button>
+<div id="responsePopup" class="popup">
+    <button class="close-btn" onclick="closePopup()">&times;</button>
+    
+    <h2>Message Details</h2>
+    <div class="details-container">
+        Are you responded?
+
+        <form action="update_response.php" method="post">
+        <!-- Hidden input for ID -->
+        <input type="hidden" name="id" id="popupMessageId"> 
+
+        <div class="button-container">
+            <input type="submit" class="submit-btn" name="submit" value="Submit"> 
+            <button type="button" class="cancel-btn" onclick="closePopup()">Cancel</button>
+        </div>
+    </form>
+    </div>
+
+    
+</div>
+
+<?php endif; ?>
 </button>
 
 
 
 
+
+
 </form>
-<div id="responsePopup" class="popup">
-    <button class="close-btn" onclick="closePopup()">&times;</button>
-    <h2>Message Details</h2>
-
-    <div class="details-container">
-        <div class="detail-row"><span>ID :</span> <span id="messageId"></span></div>
-        <div class="detail-row"><span>Name :</span> <span id="messageName"></span></div>
-        <div class="detail-row"><span>Email :</span> <span id="messageEmail"></span></div>
-        <div class="detail-row"><span>Contact No :</span> <span id="messageContact"></span></div>
-        <div class="detail-row"><span>Message :</span> <span id="messageText"></span></div>
-    </div>
-
-    <form action="submit_response.php" method="post" >
-<!-- Hidden input for ID (value will be set dynamically) -->
-<input type="hidden" name="id" id="popupMessageId"> 
-
-    <div class="form-group">
-        <label>Client Description</label>
-        <textarea id="clientDescription" name="client_description" placeholder="Enter description" required></textarea>
-    </div>
-
-    <div class="button-container">
-        <input type="submit" class="submit-btn" name="submit" value="Submit"> <!-- Add name="submit" -->
-    </div>
-</form>
-
-</div>
-<!-- <form action="meassage.php" method="post" style="display: inline;">
-    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-    <button type="submit" name="delete_row" class="action-btn delete-btn">
-        <i class="bx bx-trash"></i>
-    </button>
-</form> -->
-
 </td>
 
 </tr>
@@ -342,78 +344,50 @@ $result = mysqli_query($conn,$q);
 
     <!-- Script -->
     <script src="script1.js"></script>
-   
-
     <script>
-    function openPopup(button) {
-        var id = button.getAttribute("data-id");
+function openPopup(button) {
+    document.getElementById("responsePopup").style.display = "block";
+    document.getElementById("popupMessageId").value = button.getAttribute("data-id");
+}
 
-        // Fetch data via AJAX
-        fetch('fetch_meassage.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: 'id=' + id
-        })
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById("messageId").innerText = data.id;
-            document.getElementById("messageName").innerText = data.name;
-            document.getElementById("messageEmail").innerText = data.email;
-            document.getElementById("messageContact").innerText = data.contact_no;
-            document.getElementById("messageText").innerText = data.message;
-            document.getElementById("responsePopup").style.display = "block";
-            document.getElementById("popupMessageId").value = data.id;
+function closePopup() {
+    document.getElementById("responsePopup").style.display = "none";
+}
 
-        })
-        .catch(error => console.error('Error:', error));
-    }
-
-    function closePopup() {
-        document.getElementById("responsePopup").style.display = "none";
-    }
-
-    function submitResponse() {
-        var description = document.getElementById("clientDescription").value;
-        alert("Response submitted with description: " + description);
-        closePopup();
-    }
 </script>
 
-
-</body>
+    </body>
 </html>
 <?php
-if(isset($_POST['delete_row'])){
-    $id=$_POST['id'];
-    $q="delete from meassage where id=$id";
-    if (mysqli_query($conn, $q)) {
-        echo "<script>
-            alert('Product deleted successfully');
-            window.location.href = 'meassage.php';
-        </script>";
-    } else {
-        echo "<script>
-            alert('Error deleting product');
-            window.location.href = 'meassage.php';
-        </script>";
-    }
+// if(isset($_POST['delete_row'])){
+//     $id=$_POST['id'];
+//     $q="delete from meassage where id=$id";
+//     if (mysqli_query($conn, $q)) {
+//         echo "<script>
+//             alert('Product deleted successfully');
+//             window.location.href = 'meassage.php';
+//         </script>";
+//     } else {
+//         echo "<script>
+//             alert('Error deleting product');
+//             window.location.href = 'meassage.php';
+//         </script>";
+//     }
 
-}
+// }
 
-if (isset($_POST['delete_all'])) {
-    $q = "DELETE FROM meassage";
-    if (mysqli_query($conn, $q)) {
-        echo "<script>
-            alert('All messages deleted successfully');
-            window.location.href = 'meassage.php';
-        </script>";
-    } else {
-        echo "<script>
-            alert('Error deleting all messages');
-            window.location.href = 'meassage.php';
-        </script>";
-    }
-}
-?>
+// if (isset($_POST['delete_all'])) {
+//     $q = "DELETE FROM meassage";
+//     if (mysqli_query($conn, $q)) {
+//         echo "<script>
+//             alert('All messages deleted successfully');
+//             window.location.href = 'meassage.php';
+//         </script>";
+//     } else {
+//         echo "<script>
+//             alert('Error deleting all messages');
+//             window.location.href = 'meassage.php';
+//         </script>";
+//     }
+// }
+ ?>

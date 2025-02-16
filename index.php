@@ -20,7 +20,6 @@ while ($row = mysqli_fetch_assoc($result)) {
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,7 +83,7 @@ while ($row = mysqli_fetch_assoc($result)) {
   <section id="intro">
     <?php if (count($slides) > 0) { ?>
     <div class="container-fluid">
-        <div class="row align-items-center">
+        <div class="row">
             <!-- Left Column: Carousel (8 Columns on Desktop, Full Width on Mobile) -->
             <div class="col-md-8 col-12">
                 <div id="introCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -103,7 +102,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 <h3><?php echo $row['main_text']; ?></h3>
                                 <p><?php echo $row['p_text']; ?></p>
                                 <a href="#portfolio" class="btn-get-started scrollto">Show</a>
-                            </div>
+                            </div> 
                         </div>
                         <?php
                         $first = false;
@@ -121,8 +120,8 @@ while ($row = mysqli_fetch_assoc($result)) {
 
             <!-- Right Column: Two Static Images -->
             <div class="col-md-4 col-12">
-  <div class="d-flex flex-md-column flex-row align-items-center responsive-container">
-  <?php
+  <div class="d-flex flex-md-column flex-row responsive-container">
+      <?php
 // Include database connection
 
 
@@ -137,15 +136,15 @@ $result_below = mysqli_query($conn, $sql_below);
 $image_below = mysqli_fetch_assoc($result_below);
 ?>
 
-<div class="image-wrapper mb-3">
+<div class="image-wrapper mb-4">
     <?php if ($image_above): ?>
-        <img src="uploaded_images/<?php echo $image_above['image']; ?>" alt="Right Image 1" class="img-fluid rounded">
+        <img src="uploaded_images/<?php echo $image_above['image']; ?>" alt="Right Image 1">
     <?php endif; ?>
 </div>
 
 <div class="image-wrapper">
     <?php if ($image_below): ?>
-        <img src="uploaded_images/<?php echo $image_below['image']; ?>" alt="Right Image 2" class="img-fluid rounded">
+        <img src="uploaded_images/<?php echo $image_below['image']; ?>" alt="Right Image 2">
     <?php endif; ?>
 </div>
 
@@ -450,7 +449,6 @@ $image_below = mysqli_fetch_assoc($result_below);
 <!-- <script src="users/contactform/contactform.js"></script> -->
 
 <!-- Template Main Javascript File -->
-<script src="users/js/main.js"></script>
 
 <script>
   // Hide the preloader when the page is fully loaded
@@ -558,6 +556,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 </script>
+<script src="users/js/main.js"></script>
+
 
 
 </body>

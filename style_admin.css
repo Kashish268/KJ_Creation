@@ -522,6 +522,7 @@ body {
 /* Action Buttons */
 /* Existing Action Button Styles */
 .action-btn {
+	background-color: var(--blue);
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -532,13 +533,14 @@ body {
     margin: 0 px;
     background: none; /* Remove background */
     border: none; /* Remove border */
-    color: inherit; /* Keep default text/icon color */
+    color: white; /* Keep default text/icon color */
     padding: 0; /* Remove extra padding */
     transition: transform 0.1s ease; /* Add subtle hover effect */
 }
 
 .action-btn:hover {
     transform: scale(1.1); /* Slightly enlarge on hover */
+	color: var(--blue); 
 }
 
 .edit-btn {
@@ -559,6 +561,16 @@ body {
     color: var(--blue); /* Darker red on hover */
 }
 
+.disabled-btn {
+    background-color: gray !important;
+    color: white !important;
+    cursor: not-allowed;
+   
+}
+.response-btn {
+    background-color: rgb(25, 25, 25);
+    color: white;
+}
 /* Icons */
 .action-btn i {
     font-size: 19px; /* Simple icon size */

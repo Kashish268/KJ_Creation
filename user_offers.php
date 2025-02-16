@@ -40,53 +40,59 @@ $offer = mysqli_fetch_assoc($result);
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
+    }
 
       /* Right Column (24-Hour Support) */
-      .offer-support-section {
+    .offer-support-section {
         display: flex;
         flex-wrap: wrap;
         margin: 0;
     }
+
     .offer-details, .support-details {
         flex: 1;
         padding: 30px;
         margin: 0;
     }
+
     .offer-details {
-        background:white;
-        border-radius: 10px;
+        background:white;     
         text-align: center;
         box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     }
+
     .offer-details h4, .offer-details p {
         font-weight: 700;
     }
+
     .offer-details img {
         width: 100%;
-        border-radius: 2px;
-        transition: transform 0.3s ease-in-out;
+        
     }
-    .offer-details img:hover {
+
+    /* .offer-details img:hover {
         transform: scale(1.05);
-    }
+    } */
     .support-details {
         background-color: rgb(45, 58, 48);
         /* border-left: 3px dashed rgb(244, 107, 44); */
-        color: white;
-        border-radius: 10px;
+        color: white;   
         box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
         text-align: center;
     }
+
     .support-details h4, .support-details h2, .support-details p {
         color: rgb(244, 107, 44);
     }
+
     .support-details h2 {
         font-weight: 900;
     }
+
     .support-details p {
         font-weight: 500;
     }
+    
 </style>
 </head>
 <body  onload="myFunction()">
@@ -106,7 +112,7 @@ $offer = mysqli_fetch_assoc($result);
       <div class="offer-support-section">
         <div class="offer-details">
           <?php if ($offer): ?>
-            <h4>🔥 <?= htmlspecialchars($offer['title']); ?> - <span style="color: red;"><?= htmlspecialchars($offer['offer_percentage']); ?>% OFF</span></h4>
+            <h4>🔥 <?= htmlspecialchars($offer['title']); ?> - <span style="color: red;"><?= htmlspecialchars($offer['offer_percentage']); ?> OFF</span></h4>
             <p><strong>Offer Code:</strong> <?= htmlspecialchars($offer['offer_code']); ?></p>
             <p><?= htmlspecialchars($offer['description']); ?></p>
             <img src="uploaded_images/<?= htmlspecialchars($offer['image']); ?>" alt="Offer Image">
@@ -115,7 +121,7 @@ $offer = mysqli_fetch_assoc($result);
           <?php endif; ?>
         </div>
 
-        <div class="support-details p-4 rounded shadow text-center">
+        <div class="support-details p-4  shadow text-center">
     <!-- <h4>💡 Why Choose Us?</h4> -->
     <br>
     <div class="row my-3">

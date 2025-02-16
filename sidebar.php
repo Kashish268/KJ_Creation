@@ -51,6 +51,16 @@
             </a>
         </li>
 
+        <li class="<?= ($current_page == 'clients.php') ? 'active' : 
+            (($current_page == 'product.php' || $current_page == 'add_product.php' || 
+              $current_page == 'offers.php' || $current_page == 'add_offers.php' ||  $current_page == 'footer_image.php'||
+              $current_page == 'dashboard.php')|| $current_page == 'meassage.php' ? '' : ''); ?>">
+            <a href="clients.php">
+                <i class='bx bxs-group'></i>
+                <span class="text">Clients</span>
+            </a>
+        </li>
+
         <li class="<?= ($current_page == 'footer_image.php')  || $current_page == 'add_footer_image.php' ? 'active' : 
             (($current_page == 'product.php' || $current_page == 'add_product.php' || 
               $current_page == 'offers.php' || $current_page == 'add_offers.php' ||  $current_page == 'meassage.php'||
