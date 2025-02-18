@@ -6,7 +6,7 @@ if (!isset($_SESSION['admin'])) {
     exit();
 }
 
-$q="select * from meassage where isreviewed = 1";
+$q="select * from meassage where isreviewed = 1 ORDER BY id DESC";
 $result = mysqli_query($conn,$q);
 
 ?>
@@ -26,7 +26,7 @@ $result = mysqli_query($conn,$q);
 
     <!-- CSS -->
     <link rel="stylesheet" href="style_admin.css">
-    <title>Products</title>
+    <title>KJ CREATION</title>
     <style>
         .popup {
     display: none;
@@ -217,14 +217,14 @@ $result = mysqli_query($conn,$q);
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>FeedBack</h1>
+                    <h1>Clients</h1>
                     <ul class="breadcrumb">
                         <li>
                             <a href="dashboard.php">Dashboard</a>
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>
-                            <a class="active" href="products.php">FeedBack</a>
+                            <a class="active" href="clients.php">Clients</a>
                         </li>
                     </ul>
                 </div>

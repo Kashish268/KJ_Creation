@@ -24,7 +24,7 @@ $result = mysqli_query($conn,$q);
 
     <!-- CSS -->
     <link rel="stylesheet" href="style_admin.css">
-    <title>KJ Creation</title>
+    <title>KJ CREATION</title>
 </head>
 <body>
 
@@ -38,14 +38,14 @@ $result = mysqli_query($conn,$q);
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>Images</h1>
+                    <h1>Footer Images</h1>
                     <ul class="breadcrumb">
                         <li>
                             <a href="dashboard.php">Dashboard</a>
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>
-                            <a class="active" href="footer_image.php">Images</a>
+                            <a class="active" href="footer_image.php">Footer Images</a>
                         </li>
                     </ul>
                 </div>

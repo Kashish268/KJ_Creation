@@ -25,6 +25,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
   <link href="users/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
   <link href="users/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="users/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
   <!-- Main Stylesheet -->
   <link href="users/css/user2.css" rel="stylesheet">
@@ -56,12 +57,13 @@ $current_page = basename($_SERVER['PHP_SELF']);
     /* Logo and Ad Banner */
     .header-middle {
       background-color: #f2f2f2;
-      padding: 15px 0;
+      padding: 20px 0;
       text-align: center;
     }
     .logo-section img {
       max-height: 50px;
       width: auto;
+     
     }
     .ad-banner img {
       max-width: 100%;
@@ -83,8 +85,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
       padding-bottom: 8px;
       list-style: none;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      /* align-items: center;
+    justify-content: center; Centers items */
+    flex-wrap: wrap;
     }
     .nav-menu li {
       margin-left: 10px;
@@ -137,6 +140,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
   </style>
 </head>
 <body>
+<button type="button" id="mobile-nav-toggle">
+        <i class="fa fa-bars"></i>
+      </button>
   <main id="main">
 <div class="header-wrapper">
   <!-- Support Section (Top Bar) -->
@@ -170,21 +176,25 @@ $current_page = basename($_SERVER['PHP_SELF']);
   <!-- Logo + Ad Banner -->
   <div class="header-middle">
     <div class="container">
+    <!-- <button type="button" id="mobile-nav-toggle">
+        <i class="fa fa-bars"></i>
+      </button> -->
       <div class="logo-section">
-        <img src="users/myimg/kj_1.png" alt="KJ Logo" title="KJ" />
+        <img src="users/myimg/kj creations.png" alt="KJ Logo" title="KJ" />
       </div>
       <div class="ad-banner">
-        <img src="https://via.placeholder.com/468x60?text=Ad+Banner" alt="Advertisement Banner">
+        <div class="base-line" style="padding-top:2px;">CORPORATE GIFT | TREDITIONAL | DEVOTIONAL</div>
       </div>
     </div>
   </div>
 
   <!-- Bottom Navbar -->
-   <header id="navbar">
+   
   <div class="header-bottom" id="navbar">
     <div class="container">
+      
     <nav id="nav-menu-container">
-    <ul class="nav-menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+    <ul class="nav-menu sf-js-enabled sf-arrows center" style="touch-action: pan-y;">
     <li class="<?= ($current_page == 'index.php') ? 'menu-active':''?>"><a href="index.php">Home</a></li>
           <li class="<?= ($current_page == 'about.php') ? 'menu-active':''?>"><a href="about.php">About Us</a></li>
           <li class="<?= ($current_page == 'user_products.php') ? 'menu-active':''?>"><a href="user_products.php">Products</a></li>
@@ -197,14 +207,13 @@ $current_page = basename($_SERVER['PHP_SELF']);
       </nav><!-- #nav-menu-container -->
       
     </div>
-    <br><br>
+    
     <div class="marquee-container" id="marquee">
     <marquee behavior="scroll" direction="left" scrollamount="5">
       Welcome to KJ Website! Enjoy our products and services.
     </marquee>
   </div>
   </div>
-  </header>
 </div>
 </main>
   
@@ -212,5 +221,32 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
 
 </body>
-<script src="js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="users/lib/jquery/jquery.min.js"></script>
+<script src="users/lib/jquery/jquery-migrate.min.js"></script>
+<script src="users/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="users/lib/easing/easing.min.js"></script>
+<script src="users/lib/superfish/hoverIntent.js"></script>
+<script src="users/lib/superfish/superfish.min.js"></script>
+<script src="users/lib/wow/wow.min.js"></script>
+<script src="users/lib/waypoints/waypoints.min.js"></script>
+<script src="users/lib/counterup/counterup.min.js"></script>
+<script src="users/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="users/lib/isotope/isotope.pkgd.min.js"></script>
+<script src="users/lib/lightbox/js/lightbox.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<script src="users/lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+<script src="users/js/main.js" defer></script>
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
+<!-- Contact Form JavaScript File -->
+<!-- <script src="users/contactform/contactform.js"></script> -->
+
+<!-- Template Main Javascript File -->
 </html>
+
+

@@ -37,7 +37,7 @@ if (isset($_GET['id'])) {
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Product Details | KJ CREATION</title>
+  <title>KJ CREATION</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <link href="img/kj_1.png" rel="icon">
   <link href="users/css/user2.css" rel="stylesheet">

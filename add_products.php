@@ -64,7 +64,7 @@ if (isset($_POST['sub'])) {
     <!-- CSS -->
     <link rel="stylesheet" href="style_admin.css">
     
-    <title>AdminHub</title>
+    <title>KJ CREATION</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap');
 
@@ -220,10 +220,10 @@ if (isset($_POST['sub'])) {
                 <label>Categories:</label>
         <select name="categories">
         <option value="">Select a Category</option>
-            <option value="Handicraft">Handicraft</option>
-            <option value="Purse">Purse</option>
-            <option value="Jewelry">Jewellery</option>
-            <option value="Accessories">Accessories</option>
+            <option value="Corporate gift">Corporate-gift            </option>
+            <option value="Traditional">Traditional</option>
+            <option value="Devotional">Devotional</option>
+            <!-- <option value="Accessories">Accessories</option> -->
         </select>
                 <label for="productImage">Upload Product Image</label>
                 <input type="file" id="productImage" name="productImage">

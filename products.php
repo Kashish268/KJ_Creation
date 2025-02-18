@@ -6,7 +6,7 @@ if (!isset($_SESSION['admin'])) {
     exit();
 }
 
-$q="select * from products";
+$q="select * from products ORDER BY id DESC";
 $result = mysqli_query($conn,$q);
 
 ?>
@@ -25,7 +25,7 @@ $result = mysqli_query($conn,$q);
 
     <!-- CSS -->
     <link rel="stylesheet" href="style_admin.css">
-    <title>Products</title>
+    <title>KJ CREATION</title>
 </head>
 <body>
 

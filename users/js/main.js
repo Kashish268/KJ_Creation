@@ -35,44 +35,78 @@
   // });
 
   // Mobile Navigation
-  if ($('#nav-menu-container').length) {
-    var $mobile_nav = $('#nav-menu-container').clone().prop({
-      id: 'mobile-nav'
-    });
-    $mobile_nav.find('> ul').attr({
-      'class': '',
-      'id': ''
-    });
-    $('body').append($mobile_nav);
-    $('body').prepend('<button type="button" id="mobile-nav-toggle"><i class="fa fa-bars"></i></button>');
-    $('body').append('<div id="mobile-body-overly"></div>');
-    $('#mobile-nav').find('.menu-has-children').prepend('<i class="fa fa-chevron-down"></i>');
+  $(document).ready(function () {
+    console.log("Document ready!");
 
-    $(document).on('click', '.menu-has-children i', function(e) {
-      $(this).next().toggleClass('menu-item-active');
-      $(this).nextAll('ul').eq(0).slideToggle();
-      $(this).toggleClass("fa-chevron-up fa-chevron-down");
-    });
+    if ($('#nav-menu-container').length) {
+        console.log("Nav menu container found! Cloning...");
 
-    $(document).on('click', '#mobile-nav-toggle', function(e) {
-      $('body').toggleClass('mobile-nav-active');
-      $('#mobile-nav-toggle i').toggleClass('fa-times fa-bars');
-      $('#mobile-body-overly').toggle();
-    });
+        var $mobile_nav = $('#nav-menu-container').clone().prop({
+            id: 'mobile-nav'
+        });
 
-    $(document).click(function(e) {
-      var container = $("#mobile-nav, #mobile-nav-toggle");
-      if (!container.is(e.target) && container.has(e.target).length === 0) {
-        if ($('body').hasClass('mobile-nav-active')) {
-          $('body').removeClass('mobile-nav-active');
-          $('#mobile-nav-toggle i').toggleClass('fa-times fa-bars');
-          $('#mobile-body-overly').fadeOut();
-        }
-      }
-    });
-  } else if ($("#mobile-nav, #mobile-nav-toggle").length) {
-    $("#mobile-nav, #mobile-nav-toggle").hide();
-  }
+        $mobile_nav.find('> ul').attr({
+            'class': '',
+            'id': ''
+        });
+
+        // Append the cloned menu inside navbar
+        $('.header-bottom .container').append($mobile_nav);
+        console.log("Mobile nav appended!");
+
+        // Mobile nav toggle button event
+        $('#mobile-nav-toggle').on('click', function (e) {
+            console.log("Mobile nav toggle clicked!");
+
+            // Prevent click event from propagating to document click handler
+            e.stopPropagation();
+
+            // If the body doesn't have 'mobile-nav-active', add it and open the menu
+            
+                $('body').addClass('mobile-nav-active');
+                $('#mobile-nav-toggle i').removeClass('fa-bars').addClass('fa-times'); // Change to cross icon
+                $('#mobile-nav').slideDown(); // Show the mobile nav
+           
+
+            // Debugging: Log current classes
+            setTimeout(() => {
+                let bodyClass = $('body').attr('class') || "(No classes found)";
+                console.log("Current body classes:", bodyClass);
+            }, 100);
+        });
+
+        $(document).click(function (e) {
+          var container = $("#mobile-nav, #mobile-nav-toggle");
+          // Check if the click is outside the menu and the toggle button
+          if (!container.is(e.target) && container.has(e.target).length === 0) {
+              // Close the menu if body has the class 'mobile-nav-active'
+              if ($('body').hasClass('mobile-nav-active')) {
+                  console.log("Click outside detected. Closing menu...");
+
+                  // Remove mobile-nav-active class from the body
+                  $('body').removeClass('mobile-nav-active');
+
+                  // Revert the toggle icon to hamburger
+                  $('#mobile-nav-toggle i').removeClass('fa-times').addClass('fa-bars');
+
+                  // Slide up the menu
+                  $('#mobile-nav').slideUp();
+
+                  setTimeout(() => {
+                      let bodyClass = $('body').attr('class') || "(No classes found)";
+                      console.log("After closing, body classes:", bodyClass);
+                  }, 100);
+              }
+          }
+      });
+
+    } else {
+        console.log("Nav menu container NOT found!");
+    }
+});
+
+
+
 
   // Header scroll class
   $(window).scroll(function() {
@@ -161,17 +195,17 @@
   });
 
   // Skills section
-  $('#skills').waypoint(function() {
-    $('.progress .progress-bar').each(function() {
-      $(this).css("width", $(this).attr("aria-valuenow") + '%');
-    });
-  }, { offset: '80%'} );
+  // $('#skills').waypoint(function() {
+  //   $('.progress .progress-bar').each(function() {
+  //     $(this).css("width", $(this).attr("aria-valuenow") + '%');
+  //   });
+  // }, { offset: '80%'} );
 
-  // jQuery counterUp (used in Facts section)
-  $('[data-toggle="counter-up"]').counterUp({
-    delay: 10,
-    time: 1000
-  });
+  // // jQuery counterUp (used in Facts section)
+  // $('[data-toggle="counter-up"]').counterUp({
+  //   delay: 10,
+  //   time: 1000
+  // });
 
   // Porfolio isotope and filter
   $(document).ready(function() {

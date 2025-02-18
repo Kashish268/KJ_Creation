@@ -14,7 +14,7 @@ $row_count = mysqli_fetch_assoc($result_count)['total_rows'];
 
 
 
-$q="select * from popup_image";
+$q="select * from popup_image ORDER BY id DESC";
 $result = mysqli_query($conn,$q);
 
 ?>
@@ -33,7 +33,7 @@ $result = mysqli_query($conn,$q);
 
     <!-- CSS -->
     <link rel="stylesheet" href="style_admin.css">
-    <title>KJ CRREATION</title>
+    <title>KJ CREATION</title>
     </head>
 <body>
 

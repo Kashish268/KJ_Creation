@@ -52,7 +52,7 @@ if (isset($_POST['sub'])) {
     <!-- CSS -->
     <link rel="stylesheet" href="style_admin.css">
     
-    <title>AdminHub</title>
+    <title>KJ CREATION</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap');
 
@@ -174,7 +174,7 @@ if (isset($_POST['sub'])) {
         <?php include 'navbar.php'; ?>
         <main>
     <div style="margin-bottom: 30px;">
-        <h2 style="text-align: left; color: rgb(244, 107, 44); font-size:  36px; font-weight: 600; margin-bottom: 10px;">Add Product</h2>
+        <h2 style="text-align: left; color: rgb(244, 107, 44); font-size:  36px; font-weight: 600; margin-bottom: 10px;">Add Image</h2>
         <p style="text-align: left; color: #c4c4c4; font-size: 1rem;">Images</a> 
             <span style="margin: 0 8px;">&gt;</span>
             <span style="color: rgb(244, 107, 44);">Add Image</span>

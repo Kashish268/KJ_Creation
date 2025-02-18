@@ -26,7 +26,7 @@ alert("Welcome to the admin panel!");
   <link href="img/kj_1.png" rel="icon">
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
-    <title>AdminHub</title>
+    <title>KJ CREATION</title>
 </head>
 <body>
 
@@ -120,10 +120,80 @@ if ($result) {
             <p>Total Messages</p>
         </span>
     </li>
-</ul>
 
+    
+    
+</ul>
+<ul class="box-info">
+    <li>
+        <i class='bx bxs-message-dots'></i>
+        <span class="text">
+        <?php
+
+// Use a valid MySQL query
+$select_users = "select * from meassage where isreviewed = 1";
+$result = mysqli_query($conn, $select_users);
+
+if ($result) {
+    $numbers_of_users = mysqli_num_rows($result); // Get the number of rows
+} else {
+    $numbers_of_users = 0; // Default value if query fails
+}
+
+?>
+           <h3><?php echo $numbers_of_users; ?></h3>
+
+            <p>Reviewed Meassges</p>
+        </span>
+    </li>
+
+    <li>
+        <i class='bx bxs-group'></i>
+        <span class="text">
+        <?php
+
+// Use a valid MySQL query
+$select_users = "select * from meassage where isresponded = 1";
+$result = mysqli_query($conn, $select_users);
+
+if ($result) {
+    $numbers_of_users = mysqli_num_rows($result); // Get the number of rows
+} else {
+    $numbers_of_users = 0; // Default value if query fails
+}
+
+?>
+           <h3><?php echo $numbers_of_users; ?></h3>
+
+            <p>Responded Meassges</p>
+        </span>
+    </li>
+
+    <li>
+        <i class='bx bxs-image'></i>
+        <span class="text">
+        <?php
+
+// Use a valid MySQL query
+$select_users = "select * from home_slider";
+$result = mysqli_query($conn, $select_users);
+
+if ($result) {
+    $numbers_of_users = mysqli_num_rows($result); // Get the number of rows
+} else {
+    $numbers_of_users = 0; // Default value if query fails
+}
+
+?>
+           <h3><?php echo $numbers_of_users; ?></h3>
+
+            <p>Slider Images</p>
+        </span>
+    </li>
+
+    </ul>
         </main>
-    </section> -->
+    </section> 
 
     <!-- Script -->
     <script src="script1.js"></script>

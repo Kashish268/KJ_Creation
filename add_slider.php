@@ -53,7 +53,7 @@ if (isset($_POST['sub'])) {
     <!-- CSS -->
     <link rel="stylesheet" href="style_admin.css">
     
-    <title>AdminHub</title>
+    <title>KJ CREATION</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap');
 

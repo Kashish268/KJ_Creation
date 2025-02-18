@@ -5,7 +5,7 @@ include 'database/config.php';
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>KJ CRREATION</title>
+  <title>KJ CREATION</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -64,17 +64,20 @@ $totalProducts = count($products);
         
 
         <div class="row">
-        <div class="col-lg-12">
-        <ul id="portfolio-flters">
-    <li data-filter="*" class="filter-active">All</li>
-    <li data-filter=".handicraft">Handicraft</li>
-    <li data-filter=".purse">Purse</li>
-    <li data-filter=".jewellery">Jewellery</li>
-    <li data-filter=".accessories">Accessories</li>
-</ul>
-</div>
-    </div>
-
+            
+            <div class="col-md-7">
+                <ul id="portfolio-flters" class="list-inline">
+                    <li data-filter="*" class="filter-active">All</li>
+                    <li data-filter=".Corporate-gift">CORPORATE GIFT</li>
+                    <li data-filter=".Traditional">TRADITIONAL</li>
+                    <li data-filter=".Devotional">DEVOTIONAL</li>
+                </ul>
+            </div>
+            <div class="col-md-5">
+                <input type="text" id="productSearch" class="form-control" placeholder="Search products..." onkeyup="filterProducts()">
+            </div>
+        </div>
+       
 
         </header>
         <br>
@@ -87,16 +90,16 @@ $totalProducts = count($products);
     $productResult = mysqli_query($conn, $query);
 
     $categoryMap = [
-        "Handicraft" => "handicraft",
-        "Purse" => "purse",
-        "Jewellery" => "jewellery",  // Correct spelling
-        "Accessories" => "accessories"
+        "Corporate-gift" => "Corporate-gift",
+        "Traditional" => "Traditional",
+        "Devotional" => "Devotional",  // Correct spelling
+        // "Accessories" => "accessories"
     ];
 
     while ($product = mysqli_fetch_assoc($productResult)) {
         $categoryClass = isset($categoryMap[$product['categories']]) ? $categoryMap[$product['categories']] : "";
         ?>
-        <div class="col-lg-3 col-md-4 portfolio-item <?php echo $categoryClass; ?>">
+        <div class="col-lg-3 col-md-4 portfolio-item <?php echo $categoryClass; ?>"  data-category="<?php echo strtolower($categoryClass); ?>">
             <div class="portfolio-wrap">
                 <figure>
                     <img src="uploaded_images/<?php echo $product['image']; ?>" class="img-fluid" alt="<?php echo $product['name']; ?>" style="height:100%; width:100%;">
@@ -110,6 +113,7 @@ $totalProducts = count($products);
                 <div class="portfolio-info">
                     <h4><a href="#" style="text-decoration: none;"><?php echo $product['name']; ?></a></h4>
                     <p><?php echo $product['price']; ?></p>
+                    <p><?php echo $product['categories'];?></p>
                 </div>
             </div>
         </div>
@@ -157,4 +161,74 @@ $totalProducts = count($products);
 
   <!-- Template Main Javascript File -->
   <script src="users/js/main.js"></script>
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const searchInput = document.getElementById("productSearch");
+  const productItems = document.querySelectorAll(".portfolio-item");
+  const categoryButtons = document.querySelectorAll("#portfolio-flters li");
+
+  let activeCategory = "*"; // Default: All categories
+
+  function filterProducts() {
+    const searchText = searchInput.value.trim().toLowerCase();
+
+    productItems.forEach((item) => {
+      // Get product name text
+      const productName = item.querySelector("h4 a").innerText.toLowerCase();
+      // Get the product's category from the data attribute
+      const itemCategory = item.getAttribute("data-category") || "";
+
+      let shouldShow = false;
+
+      if (activeCategory === "*") {
+        // "All" tab: if search text is empty, show all;
+        // Otherwise, show items if search text matches product name OR category.
+        if (searchText === "") {
+          shouldShow = true;
+        } else {
+          shouldShow = productName.includes(searchText) || itemCategory.includes(searchText);
+        }
+      } else {
+        // Specific category: first, filter items by category.
+        if (itemCategory === activeCategory.toLowerCase()) {
+          // Within this category, if no search text, show the item.
+          // Otherwise, check only the product name.
+          if (searchText === "") {
+            shouldShow = true;
+          } else {
+            shouldShow = productName.includes(searchText);
+          }
+        } else {
+          shouldShow = false;
+        }
+      }
+
+      item.style.display = shouldShow ? "block" : "none";
+    });
+  }
+
+  // Handle category selection
+  categoryButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      categoryButtons.forEach((btn) => btn.classList.remove("filter-active"));
+      this.classList.add("filter-active");
+
+      activeCategory = this.getAttribute("data-filter").replace(".", ""); // Get category class name
+      searchInput.value = ""; // Reset search on category change
+      filterProducts();
+    });
+  });
+
+  // Filter on search input
+  searchInput.addEventListener("keyup", filterProducts);
+
+  // Initial filtering (display all)
+  filterProducts();
+});
+
+
+</script>
+
+
+
 </html>

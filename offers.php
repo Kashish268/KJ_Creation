@@ -14,7 +14,7 @@ if (!isset($_SESSION['admin'])) {
 
 
 
-$q="select * from offers";
+$q="select * from offers ORDER BY id DESC";
 $result = mysqli_query($conn,$q);
 
 ?>
@@ -33,7 +33,7 @@ $result = mysqli_query($conn,$q);
 
     <!-- CSS -->
     <link rel="stylesheet" href="style_admin.css">
-    <title>KJ CRREATION</title>
+    <title>KJ CREATION</title>
     </head>
 <body>
 
@@ -54,12 +54,12 @@ $result = mysqli_query($conn,$q);
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>
-                            <a class="active" href="products.php">Offers</a>
+                            <a class="active" href="offers.php">Offers</a>
                         </li>
                     </ul>
                 </div>
-                <a href="add_offers.php" class="btn-download" 
-                                    <i class='bx bxs-plus-circle'></i>
+                <a href="add_offers.php" class="btn-download">
+                <i class='bx bxs-plus-circle'></i>
                     <span class="text">Add Offers</span>
                 </a>
             </div>
