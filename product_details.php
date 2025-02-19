@@ -25,12 +25,12 @@ if (isset($_GET['id'])) {
 }
 
   // Fetch all products in the same category, excluding the current product
-  $category = $product['categories'];
-  $relatedQuery = "SELECT * FROM products WHERE categories  = ? AND id != ?";
-  $stmt = $conn->prepare($relatedQuery);
-  $stmt->bind_param("si", $category, $product_id);
-  $stmt->execute();
-  $relatedResult = $stmt->get_result();
+  // $category = $product['categories'];
+  // $relatedQuery = "SELECT * FROM products WHERE categories  = ? AND id != ?";
+  // $stmt = $conn->prepare($relatedQuery);
+  // $stmt->bind_param("si", $category, $product_id);
+  // $stmt->execute();
+  // $relatedResult = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -41,6 +41,7 @@ if (isset($_GET['id'])) {
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <link href="img/kj_1.png" rel="icon">
   <link href="users/css/user2.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
  
@@ -90,7 +91,144 @@ if (isset($_GET['id'])) {
         color: green;
         font-weight: bold;
     }
-  </style>
+
+.related-carousel .portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.portfolio-wrap figure {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.portfolio-wrap img {
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.portfolio-wrap:hover img {
+    transform: scale(1.1);
+}
+
+.portfolio-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.portfolio-wrap:hover .portfolio-info {
+    opacity: 1;
+}
+
+.portfolio-info a {
+    color: #fff;
+    font-size: 24px;
+    margin: 0 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+.portfolio-info a:hover {
+    color: rgb(244, 107, 44);
+}
+
+
+<style>
+    /* Container Styling */
+    .clients-carousel {
+        display: flex;
+        gap: 15px; /* Padding between images */
+        justify-content: center;
+        align-items: center;
+        overflow-x: auto;
+        padding: 10px 0;
+    }
+
+    /* Client Item */
+    .client-item {
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    /* Image Styling */
+    .client-image {
+        width: 150px; /* Fixed width */
+        height: 150px; /* Fixed height */
+        object-fit: cover; /* Ensures images fit properly */
+        border-radius: 10px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    /* Hover Effect */
+    .image-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .image-container:hover .client-image {
+        transform: scale(1.1);
+    }
+
+    /* Overlay (Hidden by Default) */
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+       
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        gap: 10px;
+    }
+
+    /* Show Overlay on Hover */
+    .image-container:hover .overlay {
+        opacity: 1;
+    }
+
+    /* Button Styling */
+    .link-preview, .link-details {
+        color: white;
+        font-size: 20px;
+        text-decoration: none;
+        background: rgb(244, 107, 44);
+  color: #fff;
+        padding: 4px;
+        border-radius: 50%;
+        transition: background 0.3s ease;
+         width: 36px;
+        /* height: 40px; */
+    }
+
+    .link-preview:hover, .link-details:hover {
+        background: rgb(255, 255, 255);
+       
+    }
+
+    .owl-carousel .owl-item {
+    display: flex;
+    justify-content: center;
+    
+}
+</style>
+
+
 </head>
 <body>
 
@@ -147,33 +285,46 @@ if (isset($_GET['id'])) {
     </div>
   </section>
 
+ 
   <section id="clients" class="wow fadeInUp">
-      <div class="container">
-
-        <header class="section-header">
-          <h3>Our Clients</h3>
-        </header>
+    <div class="container">
+    <header class="section-header text-center mb-4">
+        <h3 class="section-title" style="color:black">Related Products</h3>
+      </header>
 
         <div class="owl-carousel clients-carousel">
-        <div class="col-lg-3 col-md-4 portfolio-item <?php echo $categoryClass; ?>">
-            <div class="portfolio-wrap">
-                <figure>
-                    <img src="uploaded_images/<?php echo $product['image']; ?>" class="img-fluid" alt="<?php echo $product['name']; ?>" style="height:100%; width:100%;">
-                    <a href="uploaded_images/<?php echo $product['image']; ?>" data-lightbox="portfolio" data-title="<?php echo $product['name']; ?>" class="link-preview" title="Preview">
-                        <i class="ion ion-eye"></i>
-                    </a>
-                    <a href="product_details.php?id=<?php echo $product['id']; ?>" class="link-details" title="More Details">
-                        <i class="ion ion-android-open"></i>
-                    </a>
-                </figure>
-                
-            </div>
-        </div>
-         
-        </div>
+            <?php
+            $category = $product['categories'];
+            $relatedQuery = "SELECT * FROM products WHERE categories = ? AND id != ?";
+            $stmt = $conn->prepare($relatedQuery);
+            $stmt->bind_param("si", $category, $product_id);
+            $stmt->execute();
+            $relatedResult = $stmt->get_result();
 
-      </div>
-    </section><!-- #clients -->
+            while ($row = $relatedResult->fetch_assoc()) {
+                echo '
+                <div class="client-item">
+                    <div class="image-container">
+                        <img src="img/' . htmlspecialchars($row['image']) . '" alt="' . htmlspecialchars($row['name']) . '" class="client-image"
+                        style="padding-inline:13px">
+                        <div class="overlay">
+                            <a href="uploaded_images/' . $row['image'] . '" data-lightbox="portfolio" data-title="' . htmlspecialchars($row['name']) . '" class="link-preview" title="Preview">
+                                <i class="ion ion-eye"></i>
+                            </a>
+                            <a href="product_details.php?id=' . $row['id'] . '" class="link-details" title="More Details">
+                                <i class="ion ion-android-open"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>';
+            }
+            ?>
+        </div>
+    </div>
+</section>
+<br><br><br>
+
+
 
 </main>
 
@@ -199,6 +350,13 @@ if (isset($_GET['id'])) {
   <script src="users/lib/isotope/isotope.pkgd.min.js"></script>
   <script src="users/lib/lightbox/js/lightbox.min.js"></script>
   <script src="users/lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
   <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
   <!-- Contact Form JavaScript File -->
@@ -206,6 +364,28 @@ if (isset($_GET['id'])) {
 
   <!-- Template Main Javascript File -->
   <script src="users/js/main.js"></script>
+  <script>
+$(document).ready(function(){
+    $(".clients-carousel").owlCarousel({
+        loop: true,                // Enable infinite looping
+        margin: 15,                // Spacing between items
+        nav: true,                 // Show navigation arrows
+        dots: true,                // Show dots below the slider
+        autoplay: true,            // Enable autoplay
+        autoplayTimeout: 2000,     // Change every 3 seconds
+        autoplayHoverPause: true,  // Pause on hover
 
+        responsive: {
+            0: { items: 1 },       // 1 item on small screens
+            576: { items: 2 },     // 2 items on mobile
+            768: { items: 3 },     // 3 items on tablets
+            1024: { items: 4 }     // 5 items on large screens
+        }
+    });
+});
+
+
+
+</script>
 </body>
 </html>

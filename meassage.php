@@ -284,7 +284,7 @@ $result = mysqli_query($conn,$q);
         data-id="<?php echo $row['id']; ?>" 
         <?php echo ($row['isreviewed'] == 1) ? 'disabled' : ''; ?>>
             
-    <?php echo ($row['isreviewed'] == 1) ? '<span class="btn-text">Reviewed</span>' : '<i class="bx bx-message-dots"></i>'; ?>
+    <?php echo ($row['isreviewed'] == 1) ? '<span class="btn-text" style="border-radius:10px;background-color:green; padding:27%;">Reviewed</span>' : '<i class="bx bx-message-dots"></i>'; ?>
 </button>
 
 

@@ -27,218 +27,253 @@ if (isset($_POST['submit'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <!-- Favicons -->
-  <link href="img/kj_1.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #000;
-            overflow: hidden;
-            color: white;
-            position: relative;
-        }
+  <!-- Favicons (optional) -->
+  <link href="img/kj_1.png" rel="icon" />
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
 
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(249, 114, 53, 0.4), rgba(0, 0, 0, 0.8));
-            z-index: -1;
-        }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet"/>
 
-        .login-container {
-            position: relative;
-            width: 80%;
-            max-width: 400px;
-            padding: 40px;
-            background: rgba(14, 14, 16, 0.9);
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-            text-align: center;
-        }
+  <style>
+    /* Reset and basic styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .login-container img.logo {
-            width: 80px; /* Initial size */
-            margin-bottom: 10px;
-            transition: width 0.3s;
-        }
+    body {
+      font-family: "Open Sans", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fff;
+      position: relative;
+      height: 100vh;
+      overflow: hidden; 
 
-        .login-container h2 {
-            margin-bottom: 30px;
-            letter-spacing: 1px;
-            font-size: 2em;
-            color: #f97235;
-        }
+      /* 
+        Background with overlay:
+        - linear-gradient overlay with rgba(14, 22, 16, 0.932)
+        - background image
+      */
+      background:
+        linear-gradient(
+          rgba(19, 30, 21, 0.93),
+          rgba(19, 30, 21, 0.93)
+        ),
+        url('users/myimg/about1.jpg') no-repeat center center fixed;
+      background-size: cover;
+     
+    }
 
-        .login-container form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    /* Login Container */
+    .login-container {
+      position: relative;
+      /* Make the container wider and responsive */
+      width: 60%;
+      max-width: 500px;
+      padding: 40px;
+      background:rgba(14, 22, 16, 0.932);
+      
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+   
+    }
 
-        .form-group {
-            margin-bottom: 25px;
-            text-align: left;
-            width: 100%;
-        }
+    .login-container img.logo {
+      width: 80px; /* Initial size */
+      margin-bottom: 10px;
+      transition: width 0.3s;
+    }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 1em;
-        }
+    .login-container h2 {
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+      font-size: 2em;
+      color: #f97235;
+    }
 
-        .login-container input[type="text"],
-        .login-container input[type="password"] {
-            width: 94.4%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            background: #fff;
-            color: #333;
-            font-size: 1em;
-            margin-bottom: 10px;
-        }
+    .login-container form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-        .login-container input[type="submit"] {
-            background: linear-gradient(90deg, #FF7F50, #d93c03); /* Darker orange hover gradient */
-  transform: scale(1.05);
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1em;
-            cursor: pointer;
-            width: 100%;
-        }
+    .form-group {
+      margin-bottom: 25px;
+      text-align: left;
+      width: 100%;
+    }
 
-        .login-container input[type="submit"]:hover {
-            background: linear-gradient(90deg, #FF6347, #d35e04); /* Darker gradient on hover */
-  color: white;
-  transform: scale(1.05);   
-        }
+    .form-group label {
+        letter-spacing: 1px;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1em;
+      color: #fff; /* White label text for contrast */
+    }
 
-        .error-message {
-            color: red;
-            font-size: 0.9em;
-            margin-top: 5px;
-        }
+    .login-container input[type="text"],
+    .login-container input[type="password"] {
+        letter-spacing: 1px;
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      background: #fff;
+      color: #333;
+      font-size: 1em;
+      margin-bottom: 10px;
+    }
 
-        @media (max-width: 768px) {
-            .login-container {
-                padding: 30px;
-                width: 90%;
-            }
+    .login-container input[type="submit"] {
+      background: linear-gradient(90deg, #FF7F50, #d93c03);
+      transform: scale(1.05);
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1em;
+      cursor: pointer;
+      width: 95%;
+      transition: background 0.3s, transform 0.3s;
+      letter-spacing: 1px;
+    }
+    .login-container input[type="submit"]:hover {
+      background: linear-gradient(90deg, #FF6347, #d35e04);
+      transform: scale(1.05);
+    }
 
-            .login-container img.logo {
-                width: 70px; /* Smaller size for medium screens */
-            }
+    .error-message {
+      color: red;
+      font-size: 0.9em;
+      margin-top: 5px;
+    }
 
-            .login-container h2 {
-                font-size: 1.8em;
-            }
+    /* Home link under the login button */
+    .home-link {
+        letter-spacing: 1px;
+      margin-top: 20px;
+      display: inline-block;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    
+    .home-link:hover {
+      text-decoration: underline;
+    }
 
-            .login-container input {
-                font-size: 0.9em;
-            }
+    /* Responsive breakpoints */
+    @media (max-width: 768px) {
+    .login-container {
+        
+       
+        max-width: 90%;   /* Adjust width */
+        padding: 30px 20px;
+        margin: auto;     /* Center the form */
+    }
+    .login-container h2 {
+        font-size: 1.7em;
+    }
+}
 
-            .login-container input[type="submit"] {
-                font-size: 1em;
-            }
-        }
+@media (max-width: 480px) {
+    .login-container {
+        max-width: 90%;
+        padding: 20px;
+        text-align: center; /* Ensure text alignment */
+    }
+    .login-container img.logo {
+        width: 60px;
+    }
+    .login-container h2 {
+        font-size: 1.5em;
+    }
+    .login-container input {
+        font-size: 0.9em;
+        width: 100%; /* Make input full width */
+        padding: 10px; /* Better touch area */
+    }
+    .login-container input[type="submit"] {
+        font-size: 1em;
+        width: 100%; /* Button full width */
+        padding: 12px; /* Better touch area */
+    }
+}
 
-        @media (max-width: 480px) {
-            .login-container {
-                padding: 20px;
-            }
-
-            .login-container img.logo {
-                width: 60px; /* Smaller size for small screens */
-            }
-
-            .login-container h2 {
-                font-size: 1.5em;
-            }
-
-            .login-container input {
-                padding: 12px;
-                font-size: 0.8em;
-            }
-
-            .login-container input[type="submit"] {
-                font-size: 0.9em;
-            }
-        }
-    </style>
+  </style>
 </head>
 <body>
-    <div class="login-container">
-        <img src="img/kj_1.png" alt="Logo" class="logo">
-        <h2>Login</h2>
-        <form id="loginForm" method="post" action="">
-            <div class="form-group">
-                <label for="email">Enter your email</label>
-                <input type="text" id="email" name="email" placeholder="Your email">
-                <span id="emailError" class="error-message"></span>
-            </div>
-            <div class="form-group">
-                <label for="password">Enter your password</label>
-                <input type="password" id="password" name="password" placeholder="Your password">
-                <span id="passwordError" class="error-message"></span>
-            </div>
-            <input type="submit" name="submit" value="LOGIN" onclick="submitForm()">
-        </form>
-        <?php
-        if (isset($error_message)) {
-            echo "<div class='error-message'>$error_message</div>";
-        }
-        ?>
-    </div>
+  <div class="login-container">
+    <img src="img/kj_1.png" alt="Logo" class="logo" />
+    <h2>Login</h2>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        function submitForm() {
-            let email = $("#email").val().trim();
-            let password = $("#password").val().trim();
-            let isValid = true;
+    <form id="loginForm" method="post" action="">
+      <div class="form-group">
+        <label for="email">Enter your email</label>
+        <input type="text" id="email" name="email" placeholder="Your email" />
+        <span id="emailError" class="error-message"></span>
+      </div>
+      <div class="form-group">
+        <label for="password">Enter your password</label>
+        <input type="password" id="password" name="password" placeholder="Your password" />
+        <span id="passwordError" class="error-message"></span>
+      </div>
+      <input type="submit" name="submit" value="LOGIN" onclick="submitForm()" />
+    </form>
 
-            $("#emailError").text("");
-            $("#passwordError").text("");
+    <?php
+    if (isset($error_message)) {
+        echo "<div class='error-message'>$error_message</div>";
+    }
+    ?>
 
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    <!-- Home link below the login button -->
+    <a href="index.php" class="home-link">
+     
+      Want to go on home page? Click here
+    </a>
+  </div>
 
-            if (email === "") {
-                $("#emailError").text("Please enter your email.");
-                isValid = false;
-            } else if (!emailPattern.test(email)) {
-                $("#emailError").text("Please enter a valid email address.");
-                isValid = false;
-            }
+  <!-- jQuery (optional) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    function submitForm() {
+      let email = $("#email").val().trim();
+      let password = $("#password").val().trim();
+      let isValid = true;
 
-            if (password === "") {
-                $("#passwordError").text("Please enter your password.");
-                isValid = false;
-            }
+      $("#emailError").text("");
+      $("#passwordError").text("");
 
-            if (isValid) {
-                $("#loginForm").submit();
-            }
-        }
-    </script>
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (email === "") {
+        $("#emailError").text("Please enter your email.");
+        isValid = false;
+      } else if (!emailPattern.test(email)) {
+        $("#emailError").text("Please enter a valid email address.");
+        isValid = false;
+      }
+
+      if (password === "") {
+        $("#passwordError").text("Please enter your password.");
+        isValid = false;
+      }
+
+      if (isValid) {
+        $("#loginForm").submit();
+      }
+    }
+  </script>
 </body>
 </html>

@@ -73,7 +73,9 @@ $totalProducts = count($products);
                     <li data-filter=".Devotional">DEVOTIONAL</li>
                 </ul>
             </div>
-            <div class="col-md-5">
+            
+            <div class="col-md-5" style="padding-top: 20px;">
+             
                 <input type="text" id="productSearch" class="form-control" placeholder="Search products..." onkeyup="filterProducts()">
             </div>
         </div>

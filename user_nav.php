@@ -117,7 +117,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
       text-align: center;
       font-size: 14px;
       font-weight: bold;
-      /* position: relative; */
+     letter-spacing: 1px;
+     font-style: italic;
     }
 
     /* Sticky Navbar Effect */
@@ -163,11 +164,12 @@ $current_page = basename($_SERVER['PHP_SELF']);
       </div>
       <div class="top-right">
       <div class="social-links">
-              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+              <!-- <a href="#" class="twitter"><i class="fa fa-twitter"></i></a> -->
+              <a href="https://www.facebook.com/profile.php?id=61564031892075" class="facebook" target="_blank" rel="noopener noreferrer"><i class="fa fa-facebook"></i></a>
+              <a href="https://www.instagram.com/kjcreations4all?igsh=bHQzanh5NDQzZ2V2" class="instagram" target="_blank" rel="noopener noreferrer"><i class="fa fa-instagram" ></i></a>
+              <!-- <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a> -->
+              <a href="#" class="linkedin"><i class="fa fa-envelope"></i>
+              </i></a>
        </div>
       </div>
     </div>

@@ -156,10 +156,26 @@ $result = mysqli_query($conn,$q);
     display: flex;
     justify-content: center;
     margin-top: 12px;
+  
 }
 
 .submit-btn {
     background: rgb(244, 107, 44); 
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-right: 10px; /* Add space between submit and cancel button */
+
+}
+
+.cancel-btn{
+   
+    margin-right: 8px;
+    background:red; 
     color: white;
     border: none;
     padding: 8px 16px;
@@ -284,19 +300,25 @@ $result = mysqli_query($conn,$q);
     <td>
 
    
-    <button class="action-btn response-btn <?php echo ($row['isresponded'] == 1) ? 'disabled-btn' : ''; ?>" 
-        onclick="openPopup(this)" 
-        data-id="<?php echo $row['id']; ?>" 
-        <?php echo ($row['isresponded'] == 1) ? 'disabled' : ''; ?>>
-            
-        <?php if ($row['isresponded'] == 1): ?>
-    <span class="btn btn-success" style="display: inline-block; padding: 5px 10px; border-radius: 5px;">
-        <i class="bx bx-check" style="color: white;"></i>
-    </span>
+    <?php if ($row['isresponded'] == 1): ?>
+    <button class="action-btn response-btn disabled-btn" disabled>
+        <span style="display: inline-block; border-radius: 50px; height: 35px; width: 35px; background-color: green; padding: 24%; ">
+            <i class="bx bx-check" style="color: white;"></i>
+        </span>
+    </button>
 <?php else: ?>
-    <button class="btn btn-primary respond-btn" data-id="<?= $row['id']; ?>" onclick="openPopup(this)" >
-    Respond
+    <button class="btn btn-primary respond-btn" data-id="<?= $row['id']; ?>" 
+        onclick="openPopup(this)" 
+        style=" color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+    
+    <span style="border-radius: 10px; background-color: black; padding: 8px 16px; color: white; display: inline-block;">
+        Reviewe
+    </span>
+
 </button>
+
+<?php endif; ?>
+
 <div id="responsePopup" class="popup">
     <button class="close-btn" onclick="closePopup()">&times;</button>
     
@@ -310,7 +332,7 @@ $result = mysqli_query($conn,$q);
 
         <div class="button-container">
             <input type="submit" class="submit-btn" name="submit" value="Submit"> 
-            <button type="button" class="cancel-btn" onclick="closePopup()">Cancel</button>
+            <button type="button" class="cancel-btn" onclick="closePopup()" style="padding: inline 5px; ">Cancel</button>
         </div>
     </form>
     </div>
@@ -318,7 +340,7 @@ $result = mysqli_query($conn,$q);
     
 </div>
 
-<?php endif; ?>
+
 </button>
 
 
