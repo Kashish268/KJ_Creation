@@ -82,7 +82,29 @@ $result = mysqli_query($conn,$q);
 <tr>
     <td><?php echo $row['id']; ?></td>
     <td><?php echo $row['title']; ?></td>
-    <td><img src="<?php echo 'uploaded_images/' . $row['image']; ?>" alt="Product Image"></td>
+    <td>
+    <?php
+    $file = 'uploaded_images/' . $row['image'];
+    $file_extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+
+    // Check if the file is a video or an image
+    $video_extensions = ['mp4', 'mov', 'avi'];
+    $image_extensions = ['jpg', 'jpeg', 'png', 'gif'];
+    if (in_array($file_extension, $image_extensions)) {
+        // Display image
+        echo '<img src="' . $file . '" alt="Product Image" width="200" height="100">';
+    } elseif (in_array($file_extension, $video_extensions)) {
+        // Display video
+        echo '<video width="100" height="100" controls>
+                <source src="' . $file . '" type="video/' . $file_extension . '">
+                Your browser does not support the video tag.
+              </video>';
+    } else {
+        echo 'Unsupported file format.';
+    }
+    ?>
+</td>
+
     <td>
     <form action="edit_footer_image.php" method="post" style="display: inline;">
     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">

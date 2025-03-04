@@ -84,7 +84,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <div class="carousel-caption">
                       <h3><?php echo $slide['main_text']; ?></h3>
                       <p><?php echo $slide['p_text']; ?></p>
-                      <a href="#portfolio" class="btn-get-started scrollto">Show</a>
+                      <!-- <a href="#portfolio" class="btn-get-started scrollto">Show</a> -->
                     </div>
                   </div>
                 <?php 

@@ -32,7 +32,6 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
   <style>
 
-    
     /* Support Bar (Top Section) */
     .header-top {
       background-color: #333;
@@ -63,8 +62,14 @@ $current_page = basename($_SERVER['PHP_SELF']);
     .logo-section img {
       max-height: 50px;
       width: auto;
-     
     }
+
+    .logo-section {
+    position: relative;
+    display: inline-block;
+    
+}
+    
     .ad-banner img {
       max-width: 100%;
       height: auto;
@@ -137,6 +142,38 @@ $current_page = basename($_SERVER['PHP_SELF']);
       z-index: 1000; /* Ensures it stays above regular content */
       background: #fff; /* Add background color to prevent transparency */
 }
+.instagram {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: #000;
+}
+
+.hover-text {
+    visibility: hidden;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    
+    position: absolute;
+    top: 100%; /* Adjusted to appear below */
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    margin-top: 5px; /* Adds space between the icon and text */
+    
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.instagram:hover .hover-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+
     
   </style>
 </head>
@@ -168,6 +205,10 @@ $current_page = basename($_SERVER['PHP_SELF']);
               <a href="https://www.facebook.com/profile.php?id=61564031892075" class="facebook" target="_blank" rel="noopener noreferrer"><i class="fa fa-facebook"></i></a>
               <a href="https://www.instagram.com/kjcreations4all?igsh=bHQzanh5NDQzZ2V2" class="instagram" target="_blank" rel="noopener noreferrer"><i class="fa fa-instagram" ></i></a>
               <!-- <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a> -->
+              <a href="https://www.instagram.com/kjcreations4all?igsh=bHQzanh5NDQzZ2V2" class="instagram" target="_blank" rel="noopener noreferrer"><i class="fa fa-whatsapp">
+              <span class="hover-text">+91 96628 76676</span>
+
+              </i></a>
               <a href="#" class="linkedin"><i class="fa fa-envelope"></i>
               </i></a>
        </div>
@@ -182,6 +223,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <i class="fa fa-bars"></i>
       </button> -->
       <div class="logo-section">
+      <img src="img/kj_1.png" alt="Side Logo" title="Side Logo" class="side-logo" style="margin-right:10px;"/>
         <img src="users/myimg/kj creations.png" alt="KJ Logo" title="KJ" />
       </div>
       <div class="ad-banner">

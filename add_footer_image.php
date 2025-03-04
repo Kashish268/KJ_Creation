@@ -6,7 +6,6 @@ if (!isset($_SESSION['admin'])) {
     header('Location: login.php');
     exit();
 }
-
 if (isset($_POST['sub'])) {
     $p_name = $_POST['productName'];
     $img = $_FILES['productImage']['name'];
@@ -14,28 +13,34 @@ if (isset($_POST['sub'])) {
 
     // Get file extension
     $file_extension = strtolower(pathinfo($img, PATHINFO_EXTENSION));
-    $allowed_extensions = ['jpg', 'jpeg', 'png'];
+
+    // Allowed extensions for images and videos
+    $allowed_extensions = ['jpg', 'jpeg', 'png', 'gif', 'mp4', 'mov', 'avi'];
 
     if (!in_array($file_extension, $allowed_extensions)) {
-        echo "<script>alert('File must be in .jpg, .jpeg, or .png format.');</script>";
+        echo "<script>alert('File must be in .jpg, .jpeg, .png, .gif, .mp4, .mov, or .avi format.');</script>";
     } else {
-        // Validate file upload directory
+        // Upload directory (same for images and videos)
         $upload_dir = "uploaded_images/";
         if (!is_dir($upload_dir)) {
             mkdir($upload_dir, 0755, true);
         }
+
+        // Move uploaded file
         if (move_uploaded_file($tem_img, $upload_dir . $img)) {
-            $q = "INSERT INTO f_image(title,image) VALUES ('$p_name','$img')";
+            // Insert into database without type column
+            $q = "INSERT INTO f_image (title, image) VALUES ('$p_name', '$img')";
             if (mysqli_query($conn, $q)) {
-                echo "<script>alert('Add Image Successfully!'); window.location.href='footer_image.php';</script>";
+                echo "<script>alert('File uploaded successfully!'); window.location.href='footer_image.php';</script>";
             } else {
-                echo "<script>alert('Failed to add image. Error: " . mysqli_error($conn) . "');</script>";
+                echo "<script>alert('Database insertion failed. Error: " . mysqli_error($conn) . "');</script>";
             }
         } else {
-            echo "<script>alert('Failed to upload image.');</script>";
+            echo "<script>alert('Failed to upload the file.');</script>";
         }
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -199,7 +204,7 @@ if (isset($_POST['sub'])) {
     <!-- jQuery Validation -->
     <!-- <script src="validation_product.js"></script> Include the separate validation file -->
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+   document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("productForm");
 
     form.addEventListener("submit", function (e) {
@@ -207,7 +212,7 @@ if (isset($_POST['sub'])) {
         const errors = document.querySelectorAll(".error");
         errors.forEach((error) => error.remove()); // Remove previous error messages
 
-        // Validation rules for the offer form
+        // Validation rules for the form
         const validationRules = [
             {
                 field: "productName",
@@ -216,16 +221,14 @@ if (isset($_POST['sub'])) {
                     return value.trim() !== "";
                 },
             },
-           
-            
             {
-                field: "productImage",
-                message: "Please upload a valid image file (jpg, jpeg, png).",
+                field: "productMedia",
+                message: "Please upload a valid image (jpg, jpeg, png, gif) or video (mp4, mov, avi).",
                 validate: function () {
-                    const fileInput = document.getElementById("productImage");
+                    const fileInput = document.getElementById("productMedia");
                     const file = fileInput.files[0];
                     if (!file) return false; // Ensure a file is selected
-                    const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+                    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.mp4|\.mov|\.avi)$/i;
                     return allowedExtensions.test(file.name);
                 },
             },
@@ -244,7 +247,7 @@ if (isset($_POST['sub'])) {
             }
         });
 
-        // If not valid, prevent form submission
+        // Prevent form submission if validation fails
         if (!isValid) {
             e.preventDefault();
         }
@@ -258,11 +261,11 @@ if (isset($_POST['sub'])) {
             if (error && error.classList.contains("error")) {
                 const validationRules = {
                     productName: (value) => value.trim() !== "",
-                    productImage: () => {
-                        const fileInput = document.getElementById("productImage");
+                    productMedia: () => {
+                        const fileInput = document.getElementById("productMedia");
                         const file = fileInput.files[0];
                         if (!file) return false;
-                        const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+                        const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.mp4|\.mov|\.avi)$/i;
                         return allowedExtensions.test(file.name);
                     },
                 };

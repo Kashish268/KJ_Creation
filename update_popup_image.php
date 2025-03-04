@@ -19,8 +19,8 @@ if (isset($_POST['update_btn'])) {
         $uploadPath = $uploadDir . basename($new_img);
 
         // Check if file exists and delete the previous image
-        if (!empty($product['IMAGE']) && file_exists($uploadDir . $product['IMAGE'])) {
-            unlink($uploadDir . $product['IMAGE']);
+        if (!empty($product['image']) && file_exists($uploadDir . $product['image'])) {
+            unlink($uploadDir . $product['image']);
         }
 
         // Move the new file to the upload directory
@@ -28,9 +28,8 @@ if (isset($_POST['update_btn'])) {
 
         $imageFileName = $new_img; // Use new image
     } else {
-        $imageFileName = $product['IMAGE']; // Retain existing image
+        $imageFileName = $product['image']; // Retain existing image
     }
-
     // Update the database
     $sql = "UPDATE popup_image SET 
             title = '$p_name', 

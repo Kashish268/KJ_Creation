@@ -17,7 +17,7 @@ if (mysqli_num_rows($result) > 0) {
      // Fetch product details
 } else {
     // If no result found, redirect or handle the error
-    echo "<script>alert('Image not found'); window.location.href = 'products.php';</script>";
+    echo "<script>alert('Image not found'); window.location.href = 'footer_image.php';</script>";
     exit();
 }
 

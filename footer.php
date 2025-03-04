@@ -33,22 +33,22 @@ if (mysqli_num_rows($result) > 0) {
                 <div class="col-lg-2 col-md-6 footer-links">
                     <h4>Useful Links</h4>
                     <ul>
-                        <li><i class="ion-ios-arrow-right"></i> <a href="#intro">Home</a></li>
-                        <li><i class="ion-ios-arrow-right"></i> <a href="#about">About us</a></li>
-                        <li><i class="ion-ios-arrow-right"></i> <a href="#services">Services</a></li>
-                        <li><i class="ion-ios-arrow-right"></i> <a href="#portfolio">Products</a></li>
-                        <li><i class="ion-ios-arrow-right"></i> <a href="#contact">Contact</a></li>
+                        <li><i class="ion-ios-arrow-right"></i> <a href="index.php">Home</a></li>
+                        <li><i class="ion-ios-arrow-right"></i> <a href="about.php">About us</a></li>
+                        <li><i class="ion-ios-arrow-right"></i> <a href="user_products.php">Products</a></li>
+                        <li><i class="ion-ios-arrow-right"></i> <a href="user_offers.php">Offers & Reviwes</a></li>
+                        <li><i class="ion-ios-arrow-right"></i> <a href="contact.php">Contact</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-3 col-md-6 footer-contact">
                     <h4>Contact Us</h4>
                     <p>
-                        A108 Adam Street <br>
-                        New York, NY 535022<br>
-                        United States <br>
-                        <strong>Phone:</strong> +1 5589 55488 55<br>
-                        <strong>Email:</strong> info@example.com<br>
+                        Rajkot, Gujarat  <br>
+                        <!-- New York, NY 535022<br>
+                        United States <br> -->
+                        <strong>Phone:</strong>+91 96628 76676<br>
+                        <strong>Email:</strong> kjcreations4all@gmail.com<br>
                     </p>
                 </div>
 

@@ -255,8 +255,9 @@ if (isset($_GET['id'])) {
             <p class="mt-3"><strong>Description:</strong> <?php echo $product['des']; ?></p>
           </div>
 
-          <!-- Stock Questions (Collapsible Q&A) -->
-          <div class="accordion mt-4" id="questionAccordion">
+   <!-- Stock Questions (Collapsible Q&A) -->
+<!-- Stock Questions (Collapsible Q&A) -->
+<div class="accordion mt-4" id="questionAccordion">
             <?php
             if (!empty($questions)) {
                 foreach ($questions as $index => $qa) {
@@ -280,27 +281,34 @@ if (isset($_GET['id'])) {
             }
             ?>
           </div>
+
+
+
+
+
         </div>
       </div>
     </div>
   </section>
 
  
-  <section id="clients" class="wow fadeInUp">
-    <div class="container">
-    <header class="section-header text-center mb-4">
-        <h3 class="section-title" style="color:black">Related Products</h3>
-      </header>
+  <?php
+$category = $product['categories'];
+$relatedQuery = "SELECT * FROM products WHERE categories = ? AND id != ?";
+$stmt = $conn->prepare($relatedQuery);
+$stmt->bind_param("si", $category, $product_id);
+$stmt->execute();
+$relatedResult = $stmt->get_result();
 
+if ($relatedResult->num_rows > 0) { // Only show section if there are results
+?>
+<section id="clients" class="wow fadeInUp">
+    <div class="container">
+        <header class="section-header text-center mb-4">
+            <h3 class="section-title" style="color:black">Related Products</h3>
+        </header>
         <div class="owl-carousel clients-carousel">
             <?php
-            $category = $product['categories'];
-            $relatedQuery = "SELECT * FROM products WHERE categories = ? AND id != ?";
-            $stmt = $conn->prepare($relatedQuery);
-            $stmt->bind_param("si", $category, $product_id);
-            $stmt->execute();
-            $relatedResult = $stmt->get_result();
-
             while ($row = $relatedResult->fetch_assoc()) {
                 echo '
                 <div class="client-item">
@@ -322,6 +330,10 @@ if (isset($_GET['id'])) {
         </div>
     </div>
 </section>
+<?php 
+} // End if condition 
+?>
+
 <br><br><br>
 
 

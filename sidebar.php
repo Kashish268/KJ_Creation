@@ -105,6 +105,18 @@
             </a>
         </li>
 
+        <li class="<?= ($current_page == 'compony_details.php')  || $current_page == 'add_compony_details.php' ? 'active' : 
+            (($current_page == 'product.php' || $current_page == 'add_product.php' || 
+              $current_page == 'offers.php' || $current_page == 'add_offers.php' ||  $current_page == 'meassage.php'||
+              $current_page == 'dashboard.php'||$current_page == 'footer_image.php' ||$current_page == 'add_footer_image.php'||$current_page == 'popup_offers.php'
+              || $current_page == 'add_popup_image.php'|| $current_page == 'homepage_corosole.php' || $current_page == 'add_homepage_corosole.php')
+              || $current_page == 'homepage.php.php'|| $current_page == 'add_homeside_image.php'  ? '' : ''); ?>">
+            <a href="compony_details.php">
+            <i class='bx bxs-buildings'></i> 
+                            <span class="text">Compony Details</span>
+            </a>
+        </li>
+
         
     </ul>
     <ul class="side-menu">

@@ -111,7 +111,7 @@ if (mysqli_num_rows($result) > 0) {
 
 
                 <label for="offercode">Offer Code</label>
-                <input type="text" id="offercode" name="offercode" placeholder="Enter offer code">
+                <input type="text" id="offercode" name="offercode" value="<?php echo  $a['offer_percentage']; ?>">
                  
                 
                 <label for="description">Description</label>

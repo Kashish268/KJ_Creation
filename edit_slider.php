@@ -174,11 +174,11 @@ if (mysqli_num_rows($result) > 0) {
                 validate: function () {
                     const fileInput = document.getElementById("productImage");
                     const file = fileInput.files[0];
-                    if (!file) return false; // Ensure a file is selected
+                    if (!file) return true; // Allow null (no file selected)
                     const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
                     return allowedExtensions.test(file.name);
                 },
-            },
+            }
         ];
 
         // Iterate over validation rules

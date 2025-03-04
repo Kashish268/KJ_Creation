@@ -165,6 +165,25 @@ Delivering Excellence in
 </div>
     <!-- #about -->
     </section>
+    <section id="clients" class="wow fadeInUp">
+      <div class="container-fuild">
+
+        <header class="section-header" style="padding-bottom: 30px;">
+          <h3  class="section-title" style="color:black; padding-top: -40px;">Our Clients</h3>
+        </header>
+<?php
+$query = "SELECT image FROM compony_details"; // Assuming 'logo' column stores image paths
+$result = mysqli_query($conn, $query);?>
+
+<div class="owl-carousel clients-carousel">
+    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+        <img src="uploaded_images/<?php echo $row['image']; ?>" alt="Client Logo">
+    <?php } ?>
+</div>
+
+      </div>
+    </section><!-- #clients -->
+
 
 
 

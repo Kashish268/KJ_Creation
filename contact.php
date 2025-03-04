@@ -49,7 +49,7 @@ Get in touch with us today to explore our premium custom gift solutions and make
     <div class="contact-address">
       <i class="ion-ios-location-outline"></i>
       <h3>Address</h3>
-      <address>A108 Adam Street, NY 535022, USA</address>
+      <address>Rajkot, Gujarat</address>
     </div>
   </div>
 
@@ -57,7 +57,7 @@ Get in touch with us today to explore our premium custom gift solutions and make
     <div class="contact-phone">
       <i class="ion-ios-telephone-outline"></i>
       <h3>Phone Number</h3>
-      <p><a href="tel:+155895548855">+1 5589 55488 55</a></p>
+      <p><a href="tel:+155895548855">+91 96628 76676</a></p>
     </div>
   </div>
 
@@ -65,7 +65,7 @@ Get in touch with us today to explore our premium custom gift solutions and make
     <div class="contact-email">
       <i class="ion-ios-email-outline"></i>
       <h3>Email</h3>
-      <p><a href="mailto:info@example.com">info@example.com</a></p>
+      <p><a href="mailto:info@example.com">kjcreations4all@gmail.com</a></p>
     </div>
   </div>
 </div>

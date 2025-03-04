@@ -79,7 +79,7 @@ $result = mysqli_query($conn,$q);
 					<th>Shop Name</th>
                     <th>Product Category</th>
 					<th>Image</th>
-                    <th>Que & Ans</th>
+                    <!-- <th>Que & Ans</th> -->
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -95,8 +95,8 @@ $result = mysqli_query($conn,$q);
     <td><?php echo $row['shopname']; ?></td>
     <td><?php echo $row['categories'];?></td>
     <td><img src="uploaded_images/<?php echo $row['image']; ?>" alt="Product Image"></td>
-    <td>
-    <?php
+    <!-- <td>
+  <?php
     $questions = json_decode($row['question'], true); // Convert JSON to PHP array
     if (!empty($questions)) {
         foreach ($questions as $index => $qa) {
@@ -107,7 +107,7 @@ $result = mysqli_query($conn,$q);
         echo "No Questions Available";
     }
     ?>
-</td>
+</td>  -->
     <td>
     <form action="edit_product.php" method="post" style="display: inline;">
     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
@@ -115,7 +115,7 @@ $result = mysqli_query($conn,$q);
         <i class="bx bx-edit"></i>
     </button>
 </form>
-<br><br>
+
 <form action="delete_product.php" method="post" style="display: inline;">
     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
     <button type="submit" class="action-btn delete-btn">

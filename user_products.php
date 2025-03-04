@@ -85,7 +85,7 @@ $totalProducts = count($products);
         <br>
 
         <div class="row portfolio-container">
-    <?php
+        <?php
     include 'database/config.php';
 
     $query = "SELECT * FROM products";  // Fetch all products
@@ -112,11 +112,24 @@ $totalProducts = count($products);
                         <i class="ion ion-android-open"></i>
                     </a>
                 </figure>
-                <div class="portfolio-info">
+                <!-- <div class="portfolio-info">
                     <h4><a href="#" style="text-decoration: none;"><?php echo $product['name']; ?></a></h4>
                     <p><?php echo $product['price']; ?></p>
                     <p><?php echo $product['categories'];?></p>
-                </div>
+                </div> -->
+
+                <div class="portfolio-info">
+    <div class="info-row">
+        <h4><a href="#" style="text-decoration: none;"class="product-name"><?php echo $product['name']; ?></a></h4>
+        <span class="product-code"><?php echo $product['p_code']; ?></span>
+    </div>
+    <div class="info-row">
+        <span class="product-price">₹<?php echo $product['price']; ?></span>
+        <span class="product-category"><?php echo $product['categories']; ?></span>
+    </div>
+</div>
+
+
             </div>
         </div>
     <?php
@@ -228,6 +241,59 @@ document.addEventListener("DOMContentLoaded", function () {
   filterProducts();
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  const searchInput = document.getElementById("productSearch");
+  const productItems = document.querySelectorAll(".portfolio-item");
+  const categoryButtons = document.querySelectorAll("#portfolio-flters li");
+  const productCategories = document.querySelectorAll(".product-category"); // Select all category labels
+
+  let activeCategory = "*"; // Default: All categories
+
+  function filterProducts() {
+    const searchText = searchInput.value.trim().toLowerCase();
+
+    productItems.forEach((item) => {
+      const productName = item.querySelector("h4 a").innerText.toLowerCase();
+      const itemCategory = item.getAttribute("data-category") || "";
+
+      let shouldShow = false;
+
+      if (activeCategory === "*") {
+        if (searchText === "") {
+          shouldShow = true;
+        } else {
+          shouldShow = productName.includes(searchText) || itemCategory.includes(searchText);
+        }
+      } else {
+        if (itemCategory === activeCategory.toLowerCase()) {
+          shouldShow = searchText === "" || productName.includes(searchText);
+        }
+      }
+
+      item.style.display = shouldShow ? "block" : "none";
+    });
+
+    // Show product categories only when "All Categories" is active
+    productCategories.forEach(category => {
+      category.style.display = activeCategory === "*" ? "inline-block" : "none";
+    });
+  }
+
+  categoryButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      categoryButtons.forEach((btn) => btn.classList.remove("filter-active"));
+      this.classList.add("filter-active");
+
+      activeCategory = this.getAttribute("data-filter").replace(".", "");
+      searchInput.value = "";
+      filterProducts();
+    });
+  });
+
+  searchInput.addEventListener("keyup", filterProducts);
+
+  filterProducts();
+});
 
 </script>
 
