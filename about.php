@@ -41,7 +41,7 @@ include 'database/config.php';
 
         <header class="section-header">
           <h3>About Us</h3>
-          <p>Welcome to KJ Creation, your trusted partner for 
+          <p style="text-align: justify; letter-spacing: 1px;">Welcome to KJ Creation, your trusted partner for 
             high-quality promotional, 
             corporate, and custom gift items. 
             <b>"Making Every Gift a Memorable Experience."</b> Whether you're looking to promote your brand, appreciate your employees, celebrate milestones, or create personalized gifts, we offer a wide range of products to suit every occasion and need. From innovative designs to unique creations, our products make a lasting impression. With years of experience in delivering 
@@ -114,56 +114,59 @@ include 'database/config.php';
 
 </header>
 <br>
-<div class="row">
+<div class="row g-4">
 
-  <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+<div class="col-lg-4 col-md-6 mb-4">
+  <div class="box wow bounceInUp" data-wow-duration="1.4s">
     <div class="icon"><i class="ion-ios-analytics-outline"></i></div>
     <h4 class="title"><a href="">Customization</a></h4>
-    <p class="description"> We offer full customization options to 
-      create products that resonate with your brand or personal style.
-    </p>
+    <p class="description">We offer full customization options to create products that resonate with your brand or personal style.</p>
   </div>
-  <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+</div>
+
+<div class="col-lg-4 col-md-6 mb-4">
+  <div class="box wow bounceInUp" data-wow-duration="1.4s">
     <div class="icon"><i class="ion-ios-bookmarks-outline"></i></div>
     <h4 class="title"><a href="">Quality</a></h4>
-    <p class="description">Every item is carefully crafted and quality-checked to ensure it meets the highest standards.
-
-</p>
+    <p class="description">Every item is carefully crafted and quality-checked to ensure it meets the highest standards.</p>
   </div>
-  <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+</div>
+
+<div class="col-lg-4 col-md-6 mb-4">
+  <div class="box wow bounceInUp" data-wow-duration="1.4s">
     <div class="icon"><i class="ion-ios-paper-outline"></i></div>
     <h4 class="title"><a href="">Affordability</a></h4>
-    <p class="description">Our products offer competitive pricing without compromising on quality.
-    </p>
+    <p class="description">Our products offer competitive pricing without compromising on quality.</p>
   </div>
-  <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+</div>
+
+<div class="col-lg-4 col-md-6">
+  <div class="box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
     <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
     <h4 class="title"><a href="">Wide Product Range</a></h4>
-    <p class="description">From branded merchandise to personalized keepsakes, we have something for everyone.
-
-</p>
+    <p class="description">Discover a variety of unique products, from branded items to personalized gifts for any occasion.</p>
   </div>
-  <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+</div>
+
+<div class="col-lg-4 col-md-6">
+  <div class="box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
     <div class="icon"><i class="ion-ios-barcode-outline"></i></div>
     <h4 class="title"><a href="">Eco-Friendly Options</a></h4>
-    <p class="description">We offer sustainable and eco-conscious gift options, allowing you to promote your brand with a commitment to the environment.</p>
+    <p class="description">We provide sustainable gift choices to help you promote your brand while protecting the environment.</p>
   </div>
-  <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+</div>
+
+<div class="col-lg-4 col-md-6">
+  <div class="box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
     <div class="icon"><i class="ion-ios-people-outline"></i></div>
-    <h4 class="title"><a href="">Exceptional Customer Support</a></h4>
-    <p class="description"> Our dedicated team is here to assist you every step of the way, ensuring a smooth and stress-free experience.</p>
+    <h4 class="title"><a href="">Customer Support</a></h4>
+    <p class="description">Our team is ready to assist you with timely help, ensuring a hassle-free experience.</p>
   </div>
+</div>
 
 </div>
-<p style="font-size: 24px; font-weight: bold; background: -webkit-linear-gradient(45deg,rgb(246, 107, 73),rgb(238, 129, 46)); -webkit-background-clip: text; color: transparent; text-align: center; line-height: 1;">
-<span style="font-size: 48px; font-weight: bold; color: black;">&#8220;</span> 
-Delivering Excellence in 
-<span style="display: block; font-size: 24px;">Every Product, Service, and Experience.  <span style="font-size: 48px; font-weight: bold; color: black;">&#8221;</span>
-</span>
-</p>
-
 </div>
-    <!-- #about -->
+
     </section>
     <section id="clients" class="wow fadeInUp">
       <div class="container-fuild">
@@ -283,3 +286,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
+<!-- <p style="font-size: 24px; font-weight: bold; background: -webkit-linear-gradient(45deg,rgb(246, 107, 73),rgb(238, 129, 46)); -webkit-background-clip: text; color: transparent; text-align: center; line-height: 1;">
+<span style="font-size: 48px; font-weight: bold; color: black;">&#8220;</span> 
+Delivering Excellence in 
+<span style="display: block; font-size: 24px;">Every Product, Service, and Experience.  <span style="font-size: 48px; font-weight: bold; color: black;">&#8221;</span>
+</span>
+</p> -->

@@ -142,8 +142,6 @@ if (isset($_GET['id'])) {
     color: rgb(244, 107, 44);
 }
 
-
-<style>
     /* Container Styling */
     .clients-carousel {
         display: flex;
@@ -164,11 +162,10 @@ if (isset($_GET['id'])) {
 
     /* Image Styling */
     .client-image {
-        width: 150px; /* Fixed width */
-        height: 150px; /* Fixed height */
-        object-fit: cover; /* Ensures images fit properly */
-        border-radius: 10px;
-        transition: transform 0.3s ease-in-out;
+        width: 300px; /* pehle 250px tha */
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
     }
 
     /* Hover Effect */
@@ -208,7 +205,7 @@ if (isset($_GET['id'])) {
         font-size: 20px;
         text-decoration: none;
         background: rgb(244, 107, 44);
-  color: #fff;
+        color: #fff;
         padding: 4px;
         border-radius: 50%;
         transition: background 0.3s ease;
@@ -220,14 +217,12 @@ if (isset($_GET['id'])) {
         background: rgb(255, 255, 255);
        
     }
-
     .owl-carousel .owl-item {
     display: flex;
     justify-content: center;
     
 }
 </style>
-
 
 </head>
 <body>
@@ -281,11 +276,6 @@ if (isset($_GET['id'])) {
             }
             ?>
           </div>
-
-
-
-
-
         </div>
       </div>
     </div>
@@ -313,8 +303,7 @@ if ($relatedResult->num_rows > 0) { // Only show section if there are results
                 echo '
                 <div class="client-item">
                     <div class="image-container">
-                        <img src="img/' . htmlspecialchars($row['image']) . '" alt="' . htmlspecialchars($row['name']) . '" class="client-image"
-                        style="padding-inline:13px">
+                        <img src="img/' . htmlspecialchars($row['image']) . '" alt="' . htmlspecialchars($row['name']) . '" class="client-image">
                         <div class="overlay">
                             <a href="uploaded_images/' . $row['image'] . '" data-lightbox="portfolio" data-title="' . htmlspecialchars($row['name']) . '" class="link-preview" title="Preview">
                                 <i class="ion ion-eye"></i>
