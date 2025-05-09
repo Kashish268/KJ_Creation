@@ -61,8 +61,6 @@ $totalProducts = count($products);
         <header class="section-header">
         <h3 class="section-title" style="color:black;">Our Products</h3>
 
-        
-
         <div class="row">
             
             <div class="col-md-7">
