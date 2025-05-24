@@ -102,7 +102,7 @@ Get in touch with us today to explore our premium custom gift solutions and make
 
       </div>
     </section><!-- #contact -->
-    <?php include 'footer.php'; ?>
+    <?php include_once 'footer.php'; ?>
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <!-- Uncomment below i you want to use a preloader -->
   <!-- <div id="preloader"></div> -->

@@ -32,6 +32,8 @@ if (mysqli_num_rows($result) > 0) {
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style_admin.css">
     <title>KJ CREATION</title>
+      <link href="img/kj_1.png" rel="icon">
+
     <style>
         /* Add your CSS styles here */
         form {
@@ -167,7 +169,7 @@ if (mysqli_num_rows($result) > 0) {
     <script src="script1.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("productForm");
 
     form.addEventListener("submit", function (e) {
@@ -175,43 +177,53 @@ if (mysqli_num_rows($result) > 0) {
         const errors = document.querySelectorAll(".error");
         errors.forEach((error) => error.remove()); // Remove previous error messages
 
-        // Dynamic validation rules
-        const validationRules = [
-            {
-                field: "productName",
-                message: "Product Name is required.",
-                validate: function (value) {
-                    return value.trim() !== "";
-                },
-            },
-           
-            {
-                field: "productImage",
-                message: "Please upload a valid image file (jpg, jpeg, png).",
-                validate: function () {
-                    const fileInput = document.getElementById("productImage");
-                    const file = fileInput.files[0];
-                    if (!file) return true; // Allow null (no file selected)
-                    const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
-                    return allowedExtensions.test(file.name);
-                },
-            }
-        ];
+        // Get file input and file
+        const fileInput = document.getElementById("productImage");
+        const file = fileInput.files[0];
 
-        // Iterate over validation rules
-        validationRules.forEach(function (rule) {
-            const field = document.getElementById(rule.field);
-            const fieldValue = field.type === "file" ? field.files : field.value; // Handle file inputs correctly
-            if (!rule.validate(fieldValue)) {
+        // Validation for product name
+        const productName = document.getElementById("productName").value.trim();
+        if (productName === "") {
+            isValid = false;
+            const error = document.createElement("div");
+            error.className = "error";
+            error.textContent = "Title is required.";
+            document.getElementById("productName").parentNode.insertBefore(error, document.getElementById("productName").nextSibling);
+        }
+
+        // Validation for file
+        if (!file) {
+            isValid = false;
+            const error = document.createElement("div");
+            error.className = "error";
+            error.textContent = "Please upload an image or video file.";
+            fileInput.parentNode.insertBefore(error, fileInput.nextSibling);
+        } else {
+            const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.mp4|\.mov|\.avi)$/i;
+            const ext = file.name.split('.').pop().toLowerCase();
+            const imageMax = 5 * 1024 * 1024; // 5MB
+            const gifMax = 10 * 1024 * 1024;  // 10MB
+            const videoMax = 20 * 1024 * 1024; // 20MB
+
+            if (!allowedExtensions.test(file.name)) {
                 isValid = false;
                 const error = document.createElement("div");
                 error.className = "error";
-                error.textContent = rule.message;
-                field.parentNode.insertBefore(error, field.nextSibling);
+                error.textContent = "Allowed file types: jpg, jpeg, png, gif, mp4, mov, avi.";
+                fileInput.parentNode.insertBefore(error, fileInput.nextSibling);
+            } else if (["jpg", "jpeg", "png"].includes(ext) && file.size > imageMax) {
+                isValid = false;
+                alert("Image size must be less than 5MB.");
+            } else if (ext === "gif" && file.size > gifMax) {
+                isValid = false;
+                alert("GIF size must be less than 10MB.");
+            } else if (["mp4", "mov", "avi"].includes(ext) && file.size > videoMax) {
+                isValid = false;
+                alert("Video size must be less than 20MB.");
             }
-        });
+        }
 
-        // If not valid, prevent form submission
+        // Prevent form submission if validation fails
         if (!isValid) {
             e.preventDefault();
         }
@@ -223,27 +235,13 @@ if (mysqli_num_rows($result) > 0) {
         field.addEventListener(field.type === "file" ? "change" : "input", function () {
             const error = this.nextElementSibling;
             if (error && error.classList.contains("error")) {
-                const validationRules = {
-                    productName: (value) => value.trim() !== "",
-                    productImage: () => {
-                        const fileInput = document.getElementById("productImage");
-                        const file = fileInput.files[0];
-                        if (!file) return false;
-                        const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
-                        return allowedExtensions.test(file.name);
-                    },
-                };
-
-                const isValid = validationRules[this.id](this.value || this.files);
-                if (isValid) {
-                    error.remove();
-                }
+                error.remove();
             }
         });
     });
 });
+</script>
 
-    </script>
     <script>
         // Preview image before form submission
         function previewImage(input) {

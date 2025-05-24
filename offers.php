@@ -98,6 +98,8 @@ $result = mysqli_query($conn,$q);
     <td><?php echo $row['offer_percentage']; ?></td>
     <td><img src="<?php echo 'uploaded_images/' . $row['image']; ?>" alt="Offer Image"></td>
     <td>
+          <div class="action-btn-group">
+
     <form action="edit_offer.php" method="post" style="display: inline;">
     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
     <button type="submit" class="action-btn edit-btn">
@@ -111,7 +113,7 @@ $result = mysqli_query($conn,$q);
         <i class="bx bx-trash"></i>
     </button>
 </form>
-
+</div>
 </td>
 
 </tr>

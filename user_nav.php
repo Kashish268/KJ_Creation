@@ -22,10 +22,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
   <!-- Libraries CSS -->
   <link href="users/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <link href="users/lib/animate/animate.min.css" rel="stylesheet">
-  <link href="users/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <!-- <link href="users/lib/ionicons/css/ionicons.min.css" rel="stylesheet"> -->
   <link href="users/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="users/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <!-- Main Stylesheet -->
   <link href="users/css/user2.css" rel="stylesheet">
@@ -168,7 +169,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
     transition: opacity 0.3s;
 }
 
-.instagram:hover .hover-text {
+.instagram:hover .hover-text,
+.linkedin:hover .hover-text {
     visibility: visible;
     opacity: 1;
 }
@@ -202,15 +204,15 @@ $current_page = basename($_SERVER['PHP_SELF']);
       <div class="top-right">
       <div class="social-links">
               <!-- <a href="#" class="twitter"><i class="fa fa-twitter"></i></a> -->
-              <a href="https://www.facebook.com/profile.php?id=61564031892075" class="facebook" target="_blank" rel="noopener noreferrer"><i class="fa fa-facebook"></i></a>
-              <a href="https://www.instagram.com/kjcreations4all?igsh=bHQzanh5NDQzZ2V2" class="instagram" target="_blank" rel="noopener noreferrer"><i class="fa fa-instagram" ></i></a>
-              <!-- <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a> -->
-              <a href="https://www.instagram.com/kjcreations4all?igsh=bHQzanh5NDQzZ2V2" class="instagram" target="_blank" rel="noopener noreferrer"><i class="fa fa-whatsapp">
+              <a href="https://www.facebook.com/profile.php?id=61564031892075" class="facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://www.instagram.com/kjcreations4all?igsh=bHQzanh5NDQzZ2V2" class="instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+              <a href="" class="instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp">
               <span class="hover-text">+91 96628 76676</span>
-
               </i></a>
-              <a href="#" class="linkedin"><i class="fa fa-envelope"></i>
-              </i></a>
+             <a href="" class="linkedin" style="position:relative;">
+    <i class="fa fa-envelope"></i>
+    <span class="hover-text">kjcreation4all@gmail.com</span>
+</a>
        </div>
       </div>
     </div>
@@ -246,7 +248,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
           <li class="<?= ($current_page == 'contact.php') ? 'menu-active':''?>"><a href="contact.php">Contact</a></li>
           <li>
           <a href="login.php" class="btn btn-primary"
-          style=" background: linear-gradient(90deg, #FF7F50, #FF4500); color: white; border:none ;  border-radius: 45px; padding-inline:20px;">Login</a></li>
+          style=" background: linear-gradient(90deg, #FF7F50, #FF4500); color: white; border:none ;  border-radius: 45px; padding-inline:20px;" target="_blank">Login</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
       
@@ -292,5 +294,4 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
 <!-- Template Main Javascript File -->
 </html>
-
 

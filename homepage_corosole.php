@@ -95,20 +95,22 @@ $result = mysqli_query($conn,$q);
     <td><?php echo $row['p_text']; ?></td>
     <td><img src="<?php echo 'uploaded_images/' . $row['image']; ?>" alt="Slider Image"></td>
     <td>
+          <div class="action-btn-group">
+
     <form action="edit_slider.php" method="post" style="display: inline;">
     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
     <button type="submit" class="action-btn edit-btn">
         <i class="bx bx-edit"></i>
     </button>
 </form>
-<br><br>
+
 <form action="homepage_corosole.php" method="post" style="display: inline;">
     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
     <button type="submit" name="delete_row" class="action-btn delete-btn">
         <i class="bx bx-trash"></i>
     </button>
 </form>
-
+</div>
 </td>
 
 </tr>

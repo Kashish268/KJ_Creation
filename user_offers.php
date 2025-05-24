@@ -74,7 +74,7 @@ $offer = mysqli_fetch_assoc($result);
         transform: scale(1.05);
     } */
     .support-details {
-        background-color: rgb(45, 58, 48);
+        background-color:  rgb(9, 46, 32);
         /* border-left: 3px dashed rgb(244, 107, 44); */
         color: white;   
         box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
@@ -82,7 +82,7 @@ $offer = mysqli_fetch_assoc($result);
     }
 
     .support-details h4, .support-details h2, .support-details p {
-        color: rgb(244, 107, 44);
+        color: rgb(255, 103, 31) ;
     }
 
     .support-details h2 {
@@ -102,7 +102,7 @@ $offer = mysqli_fetch_assoc($result);
 
 
   <section id="offers" class="py-5" style="background-color:#f7f7f7;">
-    <div class="container">
+    <div class="container-fluid">
       <!-- <header class="text-center mb-4"> -->
       <header class="section-header">
         <h3 class="section-title" style="color:black;">Exclusive Offers</h3>
@@ -159,77 +159,17 @@ Unbeatable offers, unmatched support<br><br>
     </div>
   </section>
 
-  <section id="testimonials" class="section-bg wow fadeInUp">
-      <div class="container">
+ 
 
-        <header class="section-header">
-          <h3 class="section-title" style="color:black;">Testimonials</h3>
-        </header>
-
-        <div class="owl-carousel testimonials-carousel">
-
-<div class="testimonial-item">
-    <img src="img/testimonial-1.jpg" class="testimonial-img" alt="">
-    <h3>Ananya Sharma</h3>
-    <h4>Handicraft Enthusiast</h4>
-    <p>
-        <img src="img/quote-sign-left.png" class="quote-sign-left" alt="">
-        The handcrafted items from KJ Creation are truly beautiful! The attention to detail is amazing, and each piece feels unique. I purchased a decorative vase, and it's now the centerpiece of my home.
-        <img src="img/quote-sign-right.png" class="quote-sign-right" alt="">
-    </p>
-</div>
-
-<div class="testimonial-item">
-    <img src="img/testimonial-2.jpg" class="testimonial-img" alt="">
-    <h3>Riya Verma</h3>
-    <h4>Fashion Blogger</h4>
-    <p>
-        <img src="img/quote-sign-left.png" class="quote-sign-left" alt="">
-        Absolutely in love with the handmade purses! The craftsmanship is top-notch, and the designs are both stylish and durable. I've received so many compliments on my purchase.
-        <img src="img/quote-sign-right.png" class="quote-sign-right" alt="">
-    </p>
-</div>
-
-<div class="testimonial-item">
-    <img src="img/testimonial-3.jpg" class="testimonial-img" alt="">
-    <h3>Neha Patel</h3>
-    <h4>Home Decor Lover</h4>
-    <p>
-        <img src="img/quote-sign-left.png" class="quote-sign-left" alt="">
-        I ordered some handcrafted wall hangings, and they exceeded my expectations. The quality, the colors, and the intricate work make them stand out. Definitely recommend KJ Creation!
-        <img src="img/quote-sign-right.png" class="quote-sign-right" alt="">
-    </p>
-</div>
-
-<div class="testimonial-item">
-    <img src="img/testimonial-4.jpg" class="testimonial-img" alt="">
-    <h3>Arjun Mehta</h3>
-    <h4>Regular Customer</h4>
-    <p>
-        <img src="img/quote-sign-left.png" class="quote-sign-left" alt="">
-        Excellent customer service! I had a minor issue with my order, but the team at KJ Creation was very responsive and resolved it quickly. Great products and even better service!
-        <img src="img/quote-sign-right.png" class="quote-sign-right" alt="">
-    </p>
-</div>
-
-<div class="testimonial-item">
-    <img src="img/testimonial-5.jpg" class="testimonial-img" alt="">
-    <h3>Priya Kapoor</h3>
-    <h4>Gift Shopper</h4>
-    <p>
-        <img src="img/quote-sign-left.png" class="quote-sign-left" alt="">
-        KJ Creation's handicrafts make perfect gifts! I bought a few purses and jewelry boxes for friends, and they loved them. The packaging was also beautiful.
-        <img src="img/quote-sign-right.png" class="quote-sign-right" alt="">
-    </p>
-</div>
-
-</div>
-
-    </section>
+       
+    </section> 
 
         </body>
 
-        <?php include 'footer.php'; ?>
+        <?php 
+// In your main file where you want to include this:
+include('testimonal.php');
+?><?php include 'footer.php'; ?>
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <!-- Uncomment below i you want to use a preloader -->
   <!-- <div id="preloader"></div> -->

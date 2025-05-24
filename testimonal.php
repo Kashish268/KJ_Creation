@@ -6,7 +6,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>KJ Creations</title>
+  <title>KJ Creations Testimonials</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <!-- Favicons -->
@@ -15,432 +15,257 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
   <!-- Bootstrap CSS -->
   <link href="users/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Libraries CSS -->
-  <link href="users/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="users/lib/animate/animate.min.css" rel="stylesheet">
-  <link href="users/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="users/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="users/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-
-  <!-- Main Stylesheet -->
-  <link href="users/css/user2.css" rel="stylesheet">
-
   <style>
-    :root {
-      --primary-orange: rgb(255, 103, 31);
-      --primary-green: rgb(9, 46, 32);
-      --light-bg: #f8f9fa;
+  /* Main wrapper that scopes all our styles */
+  .kjc-testimonial-component {
+    min-height: 100vh;
+    font-family: 'Open Sans', sans-serif;
+    padding: 20px;
+    margin: 0;
+  }
+  
+  .kjc-testimonial-component .kjc-container-fluid-bg {
+    background: linear-gradient(135deg, rgba(255, 102, 31, 0.85), rgba(9, 46, 32, 0.9)), 
+                url('users/myimg/about1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .kjc-testimonial-component .kjc-testimonial-container {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    position: relative;
+  }
+
+  .kjc-testimonial-component .kjc-carousel-caption {
+    position: initial;
+    z-index: 10;
+    padding: 5rem 8rem;
+    color: #333;
+    text-align: center;
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 2rem;
+  }
+
+  @media(max-width:767px) {
+    .kjc-testimonial-component .kjc-carousel-caption {
+        padding: 3rem 2rem;
+        font-size: 0.9rem;
+        line-height: 1.6rem;
     }
+  }
 
-    html {
-      font-size: 62.5%;
-      scroll-behavior: smooth;
+  .kjc-testimonial-component .kjc-carousel-caption img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: 1.5rem;
+    border: 4px solid rgba(255, 102, 31, 0.3);
+    object-fit: cover;
+  }
+
+  @media(max-width:767px) {
+    .kjc-testimonial-component .kjc-carousel-caption img {
+        width: 70px;
+        height: 70px;
     }
+  }
 
-    * {
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
+  .kjc-testimonial-component .kjc-image-caption {
+    font-style: normal;
+    font-size: 1.1rem;
+    margin-top: 0.8rem;
+    color: #333;
+    font-weight: 700;
+  }
+
+  @media(max-width:767px) {
+    .kjc-testimonial-component .kjc-image-caption {
+        font-size: 0.9rem;
     }
+  }
 
-    *:focus {
-      outline: none;
-      box-shadow: 0 0 0 0.4rem rgba(255, 103, 31, 0.3);
-    }
+  .kjc-testimonial-component .kjc-carousel-control {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(9, 46, 32, 0.9);
+    border-radius: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 1;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .testimonial {
-      padding: 3rem;
-      border-radius: 11px;
-      background-color: var(--primary-green);
-      color: white;
-      display: grid;
-      grid-template-columns: 0.5fr 0.7fr;
-      align-items: center;
-      justify-content: center;
-      width: 85%;
-      margin: 10rem auto;
-      position: relative;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
+  .kjc-testimonial-component .kjc-carousel-control-prev {
+    left: 20px;
+    justify-content: center;
+  }
 
-    .carousel-img {
-      height: 22rem;
-      width: 25rem;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      transition: all 0.3s ease;
-    }
+  .kjc-testimonial-component .kjc-carousel-control-next {
+    right: 20px;
+    justify-content: center;
+  }
 
-    .carousel-img:hover {
-      transform: scale(1.05);
-    }
+  .kjc-testimonial-component .kjc-carousel-control:hover {
+    background-color: rgba(255, 102, 31, 0.9);
+  }
 
-    .testimonial-img {
-      margin-bottom: 1.2rem;
-    }
+  .kjc-testimonial-component .kjc-carousel-control i {
+    background-color: transparent;
+    padding: 0;
+    font-size: 1.5rem;
+    color: white;
+  }
 
-    .testimonial-text {
-      font-size: 1.8rem;
-      line-height: 1.8;
-      margin-bottom: 1.6rem;
-      text-align: justify;
-      color: white;
-    }
+  .kjc-testimonial-component .kjc-section-header h3 {
+    font-size: 2.5rem;
+    color: #ffffff;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  }
 
-    .customer-name {
-      font-size: 1.6rem;
-      color: var(--primary-orange);
-      font-weight: bold;
-    }
+  .kjc-testimonial-component .kjc-section-header h3::before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 120px;
+    height: 2px;
+    background: rgba(255,255,255,0.3);
+    bottom: 1px;
+    left: calc(50% - 60px);
+  }
 
-    .testimonial-job {
-      font-size: 1.4rem;
-      color: #ccc;
-    }
+  .kjc-testimonial-component .kjc-section-header h3::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 4px;
+    background: rgba(9, 46, 32, 0.9);
+    bottom: 0;
+    left: calc(50% - 25px);
+  }
 
-    .btn-carousel {
-      position: absolute;
-      border: none;
-      height: 4rem;
-      width: 4rem;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      background: var(--primary-orange);
-      color: white;
-      transition: all 0.3s;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    }
+  /* Scoped scrollbar styles */
+  .kjc-testimonial-component::-webkit-scrollbar {
+      width: 8px;
+  }
 
-    .btn-carousel:hover {
-      background: white;
-      color: var(--primary-orange);
-      transform: scale(1.1);
-    }
+  .kjc-testimonial-component::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+  }
 
-    .carousel-icon {
-      font-size: 2.4rem;
-    }
+  .kjc-testimonial-component::-webkit-scrollbar-thumb {
+      background: rgba(255, 102, 31, 0.7);
+      border-radius: 10px;
+  }
 
-    .btn-left {
-      left: 0;
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .btn-right {
-      right: 0;
-      top: 50%;
-      transform: translate(50%, -50%);
-    }
-
-    .dots {
-      position: absolute;
-      top: 100%;
-      display: flex;
-      gap: 1.5rem;
-      transform: translate(300%, 30%);
-    }
-
-    .btn-dot {
-      height: 1.5rem;
-      width: 1.5rem;
-      border-radius: 50%;
-      background-color: #ccc;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .btn-dot-active {
-      background-color: var(--primary-orange);
-      transform: scale(1.2);
-    }
-
-    /* Media Queries */
-    @media (min-width: 1616px) {
-      .testimonial {
-        min-width: 150rem;
-        padding-left: 15rem;
-      }
-      
-      .carousel-img {
-        height: 30rem;
-        width: 30rem;
-      }
-
-      .testimonial-text {
-        font-size: 2.2rem;
-      }
-
-      .customer-name {
-        font-size: 2.0rem;
-      }
-
-      .testimonial-job {
-        font-size: 1.8rem;
-      }
-    }
-
-    @media (min-width: 1025px) {
-      .testimonial {
-        min-width: 100rem;
-        padding-left: 15rem;
-      }
-
-      .testimonial-text {
-        font-size: 2.0rem;
-      }
-
-      .customer-name {
-        font-size: 1.8rem;
-      }
-
-      .testimonial-job {
-        font-size: 1.6rem;
-      }
-    }
-
-    @media (max-width: 862px) {
-      .testimonial {
-        width: 60rem;
-        grid-template-columns: 1fr;
-        grid-template-rows: auto 1fr;
-        padding: 3rem;
-      }
-      
-      .carousel-img {
-        width: 25rem;
-        height: 25rem;
-        margin-bottom: 2rem;
-        justify-self: center;
-      }
-
-      .dots {
-        transform: translate(0, 25%);
-      }
-    }
-
-    @media (max-width: 640px) {
-      .testimonial {
-        width: 50rem;
-      }
-      
-      .carousel-img {
-        width: 22rem;
-        height: 22rem;
-      }
-    }
-
-    @media (max-width: 585px) {
-      .testimonial {
-        width: 45rem;
-      }
-      
-      .carousel-img {
-        width: 20rem;
-        height: 20rem;
-      }
-    }
-
-    @media (max-width: 550px) {
-      .testimonial {
-        width: 40rem;
-      }
-      
-      .carousel-img {
-        width: 18rem;
-        height: 18rem;
-      }
-    }
-
-    @media (max-width: 498px) {
-      .testimonial {
-        width: 35rem;
-        padding: 2rem;
-      }
-      
-      .carousel-img {
-        width: 16rem;
-        height: 16rem;
-      }
-    }
-
-    @media (max-width: 400px) {
-      .testimonial {
-        width: 30rem;
-      }
-      
-      .carousel-img {
-        width: 14rem;
-        height: 14rem;
-      }
-    }
-
-    @media (max-width: 354px) {
-      .testimonial {
-        width: 25rem;
-      }
-      
-      .carousel-img {
-        width: 12rem;
-        height: 12rem;
-      }
-    }
-
-    @media (max-width: 300px) {
-      .testimonial {
-        width: 22rem;
-      }
-      
-      .carousel-img {
-        width: 10rem;
-        height: 10rem;
-      }
-    }
+  .kjc-testimonial-component::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 102, 31, 1);
+  }
   </style>
 </head>
 <body>
-  <main id="main">
-    <figure class="testimonial carousel-1">
-      <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=linkedin-sales-solutions-pAtA8xe_iVM-unsplash.jpg" 
-           alt="Customer testimonial" 
-           id="testimonial-img" class="carousel-img testimonial-img">
+<!-- Main wrapper div that scopes all our content -->
+<div class="kjc-testimonial-component">
+  <div class="container-fluid kjc-container-fluid-bg">
+    <section id="kjc-testimonials" class="kjc-section-bg">
+      <div class="container">
+        <header class="kjc-section-header">
+          <h3 class="kjc-section-title">Testimonials</h3>
+        </header>
+        
+        <div id="kjc-testimonial-carousel" class="carousel slide kjc-testimonial-container" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="kjc-carousel-caption">
+                        <p style="text-align: justify;">
+ The handcrafted items from KJ Creation are truly beautiful! The attention to detail is amazing, and each piece feels unique. I purchased a decorative vase, and it's now the centerpiece of my home.                        </p> 
+                        <img src="img/testimonial-1.jpg" alt="Nick Doe">
+                        <div class="kjc-image-caption">Tanmay Sharma</div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="kjc-carousel-caption">
+                        <p style="text-align: justify;">
+        Absolutely in love with the handmade purses! The craftsmanship is top-notch, and the designs are both stylish and durable. I've received so many compliments on my purchase.
+                        </p> 
+                        <img src="img/testimonial-2.jpg" class="img-fluid" alt="Cromption Greves">
+                        <div class="kjc-image-caption">Riya Verma</div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="kjc-carousel-caption">
+                        <p style="text-align: justify;">
+        I ordered some handcrafted wall hangings, and they exceeded my expectations. The quality, the colors, and the intricate work make them stand out. Definitely recommend KJ Creation!
+                        </p> 
+                        <img src="img/testimonial-3.jpg" class="img-fluid" alt="Harry Mon">
+                        <div class="kjc-image-caption">Neha Patel</div>
+                    </div>
+                </div>
 
-      <blockquote>
-        <p class="testimonial-text" id="testimonial-text"></p>
-        <p class="customer-name testimonial-name">&mdash;<span id="testimonial-name"></span></p>
-        <p class="testimonial-job" id="testimonial-job"></p>
-      </blockquote>  
+                <div class="carousel-item">
+                    <div class="kjc-carousel-caption">
+                        <p style="text-align: justify;">
+        Excellent customer service! I had a minor issue with my order, but the team at KJ Creation was very responsive and resolved it quickly. Great products and even better service!
+                        </p> 
+                        <img src="img/testimonial-4.jpg" class="img-fluid" alt="Harry Mon">
+                        <div class="kjc-image-caption">Arjun Mehta</div>
+                    </div>
+                </div>
 
-      <button class="btn-carousel btn-left">
-        <ion-icon name="chevron-back-outline" class="carousel-icon"></ion-icon>
-      </button>
-
-      <button class="btn-carousel btn-right">
-        <ion-icon name="chevron-forward-outline" class="carousel-icon"></ion-icon>
-      </button>
-
-      <div class="dots">
-        <button class="btn-dot btn-dot-active">&nbsp;</button>
-        <button class="btn-dot">&nbsp;</button>
-        <button class="btn-dot">&nbsp;</button>
-        <button class="btn-dot">&nbsp;</button>
+                <div class="carousel-item">
+                    <div class="kjc-carousel-caption">
+                        <p style="text-align: justify;">
+        KJ Creation's handicrafts make perfect gifts! I bought a few purses and jewelry boxes for friends, and they loved them. The packaging was also beautiful.
+                        </p> 
+                        <img src="img/testimonial-5.jpg" class="img-fluid" alt="Harry Mon">
+                        <div class="kjc-image-caption">Priya Kapoor</div>
+                    </div>
+                </div>
+            </div>
+            
+            <a class="carousel-control-prev kjc-carousel-control kjc-carousel-control-prev" href="#kjc-testimonial-carousel" data-slide="prev">
+                <i class='fas fa-chevron-left'></i>
+            </a>
+            <a class="carousel-control-next kjc-carousel-control kjc-carousel-control-next" href="#kjc-testimonial-carousel" data-slide="next">
+                <i class='fas fa-chevron-right'></i>
+            </a>
+        </div>
       </div>
-    </figure>
-  </main>
+    </section>
+  </div>
+</div>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="users/lib/jquery/jquery.min.js"></script>
-  <script src="users/lib/jquery/jquery-migrate.min.js"></script>
-  <script src="users/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="users/lib/easing/easing.min.js"></script>
-  <script src="users/lib/superfish/hoverIntent.js"></script>
-  <script src="users/lib/superfish/superfish.min.js"></script>
-  <script src="users/lib/wow/wow.min.js"></script>
-  <script src="users/lib/waypoints/waypoints.min.js"></script>
-  <script src="users/lib/counterup/counterup.min.js"></script>
-  <script src="users/lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="users/lib/isotope/isotope.pkgd.min.js"></script>
-  <script src="users/lib/lightbox/js/lightbox.min.js"></script>
-  <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-  <script src="users/lib/touchSwipe/jquery.touchSwipe.min.js"></script>
-  
-  <script>
-    "use strict";
-
-    const testimonials = [
-      {
-        name: "Rahul Sharma", 
-        work: "Corporate Client at Infosys",
-        photoUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=ali-morshedlou-WMD64tMfc4k-unsplash.jpg",
-        text: "KJ Creations transformed our corporate gifting experience! Their premium customized gifts helped us strengthen client relationships. The attention to detail and quality craftsmanship is exceptional."
-      },
-      {
-        name: "Priya Patel", 
-        work: "Event Manager at Wizcraft",
-        photoUrl: "https://images.unsplash.com/photo-1504791635568-fa4993808e0a?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=royal-anwar-u5T5b3lNYw8-unsplash.jpg",
-        text: "For our annual conference, KJ Creations provided beautiful branded merchandise that impressed all attendees. Their creative designs and timely delivery made our event memorable."
-      },
-      {
-        name: "Arjun Mehta", 
-        work: "HR Director at TechMahindra",
-        photoUrl: "https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=gregory-hayes-h5cd51KXmRQ-unsplash.jpg",
-        text: "Employee recognition became special with KJ Creations' personalized gift solutions. Their team understood our requirements perfectly and delivered innovative products that our employees cherish."
-      },
-      {
-        name: "Neha Gupta", 
-        work: "Marketing Head at HDFC Bank",
-        photoUrl: "https://images.unsplash.com/photo-1543132220-4bf3de6e10ae?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=redd-f-v6771a4avV4-unsplash.jpg",
-        text: "KJ Creations has been our go-to partner for premium corporate gifts. Their ability to blend creativity with functionality while maintaining the highest quality standards is remarkable."
-      }
-    ];
-
-    const imgEl = document.querySelector("#testimonial-img");
-    const workEl = document.querySelector(".testimonial-job");
-    const textEl = document.querySelector(".testimonial-text");
-    const usernameEl = document.querySelector("#testimonial-name");
-    const btnRight = document.querySelector('.btn-right');
-    const btnLeft = document.querySelector('.btn-left');
-    const carouselBtn = document.querySelectorAll('.btn-dot');
-    let idx = 0;
-    let intervalId;
-
-    const updateTestimonial = () => {
-      const { name, work, photoUrl, text } = testimonials[idx];
-      imgEl.src = photoUrl;
-      textEl.innerText = text;
-      usernameEl.innerText = name;
-      workEl.innerText = work;
-      
-      carouselBtn.forEach(btn => btn.classList.remove('btn-dot-active'));
-      carouselBtn[idx].classList.add('btn-dot-active');
-    }
-
-    const stopSlideshow = () => clearInterval(intervalId);
-
-    const startSlideshow = () => intervalId = setInterval(nextTestimonial, 5000);
-
-    const nextTestimonial = () => {
-      idx = (idx + 1) % testimonials.length;
-      updateTestimonial();
-      resetSlideshow();
-    }
-    
-    const previousTestimonial = () => {
-      idx = (idx - 1 + testimonials.length) % testimonials.length;
-      updateTestimonial();
-      resetSlideshow();
-    }
-
-    const resetSlideshow = () => {
-      stopSlideshow();
-      startSlideshow();
-    }
-
-    btnRight.addEventListener('click', nextTestimonial);
-    btnLeft.addEventListener('click', previousTestimonial);
-
-    carouselBtn.forEach((btn, i) => {
-      btn.addEventListener('click', function() {
-        idx = i;
-        updateTestimonial();
-        resetSlideshow();
-      });
-    });
-
-    // Initialize
-    updateTestimonial();
-    startSlideshow();
-  </script>
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

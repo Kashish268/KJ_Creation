@@ -20,7 +20,6 @@ $result = mysqli_query($conn,$q);
 
     <!-- Favicons -->
   <link href="img/kj_1.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- CSS -->
     <link rel="stylesheet" href="style_admin.css">
@@ -70,11 +69,11 @@ $result = mysqli_query($conn,$q);
 		<table id="productTable">
 			<thead>
 				<tr>
-					<th>ID</th>
-					<th>Product Name</th>
-					<th>Image</th>
-					<th>Actions</th>
-				</tr>
+            <th style="width: 5%;">ID</th>
+            <th style="width: 25%;">Product Name</th>
+            <th style="width: 40%;">Image</th>
+            <th style="width: 20%;">Actions</th>
+        </tr>
 			</thead>
 			<tbody>
                 
@@ -95,7 +94,7 @@ $result = mysqli_query($conn,$q);
         echo '<img src="' . $file . '" alt="Product Image" width="200" height="100">';
     } elseif (in_array($file_extension, $video_extensions)) {
         // Display video
-        echo '<video width="100" height="100" controls>
+        echo '<video width="100" height="120" controls>
                 <source src="' . $file . '" type="video/' . $file_extension . '">
                 Your browser does not support the video tag.
               </video>';
@@ -106,6 +105,8 @@ $result = mysqli_query($conn,$q);
 </td>
 
     <td>
+          <div class="action-btn-group">
+
     <form action="edit_footer_image.php" method="post" style="display: inline;">
     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
     <button type="submit" class="action-btn edit-btn">
@@ -119,7 +120,7 @@ $result = mysqli_query($conn,$q);
         <i class="bx bx-trash"></i>
     </button>
 </form>
-
+</div>
 </td>
 
 </tr>
@@ -142,7 +143,7 @@ $result = mysqli_query($conn,$q);
     $q="delete from f_image where id=$id";
     if (mysqli_query($conn, $q)) {
         echo "<script>
-            alert('Image deleted successfully');
+            alert('Deleted successfully');
             window.location.href = 'footer_image.php';
         </script>";
     } else {

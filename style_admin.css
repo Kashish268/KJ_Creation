@@ -190,7 +190,7 @@ body {
     height: 56px;
     background: var(--light);
     padding: 0 24px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
     font-family: var(--lato);
     position: sticky;
     top: 0;
@@ -576,6 +576,20 @@ body {
     font-size: 19px; /* Simple icon size */
 }
 
+.action-btn-group {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 600px) {
+    .action-btn-group {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+}
 /* Delete All Button */
 .btn-delete-all {
     display: inline-flex;

@@ -1,7 +1,16 @@
 <?php
+
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
 include 'database/config.php';
 
 session_start();
+if (isset($_SESSION['admin'])) {
+    echo "<script>location.replace('dashboard.php');</script>";
+    exit();
+}
 if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -13,8 +22,7 @@ if (isset($_POST['submit'])) {
         $row = $result->fetch_assoc();
         if ($password === $row['password']) {
             $_SESSION['admin'] = $row['id'];
-            header('Location: dashboard.php');
-            exit();
+echo "<script>location.replace('dashboard.php');</script>";            exit();
         } else {
             $error_message = "Invalid password. Please try again.";
         }
@@ -22,6 +30,9 @@ if (isset($_POST['submit'])) {
         $error_message = "No user found with that email.";
     }
 }
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -275,5 +286,16 @@ if (isset($_POST['submit'])) {
       }
     }
   </script>
+
+
+<script>
+if (window.history.replaceState) {
+    window.history.replaceState(null, null, window.location.href);
+}
+if (window.performance && window.performance.navigation.type === 2) {
+    // Force reload if back button is pressed
+    window.location.reload();
+}
+</script>
 </body>
 </html>

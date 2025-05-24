@@ -240,6 +240,30 @@ if (mysqli_num_rows($result) > 0) {
             margin-top: -80px;
         }
     }
+
+
+    .footer-hover-text {
+    visibility: hidden;
+    opacity: 0;
+    background: #222;
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 110%;
+    transform: translateX(-50%);
+    padding: 4px 12px;
+    border-radius: 5px;
+    font-size: 13px;
+    white-space: nowrap;
+    z-index: 10;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.btn-social:hover .footer-hover-text {
+    visibility: visible;
+    opacity: 1;
+}
 </style>
 
 <!-- Newsletter Section -->
@@ -281,10 +305,16 @@ if (mysqli_num_rows($result) > 0) {
                     <p><i class="fas fa-envelope"></i> kjcreations4all@gmail.com</p>
                 </div>
                 <div class="d-flex pt-2">
-                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-instagram"></i></a>
-                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/profile.php?id=61564031892075" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/kjcreations4all?igsh=bHQzanh5NDQzZ2V2" target="_blank"><i class="fab fa-instagram"></i></a>
+                   <a class="btn btn-outline-light btn-social" href="#" style="position:relative;">
+        <i class="fab fa-whatsapp"></i>
+        <span class="footer-hover-text">+91 96628 76676</span>
+    </a>
+    <a class="btn btn-outline-light btn-social" href="mailto:kjcreations4all@gmail.com" style="position:relative;">
+        <i class="fa fa-envelope"></i>
+        <span class="footer-hover-text">kjcreations4all@gmail.com</span>
+    </a>
                 </div>
             </div>
             <div class="col-lg-5 col-md-12">

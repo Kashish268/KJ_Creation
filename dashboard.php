@@ -1,15 +1,21 @@
 <?php
 include 'database/config.php'; // Corrected the path
+
 session_start();
-if (!isset($_SESSION['admin'])) {
-    header('Location:login.php');
-    exit();
-}?>
 
-<!-- <script>
-alert("Welcome to the admin panel!");
-</script> -->
 
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
+?>
+
+<script>
+if (window.performance && window.performance.navigation.type === 2) {
+    // If page is loaded from back/forward cache, force reload
+    window.location.href = "login.php";
+}
+</script>
 
 
 <!DOCTYPE html>

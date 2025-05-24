@@ -190,7 +190,7 @@ $result = mysqli_query($conn, $query);?>
 
 
 
-<?php include 'footer.php'; ?>
+<?php include_once 'footer.php'; ?>
 <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 <!-- Uncomment below i you want to use a preloader -->
 <!-- <div id="preloader"></div> -->
@@ -200,7 +200,7 @@ $result = mysqli_query($conn, $query);?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="users/lib/jquery/jquery.min.js"></script>
-<script src="users/lib/jquery/jquery-migrate.min.js"></script>
+<script src="users/lib/jquery/jquery-migrate.xmin.js"></script>
 <script src="users/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="users/lib/easing/easing.min.js"></script>
 <script src="users/lib/superfish/hoverIntent.js"></script>
@@ -219,69 +219,9 @@ $result = mysqli_query($conn, $query);?>
 
 <!-- Template Main Javascript File -->
 <script src="users/js/main.js"></script>
-<script>
-  // Hide the preloader when the page is fully loaded
-  var preloader = document.getElementById("loading");
-  function myFunction() {
-    preloader.style.display = "none";
-  }
 
-  // Show the pop-up after 1 second
-  document.addEventListener("DOMContentLoaded", function () {
-    setTimeout(function () {
-      document.getElementById("popUpMain").style.display = "flex";
-    }, 1000); // Delay in milliseconds
-  });
 
-  // Close the pop-up when the close button is clicked
-  document.getElementById("closePopup").addEventListener("click", function () {
-    document.getElementById("popUpMain").style.display = "none";
-  });
-</script>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  // Fetch data from the backend
-  fetch("fetch_offers.php")
-    .then((response) => response.json())
-    .then((data) => {
-      const popupMain = document.getElementById("popUpMain");
-
-      if (data.success && data.offer) {
-        // Populate the pop-up with fetched data
-        document.querySelector("#popupImage img").src = data.offer.image_url;
-
-        // Remove the 'hidden' class to show the popup
-        popupMain.classList.remove("hidden");
-
-        // Show the pop-up after 1 second
-        setTimeout(function () {
-          popupMain.style.display = "flex";
-        }, 1000);
-      } else {
-        // Add the 'hidden' class to ensure the popup is not displayed
-        popupMain.classList.add("hidden");
-        console.log(data.message || "No offers available, popup will not open.");
-      }
-    })
-    .catch((error) => {
-      // Ensure popup remains hidden on error
-      document.getElementById("popUpMain").classList.add("hidden");
-      console.error("Error fetching offers:", error);
-    });
-
-  // Hide the preloader when the page is fully loaded
-  function myFunction() {
-    document.getElementById("loading").style.display = "none";
-  }
-
-  // Close the pop-up when the close button is clicked
-  document.getElementById("closePopup").addEventListener("click", function () {
-    document.getElementById("popUpMain").classList.add("hidden");
-  });
-});
-
-</script>
 
 
 </body>

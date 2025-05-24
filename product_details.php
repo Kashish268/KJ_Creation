@@ -41,8 +41,14 @@ if (isset($_GET['id'])) {
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <link href="img/kj_1.png" rel="icon">
   <link href="users/css/user2.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <link href="users/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="users/lib/animate/animate.min.css" rel="stylesheet">
+  <link href="users/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="users/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="users/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
   <style>
  
     .section-title {

@@ -188,7 +188,7 @@ if (mysqli_num_rows($result) > 0) {
         }
     </script>
 
-    <script></script>
+    <script src="validation_p_edit.js"></script>
 </body>
 </html>
 

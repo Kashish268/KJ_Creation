@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" href="style_admin.css">
 <link rel="stylesheet" href="script1.js">
 
@@ -17,7 +18,7 @@
             <img src="img/people.png" alt="Profile">
         </a> -->
 
-        <a href="index.php" class="home-button" aria-label="Home" action="logout.php">
+        <a href="logout.php" class="home-button" aria-label="Home" >
             <i class='bx bx-home'></i>
             <span class="tooltip">Home Page</span>
         </a>
