@@ -31,7 +31,7 @@ include 'database/config.php';
   <link href="users/css/user2.css" rel="stylesheet">
 
 </head>
-<body  onload="myFunction()">
+<body>
 
 <?php include 'user_nav.php'; ?>
 <?php
