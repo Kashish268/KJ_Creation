@@ -107,7 +107,7 @@ $offer = mysqli_fetch_assoc($result);
       <header class="section-header">
         <h3 class="section-title" style="color:black;">Exclusive Offers</h3>
 
-        <h5 style="color:black; text-align:center;">Grab the best deals and enjoy top-tier support, available 24/7 for your convenience.</h5>
+        <h5 style="color:#000; text-align:center; letter-spacing: 0.7px;">Grab the best deals and enjoy top-tier support, available 24/7 for your convenience.</h5><br>
       </header>
       <div class="offer-support-section">
         <div class="offer-details">
@@ -169,7 +169,11 @@ Unbeatable offers, unmatched support<br><br>
         <?php 
 // In your main file where you want to include this:
 include('testimonal.php');
-?><?php include 'footer.php'; ?>
+?>
+<?php include 'footer.php'; ?>
+<a href="" class="whatsapp-fixed" target="_blank" title="WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <!-- Uncomment below i you want to use a preloader -->
   <!-- <div id="preloader"></div> -->

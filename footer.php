@@ -269,7 +269,7 @@ if (mysqli_num_rows($result) > 0) {
 <!-- Newsletter Section -->
 <div class="container newsletter mt-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="row justify-content-center">
-        <div class="col-lg-10 border rounded p-1">
+        <!-- <div class="col-lg-10 border rounded p-1"> -->
             <div class="border rounded text-center p-1">
                 <div class="bg-white rounded text-center p-5">
                     <h4 class="mb-4">Subscribe Our <span class="text-primary text-uppercase">Newsletter</span></h4>
@@ -281,7 +281,7 @@ if (mysqli_num_rows($result) > 0) {
                     </div>
                 </div>
             </div>
-        </div>
+        <!-- </div> -->
     </div>
 </div>
 

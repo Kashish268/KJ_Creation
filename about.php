@@ -191,6 +191,9 @@ $result = mysqli_query($conn, $query);?>
 
 
 <?php include_once 'footer.php'; ?>
+<a href="" class="whatsapp-fixed" target="_blank" title="WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
 <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 <!-- Uncomment below i you want to use a preloader -->
 <!-- <div id="preloader"></div> -->

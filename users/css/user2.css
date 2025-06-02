@@ -134,6 +134,38 @@ h6 {
 }
 
 /* Back to top button */
+.whatsapp-fixed {
+  position: fixed;
+  left: 15px;
+  bottom: 15px;
+  background: #25d366;
+  color: #fff;
+  width: 44px;
+  height: 44px;
+  text-align: center;
+  line-height: 1;
+  font-size: 24px;
+  border-radius: 50%;
+  z-index: 11;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: background 0.5s;
+}
+.whatsapp-fixed,
+.whatsapp-fixed:focus,
+.whatsapp-fixed:active,
+.whatsapp-fixed:hover {
+  text-decoration: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+.whatsapp-fixed i {
+  padding-top: 0;
+  color: #fff;
+}
 
 .back-to-top {
   position: fixed;
@@ -1557,7 +1589,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 --------------------------------*/
 #contact {
   padding: 60px 0;
-  background: linear-gradient(135deg, rgb(10, 10, 10), rgb(244, 107, 44));
+  background: linear-gradient(135deg, rgb(9, 46, 32), rgb(244, 107, 44));
   color: white;
   
 }
@@ -1603,7 +1635,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 /* Form Design */
 #contact .form {
-  background: linear-gradient(135deg, #090909, #1a1a1a); /* Dark gradient background */
+  background: linear-gradient(135deg, rgb(9, 46, 32), rgb(9, 46, 32)); /* Dark gradient background */
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -1680,8 +1712,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #contact .form #sendmessage {
-  background: #222;
-  color: rgb(244, 107, 44); /* Success message in orange */
+  background: rgb(9, 46, 32);
+  color: #fff !important; /* Success message in orange */
 }
 
 #contact .form #errormessage {

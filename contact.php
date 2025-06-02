@@ -71,7 +71,7 @@ Get in touch with us today to explore our premium custom gift solutions and make
 </div>
 
 <div class="form">
-  <div id="sendmessage" style="display: none; color: green;">Thanks for getting in touch! We've received your message and will respond soon.</div>
+  <div id="sendmessage" style="display: none; color:white;">Thanks for getting in touch! We've received your message and will respond soon.</div>
   <form id="contactForm" action="contactform.php" method="POST">
     <div class="form-row">
       <div class="form-group col-md-6">
@@ -103,6 +103,9 @@ Get in touch with us today to explore our premium custom gift solutions and make
       </div>
     </section><!-- #contact -->
     <?php include_once 'footer.php'; ?>
+    <a href="" class="whatsapp-fixed" target="_blank" title="WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <!-- Uncomment below i you want to use a preloader -->
   <!-- <div id="preloader"></div> -->
