@@ -117,6 +117,42 @@
             </a>
         </li>
 
+       
+<li class="<?= ($current_page == 'marquee.php')  || $current_page == 'add_marquee.php' ? 'active' : 
+    (($current_page == 'product.php' || $current_page == 'add_product.php' || 
+      $current_page == 'offers.php' || $current_page == 'add_offers.php' ||  $current_page == 'meassage.php'||
+      $current_page == 'dashboard.php'||$current_page == 'footer_image.php' ||$current_page == 'add_footer_image.php'||$current_page == 'popup_offers.php'
+      || $current_page == 'add_popup_image.php'|| $current_page == 'homepage_corosole.php' || $current_page == 'add_homepage_corosole.php')
+      || $current_page == 'homepage.php.php'|| $current_page == 'add_homeside_image.php'  ? '' : ''); ?>">
+    <a href="marquee.php">
+        <i class='bx bx-news'></i> 
+        <span class="text">Headlines</span>
+    </a>
+</li>
+
+<li class="<?= ($current_page == 'product_counts.php')  ? 'active' : 
+    (($current_page == 'product.php' || $current_page == 'add_product.php' || 
+      $current_page == 'offers.php' || $current_page == 'add_offers.php' ||  $current_page == 'meassage.php'||
+      $current_page == 'dashboard.php'||$current_page == 'footer_image.php' ||$current_page == 'add_footer_image.php'||$current_page == 'popup_offers.php'
+      || $current_page == 'add_popup_image.php'|| $current_page == 'homepage_corosole.php' || $current_page == 'add_homepage_corosole.php')
+      || $current_page == 'homepage.php.php'|| $current_page == 'add_homeside_image.php'  ? '' : ''); ?>">
+    <a href="product_counts.php">
+        <i class='bx bx-bar-chart-alt-2'></i> 
+        <span class="text">Products Counts</span>
+    </a>
+</li>
+
+<li class="<?= ($current_page == 'newsletters.php')   ? 'active' : 
+    (($current_page == 'product.php' || $current_page == 'add_product.php' || 
+      $current_page == 'offers.php' || $current_page == 'add_offers.php' ||  $current_page == 'meassage.php'||
+      $current_page == 'dashboard.php'||$current_page == 'footer_image.php' ||$current_page == 'add_footer_image.php'||$current_page == 'popup_offers.php'
+      || $current_page == 'add_popup_image.php'|| $current_page == 'homepage_corosole.php' || $current_page == 'add_homepage_corosole.php')
+      || $current_page == 'homepage.php.php'|| $current_page == 'add_homeside_image.php'  ? '' : ''); ?>">
+    <a href="newsletters.php">
+        <i class='bx bx-mail-send'></i> 
+        <span class="text">NewsLetters</span>
+    </a>
+</li>
         
     </ul>
     <ul class="side-menu">

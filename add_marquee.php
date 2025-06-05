@@ -8,48 +8,20 @@ if (!isset($_SESSION['admin'])) {
 }
 
 if (isset($_POST['sub'])) {
-    // Retrieve Product Details
-    $p_name = $_POST['productName'];
-    $price = $_POST['price'];
-    $description = $_POST['description'];
-    $shopname = $_POST['shopName'];
-    $img = $_FILES['productImage']['name'];
-    $tem_img = $_FILES['productImage']['tmp_name'];
-    $Categories = $_POST['categories'];
-    $p_code = $_POST['p_code'];
+    $text_value = trim($_POST['description']);
+    $color_code = trim($_POST['headline_color']);
 
-    print("<script>console.log('Product Code: $p_code');</script>");
-    // Handle File Upload
-    $upload_dir = "uploaded_images/";
-    if (!is_dir($upload_dir)) {
-        mkdir($upload_dir, 0755, true);
-    }
-    move_uploaded_file($tem_img, $upload_dir . $img);
-
-    // ✅ Directly Convert Questions & Answers to JSON
-    $questions = $_POST['questions'] ?? [];
-    $answers = $_POST['answers'] ?? [];
-
-    $qa_array = [];
-    foreach ($questions as $index => $question) {
-        $qa_array[] = [
-            "question" => $question,
-            "answer" => $answers[$index] ?? ""
-        ];
-    }
-
-    $qa_json = json_encode($qa_array); // 🔹 Convert array to JSON
-
-    // ✅ Insert Data into Database
-    $query = "INSERT INTO products (p_code,name, des, price, shopname, categories,IMAGE, question) 
-              VALUES ('$p_code','$p_name', '$description', '$price', '$shopname', '$Categories','$img', '$qa_json')";
-echo $query;
-    if (mysqli_query($conn, $query)) {
-        echo "<script>alert('Product Added!'); window.location.href='products.php';</script>";
+    // Directly insert without PHP validation
+    $stmt = $conn->prepare("INSERT INTO headlines (text_value, color_code) VALUES (?, ?)");
+    $stmt->bind_param("ss", $text_value, $color_code);
+    if ($stmt->execute()) {
+        echo "<script>alert('Headline added successfully!');</script>";
     } else {
-        echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
+        echo "<script>alert('Error: " . $conn->error . "');</script>";
     }
+    $stmt->close();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -179,17 +151,6 @@ echo $query;
         /* Style for the back arrow */
 
     </style>
-     <script>
-        function addQAField() {
-            let container = document.getElementById("qa-container");
-            let div = document.createElement("div");
-            div.innerHTML = `
-                <input type="text" name="questions[]" placeholder="Enter question" style="width:100%;" /required><br><br>
-                <input type="text" name="answers[]" placeholder="Enter answer" style="width:100%;"/required><br><br>
-            `;
-            container.appendChild(div);
-        }
-    </script>
 </head>
 <body>
 
@@ -199,43 +160,22 @@ echo $query;
         <?php include 'navbar.php'; ?>
         <main>
     <div style="margin-bottom: 30px;">
-        <h2 style="text-align: left; color: rgb(244, 107, 44); font-size:  36px; font-weight: 600; margin-bottom: 10px;">Add Product</h2>
+        <h2 style="text-align: left; color: rgb(244, 107, 44); font-size:  36px; font-weight: 600; margin-bottom: 10px;">Add Headlines</h2>
         <p style="text-align: left; color: #c4c4c4; font-size: 1rem;">
-            <a href="products.php" style="text-decoration: none; color: #c4c4c4;">Products</a> 
+            <a href="offers.php" style="text-decoration: none; color: #c4c4c4;">Headlines</a> 
             <span style="margin: 0 8px;">&gt;</span>
-            <span style="color: rgb(244, 107, 44);">Add Product</span>
+            <span style="color: rgb(244, 107, 44);">Add Headlines</span>
         </p>
     </div>
     <form id="productForm" method="post" enctype="multipart/form-data">
-    <label for="productName">Product Name</label>
-                <input type="text" id="productName" name="productName" placeholder="Enter product name">
-                <label>Product Code:</label>
-                <input type="text" name="p_code" id="p_code" placeholder="Enter product code">
-                <label for="price">Price</label>
-                <input type="number" id="price" name="price" placeholder="Enter product price">
-                
-                <label for="description">Description</label>
-                <textarea id="description" name="description" placeholder="Enter product description" rows="4"></textarea>
-                
-                <label for="shopName">Shop Name</label>
-                <input type="text" id="shopName" name="shopName" placeholder="Enter shop name">
-                <label>Categories:</label>
-        <select name="categories">
-        <option value="">Select a Category</option>
-            <option value="Corporate gift">Corporate-gift            </option>
-            <option value="Traditional">Traditional</option>
-            <option value="Devotional">Devotional</option>
-            <!-- <option value="Accessories">Accessories</option> -->
-        </select>
-                <label for="productImage">Upload Product Image</label>
-                <input type="file" id="productImage" name="productImage">
-                <label>Questions & Answers: (Click on Add button)</label>
-        <div id="qa-container"></div>
-        <button type="button" onclick="addQAField()" style="
-        background: rgb(244, 107, 44); 
-        color: white; border: none; padding: 15px;border-radius:4px; cursor:pointer; font-size:15px">Add Q & A</button>
-                <input type="submit"  name="sub" class="btn">
-            </form>
+        <label for="description">Enter Text : </label>
+        <textarea id="description" name="description" placeholder="Enter text" rows="4" required></textarea>
+        
+        <label for="headline_color">Headline Color</label>
+        <input type="color" id="headline_color" name="headline_color" value="#ffffff" required>
+
+        <input type="submit" name="sub" class="btn" value="Add Headline">
+    </form>
         </main>
     </section> 
 
@@ -244,8 +184,8 @@ echo $query;
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- jQuery Validation -->
-    <!-- <script src="validation_product.js"></script> -->
-     <!-- Include the separate validation file -->
+        
+    </script> <!-- Include the separate validation file -->
 
 </body>
 </html>

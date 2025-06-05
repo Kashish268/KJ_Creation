@@ -9,6 +9,37 @@ $result = mysqli_query($conn, $q);
 if (mysqli_num_rows($result) > 0) {
     $image = mysqli_fetch_assoc($result);
 }
+
+// if (isset($_POST['newsletter_submit'])) {
+//     $email = trim($_POST['newsletter_email']);
+//     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+//         // Pehle check karo email exist karti hai ya nahi
+//         $check = $conn->prepare("SELECT id FROM newsletter WHERE email = ?");
+//         $check->bind_param("s", $email);
+//         $check->execute();
+//         $check->store_result();
+//         if ($check->num_rows > 0) {
+//             $newsletter_msg = "This email is already subscribed.";
+//         } else {
+//             // Insert karo
+//             $stmt = $conn->prepare("INSERT INTO newsletter (email) VALUES (?)");
+//             if ($stmt) {
+//                 $stmt->bind_param("s", $email);
+//                 if ($stmt->execute()) {
+//                     $newsletter_msg = "Thank you for subscribing!";
+//                 } else {
+//                     $newsletter_msg = "Something went wrong.";
+//                 }
+//             } else {
+//                 $newsletter_msg = "Something went wrong.";
+//             }
+//         }
+//         $check->close();
+//     } else {
+//         $newsletter_msg = "Please enter a valid email address.";
+//     }
+// }
+
 ?> 
 <link href="users/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -269,19 +300,23 @@ if (mysqli_num_rows($result) > 0) {
 <!-- Newsletter Section -->
 <div class="container newsletter mt-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="row justify-content-center">
-        <!-- <div class="col-lg-10 border rounded p-1"> -->
+        <div class="col-lg-10 border rounded p-1">
             <div class="border rounded text-center p-1">
                 <div class="bg-white rounded text-center p-5">
                     <h4 class="mb-4">Subscribe Our <span class="text-primary text-uppercase">Newsletter</span></h4>
                     <div class="position-relative mx-auto" style="max-width: 400px;">
+                        <form method="post" action="#newsletter" id="newsletterForm">
                         <div class="input-group newsletter-input-group">
-                            <input class="form-control" type="text" placeholder="Enter your email">
-                            <button type="button" class="btn">SUBMIT</button>
+        <input class="form-control" type="email" name="newsletter_email" placeholder="Enter your email" required>
+        <button type="submit" class="btn" name="newsletter_submit">SUBMIT</button>
                         </div>
+                        <div id="newsletterMsg"></div>
+                        
+                        </form>
                     </div>
                 </div>
             </div>
-        <!-- </div> -->
+        </div>
     </div>
 </div>
 
@@ -366,3 +401,20 @@ if (mysqli_num_rows($result) > 0) {
     </div>
 </div>
 <!-- Footer End -->
+ <script>
+document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var form = this;
+    var formData = new FormData(form);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'newsletter_ajax.php', true); // AJAX file ka path
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            document.getElementById('newsletterMsg').innerHTML = '<div style="color:green; margin-top:10px;">' + xhr.responseText + '</div>';
+                        form.newsletter_email.value = '';
+
+        }
+    };
+    xhr.send(formData);
+});
+</script>

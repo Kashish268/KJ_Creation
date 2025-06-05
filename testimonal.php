@@ -247,7 +247,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         KJ Creation's handicrafts make perfect gifts! I bought a few purses and jewelry boxes for friends, and they loved them. The packaging was also beautiful.
                         </p> 
                         <img src="img/testimonial-5.jpg" class="img-fluid" alt="Harry Mon">
-                        <div class="kjc-image-caption">Priya Kapoor</div>
+                        <div class="kjc-image-caption">Prince Kapoor</div>
                     </div>
                 </div>
             </div>

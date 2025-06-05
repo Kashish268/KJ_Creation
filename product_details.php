@@ -4,6 +4,11 @@ include 'database/config.php';
 if (isset($_GET['id'])) {
     $product_id = $_GET['id'];
 
+    // 1. Increase the count for this product
+    $update = $conn->prepare("UPDATE products SET count = count + 1 WHERE id = ?");
+    $update->bind_param("i", $product_id);
+    $update->execute();
+    
     // Fetch product details from the database
     $query = "SELECT * FROM products WHERE id = ?";
     $stmt = $conn->prepare($query);

@@ -134,7 +134,7 @@ $offer = mysqli_fetch_assoc($result);
   <!--==========================
     Intro Section
   ============================-->
-  <section id="intro">
+  <section id="intro" style="margin-top: -80px;">
     <?php if (count($slides) > 0) { ?>
       <div class="container-fluid">
         <div class="row">

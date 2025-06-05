@@ -20,7 +20,9 @@ include 'config.php';
 //     categories VARCHAR(255) NOT NULL,
 //     image VARCHAR(255) NOT NULL,
 //     question JSON,
-//     status VARCHAR(20) NOT NULL DEFAULT 'active' -- Added column with default value
+//     status VARCHAR(20) NOT NULL DEFAULT 'active', -- Added column with default value
+//         count INT NOT NULL DEFAULT 0
+
 // );";
 
 // $query="CREATE TABLE IF NOT EXISTS meassage (
@@ -77,11 +79,22 @@ include 'config.php';
     //    image VARCHAR(255) NOT NULL
     //    )";
 
-    $query= "create table if not EXISTS compony_details(
- id INT AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
-  image VARCHAR(255) NOT NULL
-  )";
+//     $query= "create table if not EXISTS compony_details(
+//  id INT AUTO_INCREMENT PRIMARY KEY,
+//   title VARCHAR(255) NOT NULL,
+//   image VARCHAR(255) NOT NULL
+//   )";
+
+// $query = "CREATE TABLE if not EXISTS headlines (
+//     id INT PRIMARY KEY AUTO_INCREMENT,
+//     text_value TEXT NOT NULL,
+//     color_code VARCHAR(20) NOT NULL
+// )";
+
+// $query = "CREATE TABLE newsletter (
+//      id INT PRIMARY KEY AUTO_INCREMENT,
+//     email VARCHAR(255) UNIQUE NOT NULL
+// )";
      
 if ($conn->query($query) === TRUE) {
     echo "Table  created successfully";

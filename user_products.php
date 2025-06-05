@@ -52,7 +52,7 @@ if ($result->num_rows > 0) {
 $totalProducts = count($products);
 ?>
 
-<section id="portfolio" class="section-bg">
+<section id="portfolio" class="section-bg" style="margin-top: -80px;">
     <div class="container">
         <header class="section-header">
 
@@ -118,7 +118,7 @@ $totalProducts = count($products);
 
                 <div class="portfolio-info">
     <div class="info-row">
-        <h4><a href="#" style="text-decoration: none;"class="product-name"><?php echo $product['name']; ?></a></h4>
+        <h4><a href="#" style="text-decoration: none;" class="product-name"><?php echo $product['name']; ?></a></h4>
         <span class="product-code"><?php echo $product['p_code']; ?></span>
     </div>
     <div class="info-row">
@@ -126,7 +126,6 @@ $totalProducts = count($products);
         <span class="product-category"><?php echo $product['categories']; ?></span>
     </div>
 </div>
-
 
             </div>
         </div>
