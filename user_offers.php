@@ -101,7 +101,7 @@ $offer = mysqli_fetch_assoc($result);
 
 
 
-  <section id="offers" class="py-5" style="background-color:#f7f7f7;margin-top: -80px;">
+  <section id="offers" class="py-5" style="background-color:#f7f7f7;margin-top: -120px;">
     <div class="container-fluid">
       <!-- <header class="text-center mb-4"> -->
       <header class="section-header">

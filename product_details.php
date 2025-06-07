@@ -300,7 +300,7 @@ if (isset($_GET['id'])) {
 <?php include 'user_nav.php'; ?>
 
 
-  <section id="product-details" class="py-5" style="padding-top: 70px;">
+  <section id="product-details" style="margin-top: -80px;">
     <div class="container">
       <header class="section-header text-center mb-4">
         <h3 class="section-title" style="color:black">Product Details</h3>

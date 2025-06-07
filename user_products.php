@@ -52,7 +52,7 @@ if ($result->num_rows > 0) {
 $totalProducts = count($products);
 ?>
 
-<section id="portfolio" class="section-bg" style="margin-top: -80px;">
+<section id="portfolio" class="section-bg" style="margin-top: -120px;">
     <div class="container">
         <header class="section-header">
 

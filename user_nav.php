@@ -111,6 +111,16 @@ if ($result && $result->num_rows > 0) {
   }
 }
 
+.navbar-toggler:focus {
+  box-shadow: none;
+  outline: none;
+  filter: brightness(0) invert(1);
+}
+
+
+
+
+
 
   </style>
 </head>
@@ -128,8 +138,8 @@ if ($result && $result->num_rows > 0) {
 </div>
 
       <!-- Contact Info & Social -->
-      <div class="col-lg-9">
-        <div class="row gx-0 d-none d-lg-flex align-items-center" style="border-bottom:1px solid #eee;">
+      <div class="col-lg-9 px-0">
+        <div class="row gx-0 d-none d-lg-flex align-items-center" style="">
           <div class="col-lg-7 px-5 text-start">
             <div class="h-100 d-inline-flex align-items-center py-2 me-4">
               <i class="fa fa-envelope" style="color:rgb(9,46,32);"></i>
@@ -156,9 +166,13 @@ if ($result && $result->num_rows > 0) {
   <img src="users/myimg/kj creations.png" alt="KJ CREATIONS" class="brand-logo me-2">
 </a>
 
-          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" style="background:rgb(244,107,44); color:white;">
-            <span class="navbar-toggler-icon" style="color:white;"></span>
-          </button>
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fas fa-bars" style="color:#fff; font-size: 24px;"></i>
+</button>
+
+
+
+
           <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
             <div class="navbar-nav mr-auto py-0">
               <a href="index.php" class="nav-item nav-link <?php if($current_page == 'index.php'){echo 'active';} ?>">Home</a>
@@ -173,7 +187,7 @@ if ($result && $result->num_rows > 0) {
 
         <!-- Marquee -->
         <div class="row gx-0 marquee-row">
-          <div class="col-12">
+          <div class="col-12 ">
             <marquee>
   <?php
     foreach ($headlines as $headline) {
@@ -190,10 +204,28 @@ if ($result && $result->num_rows > 0) {
 <!-- Fixed Navbar End -->
 
 <!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Optional jQuery (if needed) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+ document.addEventListener('DOMContentLoaded', function () {
+  const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+  const navbarCollapse = document.getElementById('navbarCollapse');
+  const bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggle: false });
+
+  navLinks.forEach(function (link) {
+    link.addEventListener('click', function () {
+      bsCollapse.hide();
+    });
+  });
+});
+
+
+</script>
+
+
 
 </body>
 </html>

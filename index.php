@@ -137,7 +137,7 @@ $offer = mysqli_fetch_assoc($result);
   <section id="intro" style="margin-top: -80px;">
     <?php if (count($slides) > 0) { ?>
       <div class="container-fluid">
-        <div class="row">
+        <div class="row" style="">
           <!-- Left Column: Carousel (8 Columns on Desktop, Full Width on Mobile) -->
           <div class="col-md-8 col-12">
             <div id="introCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -207,7 +207,7 @@ $offer = mysqli_fetch_assoc($result);
 
 <!-- about  -->
   
-<section id="about">
+<section id="about" style="">
       <div class="container">
 
         <header class="section-header">

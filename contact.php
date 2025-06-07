@@ -35,7 +35,7 @@ include 'database/config.php';
 <body>
 <?php include 'user_nav.php'; ?>
 
-<section id="contact" class="section-bg wow fadeInUp" style="margin-top: -80px;">
+<section id="contact" class="section-bg wow fadeInUp" style="margin-top: -120px;">
       <div class="container">
 
         <div class="section-header">
