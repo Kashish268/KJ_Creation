@@ -388,11 +388,11 @@ if (mysqli_num_rows($result) > 0) {
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <div class="footer-menu d-flex justify-content-end">
-                        <a href="">Home</a>
-                        <a href="">About Us</a>
-                        <a href="">Products</a>
-                        <a href="">Offers & Reviews</a>
-                        <a href="">Contact</a>
+                        <a href="index.php">Home</a>
+                        <a href="about.php">About Us</a>
+                        <a href="user_products.php">Products</a>
+                        <a href="user_offers.php">Offers & Reviews</a>
+                        <a href="contact.php">Contact</a>
 
                     </div>
                 </div>

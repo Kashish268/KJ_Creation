@@ -92,14 +92,22 @@ if ($result && $result->num_rows > 0) {
 
     
 .brand-logo {
-  max-height: 40px;  /* Adjust as needed */
+  max-height: 60px !important;  /* Increased height for desktop */
   width: auto;
 }
+
 @media (max-width: 576px) {
   .brand-logo {
     max-height: 30px;  /* Smaller on mobile */
   }
 }
+
+@media (min-width: 577px) and (max-width: 991px) {
+  .brand-logo {
+    max-height: 45px;  /* Slightly smaller on tablets */
+  }
+}
+
 
 .brand-logo {
   max-height: 40px;  /* Adjust as needed */
@@ -133,7 +141,7 @@ if ($result && $result->num_rows > 0) {
       <!-- Logo -->
       <div class="col-lg-3 d-none d-lg-flex align-items-center justify-content-center" style="background:rgb(9,46,32);">
   <a href="index.php" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
-    <img src="users/myimg/kj creations.png" alt="KJ CREATIONS" class="brand-logo me-2">
+    <img src="img/kj_final.png" alt="KJ CREATIONS" class="brand-logo me-2">
   </a>
 </div>
 
@@ -152,8 +160,8 @@ if ($result && $result->num_rows > 0) {
           </div>
           <div class="col-lg-5 px-5 text-end">
             <div class="d-inline-flex align-items-center py-2">
-              <a class="me-3" href="#"><i class="fab fa-facebook-f" style="color:rgb(244,107,44);"></i></a>
-              <a class="me-3" href="#"><i class="fab fa-instagram" style="color:rgb(244,107,44);"></i></a>
+              <a class="me-3" href="https://www.facebook.com/profile.php?id=61564031892075"><i class="fab fa-facebook-f" style="color:rgb(244,107,44);"></i></a>
+              <a class="me-3" href="https://www.instagram.com/kjcreations4all?igsh=bHQzanh5NDQzZ2V2"><i class="fab fa-instagram" style="color:rgb(244,107,44);"></i></a>
               <a class="me-3" href="#"><i class="fab fa-whatsapp" style="color:rgb(244,107,44);"></i></a>
               <a class="me-3" href="#"><i class="fa fa-envelope" style="color:rgb(244,107,44);"></i></a>
             </div>
@@ -163,7 +171,7 @@ if ($result && $result->num_rows > 0) {
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-custom">
           <a href="index.php" class="navbar-brand d-block d-lg-none">
-  <img src="users/myimg/kj creations.png" alt="KJ CREATIONS" class="brand-logo me-2">
+  <img src="img/kj_final.png" alt="KJ CREATIONS" class="brand-logo me-2">
 </a>
 
         <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -177,7 +185,7 @@ if ($result && $result->num_rows > 0) {
             <div class="navbar-nav mr-auto py-0">
               <a href="index.php" class="nav-item nav-link <?php if($current_page == 'index.php'){echo 'active';} ?>">Home</a>
               <a href="about.php" class="nav-item nav-link <?php if($current_page == 'about.php'){echo 'active';} ?>">About</a>
-              <a href="user_products.php" class="nav-item nav-link <?php if($current_page == 'products.php'){echo 'active';} ?>">Products</a>
+              <a href="user_products.php" class="nav-item nav-link <?php if($current_page == 'products.php' || $current_page == 'product_details.php'){echo 'active';} ?>">Products</a>
               <a href="user_offers.php" class="nav-item nav-link <?php if($current_page == 'user_offers.php'){echo 'active';} ?>">Offers & Reviews</a>
               <a href="contact.php" class="nav-item nav-link <?php if($current_page == 'contact.php'){echo 'active';} ?>">Contact</a>
             </div>
