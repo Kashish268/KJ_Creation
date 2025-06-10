@@ -14,12 +14,11 @@ if ($result && $result->num_rows > 0) {
     }
 } else {
     $headlines[] = [
-        'text' => 'Welcome to KJ Creations! Corporate Gifts | Traditional | Devotional | Best Quality | Fast Delivery | Contact: +91 96628 76676',
+        'text' => 'Welcome to KJ Creations! Corporate Gifts | Traditional | Devotional | Best Quality | Fast Delivery | Contact: +91 98986 98228',
         'color' => '#FFFFFF'
     ];
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,12 +39,11 @@ if ($result && $result->num_rows > 0) {
   <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
-  <!-- Custom CSS -->
   <style>
     body {
       font-family: "Open Sans", sans-serif;
       margin: 0;
-      padding-top: 200px; /* Adjust based on your header/marquee height */
+      padding-top: 200px;
     }
 
     .fixed-navbar {
@@ -54,186 +52,193 @@ if ($result && $result->num_rows > 0) {
       width: 100%;
       z-index: 9999;
       background: #fff;
-      box-shadow: 0 2px 8px rgba(9,46,32,0.08);
+      border-top: 5px solid #092e20;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .logo-section {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .logo-left {
+      background-color: #092e20;
+      width: 20%;
+    }
+
+    .logo-right {
+      background: #ffffff;
+      width: 80%;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    .logo-text {
+      font-size: 13px;
+      font-weight: 600;
+      color: #092e20;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 5px;
+    }
+
+    .brand-logo {
+      max-height: 60px;
+      width: auto;
+    }
+
+    @media (max-width: 576px) {
+      .brand-logo {
+        max-height: 40px;
+      }
     }
 
     .navbar-custom {
-      background: rgb(9,46,32);
+      background: #ffffff;
     }
 
     .navbar-custom .nav-link {
-      color: #fff !important;
+      color: #092e20 !important;
       text-transform: uppercase;
       margin-right: 20px;
+      font-weight: 600;
       transition: color 0.3s;
     }
 
     .navbar-custom .nav-link.active,
-    .navbar-custom .nav-link:hover,
-    .navbar-custom .nav-link:focus {
-      color: rgb(244,107,44) !important;
-      font-weight: bold;
+    .navbar-custom .nav-link:hover {
+      color: #f46b2c !important;
+    }
+
+    .contact-info-bar {
+      background-color: #092e20;
+      color: white;
+    }
+
+    .contact-info-bar i,
+    .contact-info-bar span,
+    .contact-info-bar a {
+      color: white;
     }
 
     .marquee-row {
-      background: rgb(244,107,44);
+      background: #092e20;
     }
 
     .marquee-row marquee {
-      color: #fff;
+      color: #f46b2c;
       font-weight: 600;
       padding: 4px 0;
       letter-spacing: 1px;
     }
 
-    h1, h2, h3, h4, h5, h6, span, a, p {
-      font-family: "Open Sans", sans-serif;
+    .navbar-toggler:focus {
+      box-shadow: none;
+      outline: none;
     }
 
-    
-.brand-logo {
-  max-height: 60px !important;  /* Increased height for desktop */
-  width: auto;
-}
+    .navbar-brand-mobile {
+      display: none;
+    }
 
-@media (max-width: 576px) {
-  .brand-logo {
-    max-height: 30px;  /* Smaller on mobile */
-  }
-}
+    @media (max-width: 576px) {
+      .navbar-brand-mobile {
+        display: flex !important;
+        align-items: center;
+      }
 
-@media (min-width: 577px) and (max-width: 991px) {
-  .brand-logo {
-    max-height: 45px;  /* Slightly smaller on tablets */
-  }
-}
-
-
-.brand-logo {
-  max-height: 40px;  /* Adjust as needed */
-  width: auto;
-}
-@media (max-width: 576px) {
-  .brand-logo {
-    max-height: 30px;  /* Smaller on mobile */
-  }
-}
-
-.navbar-toggler:focus {
-  box-shadow: none;
-  outline: none;
-  filter: brightness(0) invert(1);
-}
-
-
-
-
-
-
+      .logo-section {
+        display: none !important; /* completely hide green logo section on mobile */
+      }
+    }
   </style>
 </head>
+
 <body>
+  <div class="fixed-navbar">
+    <div class="container-fluid px-0">
+      <div class="row gx-0">
 
-<!-- Fixed Navbar Start -->
-<div class="fixed-navbar">
-  <div class="container-fluid px-0">
-    <div class="row gx-0">
-      <!-- Logo -->
-      <div class="col-lg-3 d-none d-lg-flex align-items-center justify-content-center" style="background:rgb(9,46,32);">
-  <a href="index.php" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
-    <img src="img/kj_final.png" alt="KJ CREATIONS" class="brand-logo me-2">
-  </a>
-</div>
-
-      <!-- Contact Info & Social -->
-      <div class="col-lg-9 px-0">
-        <div class="row gx-0 d-none d-lg-flex align-items-center" style="">
-          <div class="col-lg-7 px-5 text-start">
-            <div class="h-100 d-inline-flex align-items-center py-2 me-4">
-              <i class="fa fa-envelope" style="color:rgb(9,46,32);"></i>
-              <span class="mb-0" style="color:rgb(9,46,32);font-weight:600;margin-left:8px;">kjcreation4all@gmail.com</span>
-            </div>
-            <div class="h-100 d-inline-flex align-items-center py-2">
-              <i class="fa fa-phone-alt" style="color:rgb(9,46,32);"></i>
-              <span class="mb-0" style="color:rgb(9,46,32);font-weight:600;">+91 96628 76676</span>
-            </div>
-          </div>
-          <div class="col-lg-5 px-5 text-end">
-            <div class="d-inline-flex align-items-center py-2">
-              <a class="me-3" href="https://www.facebook.com/profile.php?id=61564031892075"><i class="fab fa-facebook-f" style="color:rgb(244,107,44);"></i></a>
-              <a class="me-3" href="https://www.instagram.com/kjcreations4all?igsh=bHQzanh5NDQzZ2V2"><i class="fab fa-instagram" style="color:rgb(244,107,44);"></i></a>
-              <a class="me-3" href="#"><i class="fab fa-whatsapp" style="color:rgb(244,107,44);"></i></a>
-              <a class="me-3" href="#"><i class="fa fa-envelope" style="color:rgb(244,107,44);"></i></a>
-            </div>
+        <!-- Logo section (desktop only) -->
+        <div class="col-lg-3 logo-section d-none d-lg-flex">
+          <div class="logo-left"></div>
+          <div class="logo-right">
+            <a href="#" class="navbar-brand w-100 m-0 p-0 d-flex align-items-center justify-content-center">
+              <img src="img/kj_final.png" alt="KJ CREATIONS" class="brand-logo">
+            </a>
+            <div class="logo-text">CORPORATE GIFT | TREDITIONAL | DEVOTIONAL</div>
           </div>
         </div>
 
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-custom">
-          <a href="index.php" class="navbar-brand d-block d-lg-none">
-  <img src="img/kj_final.png" alt="KJ CREATIONS" class="brand-logo me-2">
-</a>
+        <!-- Contact Info + Navbar + Marquee -->
+        <div class="col-lg-9 px-0">
+          <!-- Contact Info -->
+          <div class="row gx-0 d-none d-lg-flex align-items-center contact-info-bar">
+            <div class="col-lg-7 px-5 text-start">
+              <div class="h-100 d-inline-flex align-items-center py-2 me-4">
+                <i class="fa fa-envelope"></i>
+                <span class="mb-0 ms-2">kjcreation4all@gmail.com</span>
+              </div>
+              <div class="h-100 d-inline-flex align-items-center py-2">
+                <i class="fa fa-phone-alt"></i>
+                <span class="mb-0 ms-2">+91 98986 98228</span>
+              </div>
+            </div>
+            <div class="col-lg-5 px-5 text-end">
+              <div class="d-inline-flex align-items-center py-2">
+                  <a class="me-3" href="https://www.facebook.com/profile.php?id=61564031892075"><i class="fab fa-facebook-f"></i></a>
+              <a class="me-3" href="https://www.instagram.com/kjcreations4all?igsh=bHQzanh5NDQzZ2V2"><i class="fab fa-instagram"></i></a>
+              <a class="me-3" href="https://chat.whatsapp.com/F0xId36zZE23wq7PiN4LwC"><i class="fab fa-whatsapp"></i></a>
+              <!-- <a class="me-3" href="#"><i class="fa fa-envelope"></i></a> -->
+              </div>
+            </div>
+          </div>
 
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-    <i class="fas fa-bars" style="color:#fff; font-size: 24px;"></i>
-</button>
+          <!-- Navbar -->
+          <nav class="navbar navbar-expand-lg navbar-custom px-3">
+            <!-- Mobile view: Logo and Toggle in same line -->
+            <div class="d-flex w-100 justify-content-between align-items-center d-lg-none">
+              <a href="#" class="navbar-brand navbar-brand-mobile d-flex align-items-center">
+                <img src="img/kj_final.png" alt="KJ CREATIONS" class="brand-logo me-2">
 
+              </a>
 
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <i class="fas fa-bars" style="color:#092e20; font-size: 24px;"></i>
+              </button>
+            </div>
 
-
-          <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-            <div class="navbar-nav mr-auto py-0">
-              <a href="index.php" class="nav-item nav-link <?php if($current_page == 'index.php'){echo 'active';} ?>">Home</a>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+              <div class="navbar-nav mr-auto py-0">
+                 <a href="index.php" class="nav-item nav-link <?php if($current_page == 'index.php'){echo 'active';} ?>">Home</a>
               <a href="about.php" class="nav-item nav-link <?php if($current_page == 'about.php'){echo 'active';} ?>">About</a>
-              <a href="user_products.php" class="nav-item nav-link <?php if($current_page == 'products.php' || $current_page == 'product_details.php'){echo 'active';} ?>">Products</a>
+              <a href="user_products.php" class="nav-item nav-link <?php if($current_page == 'user_products.php' || $current_page == 'product_details.php'){echo 'active';} ?>">Products</a>
               <a href="user_offers.php" class="nav-item nav-link <?php if($current_page == 'user_offers.php'){echo 'active';} ?>">Offers & Reviews</a>
               <a href="contact.php" class="nav-item nav-link <?php if($current_page == 'contact.php'){echo 'active';} ?>">Contact</a>
+              </div>
+              <a href="login.php" target="_blank" class="btn btn-primary py-2 px-4 rounded-pill d-none d-lg-block" style="background:linear-gradient(90deg, #FF7F50, #FF4500);border:none;">LOGIN</a>
             </div>
-            <a href="login.php" target="_blank" class="btn btn-primary py-2 px-4 rounded-pill d-none d-lg-block" style="background:linear-gradient(90deg, #FF7F50, #FF4500);border:none;">LOGIN</a>
-          </div>
-        </nav>
+          </nav>
 
-        <!-- Marquee -->
-        <div class="row gx-0 marquee-row">
-          <div class="col-12 ">
-            <marquee>
+          <!-- Marquee -->
+          <div class="row gx-0 marquee-row">
+            <div class="col-12">
+               <marquee>
   <?php
     foreach ($headlines as $headline) {
         echo "<span style='color: {$headline['color']}; margin-right: 50px;'>{$headline['text']}</span>";
     }
   ?>
 </marquee>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
-</div>
-<!-- Fixed Navbar End -->
 
-<!-- Bootstrap JS -->
-
-<!-- Optional jQuery (if needed) -->
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
- document.addEventListener('DOMContentLoaded', function () {
-  const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-  const navbarCollapse = document.getElementById('navbarCollapse');
-  const bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggle: false });
-
-  navLinks.forEach(function (link) {
-    link.addEventListener('click', function () {
-      bsCollapse.hide();
-    });
-  });
-});
-
-
-</script>
-
-
-
+  <!-- Bootstrap Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

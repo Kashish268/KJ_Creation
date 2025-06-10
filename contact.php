@@ -103,7 +103,7 @@ Get in touch with us today to explore our premium custom gift solutions and make
       </div>
     </section><!-- #contact -->
     <?php include_once 'footer.php'; ?>
-    <a href="" class="whatsapp-fixed" target="_blank" title="WhatsApp">
+    <a href="https://chat.whatsapp.com/F0xId36zZE23wq7PiN4LwC" class="whatsapp-fixed" target="_blank" title="WhatsApp">
   <i class="fab fa-whatsapp"></i>
 </a>
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>

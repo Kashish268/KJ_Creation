@@ -396,7 +396,7 @@ if ($relatedResult->num_rows > 0) { // Only show section if there are results
 </main>
 
 <?php include 'footer.php'; ?>
-<a href="" class="whatsapp-fixed" target="_blank" title="WhatsApp">
+<a href="https://chat.whatsapp.com/F0xId36zZE23wq7PiN4LwC" class="whatsapp-fixed" target="_blank" title="WhatsApp">
   <i class="fab fa-whatsapp"></i>
 </a>
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
