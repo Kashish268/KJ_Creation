@@ -50,10 +50,11 @@ if ($result && $result->num_rows > 0) {
       position: fixed;
       top: 0;
       width: 100%;
-      z-index: 9999;
+       z-index: 3000; 
       background: #fff;
       border-top: 5px solid #092e20;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Stronger shadow for visibility */
+
     }
 
     .logo-section {
@@ -67,20 +68,35 @@ if ($result && $result->num_rows > 0) {
     }
 
     .logo-right {
-      background: #ffffff;
-      width: 80%;
-      padding: 10px 0;
-      text-align: center;
-    }
+  background: #ffffff;
+  width: 80%;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 
     .logo-text {
-      font-size: 13px;
-      font-weight: 600;
-      color: #092e20;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 5px;
-    }
+  font-size: 13px;
+  font-weight: 600;
+  color: #092e20;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 5px;
+  text-align: center;
+  padding: 0 10px; /* Add left and right padding */
+  word-break: break-word;
+}
+
+@media (max-width: 576px) {
+  .logo-text {
+    padding: 0 20px;
+    font-size: 12px; /* Slightly smaller if needed */
+  }
+}
+
 
     .brand-logo {
       max-height: 60px;
@@ -160,18 +176,21 @@ if ($result && $result->num_rows > 0) {
       <div class="row gx-0">
 
         <!-- Logo section (desktop only) -->
-        <div class="col-lg-3 logo-section d-none d-lg-flex">
+        <div class="col-lg-4 logo-section d-none d-lg-flex">
           <div class="logo-left"></div>
           <div class="logo-right">
-            <a href="#" class="navbar-brand w-100 m-0 p-0 d-flex align-items-center justify-content-center">
-              <img src="img/kj_final.png" alt="KJ CREATIONS" class="brand-logo">
-            </a>
-            <div class="logo-text">CORPORATE GIFT | TREDITIONAL | DEVOTIONAL</div>
+           <a href="index.php" class="navbar-brand m-0 p-0 d-flex align-items-center justify-content-center">
+  <img src="img/kj_final.png" alt="KJ CREATIONS" class="brand-logo">
+</a>
+<a href="user_products.php" style="text-decoration: none;">
+  <div class="logo-text">CORPORATE | CUSTOMIZED | PERSONAL GIFTS</div>
+</a>
+
           </div>
         </div>
 
         <!-- Contact Info + Navbar + Marquee -->
-        <div class="col-lg-9 px-0">
+        <div class="col-lg-8 px-0">
           <!-- Contact Info -->
           <div class="row gx-0 d-none d-lg-flex align-items-center contact-info-bar">
             <div class="col-lg-7 px-5 text-start">

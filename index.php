@@ -274,7 +274,92 @@ $offer = mysqli_fetch_assoc($result);
 
       </div>
       </section>
-      <section id="services">
+     
+      <!-- offers -->
+
+      <section id="offers" class="py-5" style="background-color:#f7f7f7;">
+    <div class="container-fluid">
+      <!-- <header class="text-center mb-4"> -->
+      <header class="section-header">
+        <h3 class="section-title" style="color:black;">Exclusive Offers</h3>
+
+        <!-- <h5 style="color:black; text-align:center;">Grab the best deals and enjoy top-tier support, available 24/7 for your convenience.</h5> -->
+      </header>
+      <div class="offer-support-section">
+        <div class="offer-details">
+          <?php if ($offer): ?>
+            <h4>🔥 <?= htmlspecialchars($offer['title']); ?> - <span style="color: red;"><?= htmlspecialchars($offer['offer_percentage']); ?> OFF</span></h4>
+            <p><strong>Offer Code:</strong> <?= htmlspecialchars($offer['offer_code']); ?></p>
+            <p><?= htmlspecialchars($offer['description']); ?></p>
+            <img src="uploaded_images/<?= htmlspecialchars($offer['image']); ?>" alt="Offer Image">
+          <?php else: ?>
+            <h4>No active offers available.</h4>
+          <?php endif; ?>
+        </div>
+
+        <div class="support-details p-4  shadow text-center">
+    <!-- <h4>💡 Why Choose Us?</h4> -->
+    <br>
+    <div class="row my-3">
+        <div class="col-6">
+            <h2 style="color: rgb(244, 107, 44);"><span data-toggle="counter-up">200</span>+</h2>
+            <p style="color:rgb(244, 107, 44);;"><b>Total Products</b></p>
+        </div>
+        <div class="col-6">
+            <h2 style="color: rgb(244, 107, 44);"><span data-toggle="counter-up">10,000</span>+</h2>
+            <p style="color:rgb(244, 107, 44);;"><b>Satisfied Customers</b></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h2 style="color: rgb(244, 107, 44);"><span data-toggle="counter-up">24</span></h2>
+            <p style="color:rgb(244, 107, 44);;"><b>Hours of Support</b></p>
+        </div>
+    </div>
+<br><br>
+    <!-- Unique Offer Quotes Section -->
+    <p style="font-size: 24px; font-weight: bold; background: -webkit-linear-gradient(45deg,rgb(255, 254, 254),rgb(233, 233, 233)); -webkit-background-clip: text; color: transparent; text-align: center; line-height: 1;">
+<!-- <span style="font-size: 48px; font-weight: bold; color: white;">&#8220;</span>  -->
+Unbeatable offers, unmatched support<br><br>
+<span style="display: block; font-size: 24px;">—because you deserve both!
+    <!-- <span style="font-size: 48px; font-weight: bold; color: white;">&#8221;</span> -->
+</span>
+</p>
+
+    <p class="mt-3" style="color:rgba(239, 238, 238, 0.9);">We ensure top-notch service and <b>quick resolutions</b> for all your concerns!</p>
+</div>
+
+
+      </div>
+    </div>
+  </section>
+
+
+    <section id="clients" class="wow fadeInUp">
+      <div class="container-fuild">
+
+        <header class="section-header" style="padding-bottom: 30px;">
+          <h3  class="section-title" style="color:black; padding-top: -40px;">Our Clients</h3>
+        </header>
+<?php
+$query = "SELECT image FROM compony_details"; // Assuming 'logo' column stores image paths
+$result = mysqli_query($conn, $query);?>
+
+<div class="owl-carousel clients-carousel">
+    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+        <img src="uploaded_images/<?php echo $row['image']; ?>" alt="Client Logo">
+    <?php } ?>
+</div>
+
+      </div>
+    </section><!-- #clients -->
+<!-- testimonials -->
+
+       <?php include 'testimonal.php'?>
+
+
+ <section id="services">
      
  <!-- #services -->
 
@@ -339,87 +424,7 @@ $offer = mysqli_fetch_assoc($result);
 </div>
 
     </section>
-    <section id="clients" class="wow fadeInUp">
-      <div class="container-fuild">
 
-        <header class="section-header" style="padding-bottom: 30px;">
-          <h3  class="section-title" style="color:black; padding-top: -40px;">Our Clients</h3>
-        </header>
-<?php
-$query = "SELECT image FROM compony_details"; // Assuming 'logo' column stores image paths
-$result = mysqli_query($conn, $query);?>
-
-<div class="owl-carousel clients-carousel">
-    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-        <img src="uploaded_images/<?php echo $row['image']; ?>" alt="Client Logo">
-    <?php } ?>
-</div>
-
-      </div>
-    </section><!-- #clients -->
-<!-- testimonials -->
-
-       <?php include 'testimonal.php'?>
-
-<!-- offers -->
-
-<section id="offers" class="py-5" style="background-color:#f7f7f7;">
-    <div class="container-fluid">
-      <!-- <header class="text-center mb-4"> -->
-      <header class="section-header">
-        <h3 class="section-title" style="color:black;">Exclusive Offers</h3>
-
-        <!-- <h5 style="color:black; text-align:center;">Grab the best deals and enjoy top-tier support, available 24/7 for your convenience.</h5> -->
-      </header>
-      <div class="offer-support-section">
-        <div class="offer-details">
-          <?php if ($offer): ?>
-            <h4>🔥 <?= htmlspecialchars($offer['title']); ?> - <span style="color: red;"><?= htmlspecialchars($offer['offer_percentage']); ?> OFF</span></h4>
-            <p><strong>Offer Code:</strong> <?= htmlspecialchars($offer['offer_code']); ?></p>
-            <p><?= htmlspecialchars($offer['description']); ?></p>
-            <img src="uploaded_images/<?= htmlspecialchars($offer['image']); ?>" alt="Offer Image">
-          <?php else: ?>
-            <h4>No active offers available.</h4>
-          <?php endif; ?>
-        </div>
-
-        <div class="support-details p-4  shadow text-center">
-    <!-- <h4>💡 Why Choose Us?</h4> -->
-    <br>
-    <div class="row my-3">
-        <div class="col-6">
-            <h2 style="color: rgb(244, 107, 44);"><span data-toggle="counter-up">200</span>+</h2>
-            <p style="color:rgb(244, 107, 44);;"><b>Total Products</b></p>
-        </div>
-        <div class="col-6">
-            <h2 style="color: rgb(244, 107, 44);"><span data-toggle="counter-up">10,000</span>+</h2>
-            <p style="color:rgb(244, 107, 44);;"><b>Satisfied Customers</b></p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12">
-            <h2 style="color: rgb(244, 107, 44);"><span data-toggle="counter-up">24</span></h2>
-            <p style="color:rgb(244, 107, 44);;"><b>Hours of Support</b></p>
-        </div>
-    </div>
-<br><br>
-    <!-- Unique Offer Quotes Section -->
-    <p style="font-size: 24px; font-weight: bold; background: -webkit-linear-gradient(45deg,rgb(255, 254, 254),rgb(233, 233, 233)); -webkit-background-clip: text; color: transparent; text-align: center; line-height: 1;">
-<!-- <span style="font-size: 48px; font-weight: bold; color: white;">&#8220;</span>  -->
-Unbeatable offers, unmatched support<br><br>
-<span style="display: block; font-size: 24px;">—because you deserve both!
-    <!-- <span style="font-size: 48px; font-weight: bold; color: white;">&#8221;</span> -->
-</span>
-</p>
-
-    <p class="mt-3" style="color:rgba(239, 238, 238, 0.9);">We ensure top-notch service and <b>quick resolutions</b> for all your concerns!</p>
-</div>
-
-
-      </div>
-    </div>
-  </section>
 
  
 
