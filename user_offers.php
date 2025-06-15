@@ -47,6 +47,8 @@ $offer = mysqli_fetch_assoc($result);
         display: flex;
         flex-wrap: wrap;
         margin: 0;
+        
+        
     }
 
     .offer-details, .support-details {

@@ -97,17 +97,29 @@ if ($result && $result->num_rows > 0) {
   }
 }
 
-
-    .brand-logo {
+    /* .brand-logo {
       max-height: 60px;
       width: auto;
-    }
+    } */
 
-    @media (max-width: 576px) {
-      .brand-logo {
-        max-height: 40px;
-      }
-    }
+    /* .brand-logo {
+      max-height: 72px;
+      width: 290px;
+    } */
+
+
+   .brand-logo {
+  width: 100%;
+  max-width: 290px;  /* Restrict maximum width */
+  height: auto;      /* Maintain aspect ratio */
+}
+
+@media (max-width: 576px) {
+  .brand-logo {
+    max-width: 100px; /* Reduce width for mobile */
+  }
+}
+
 
     .navbar-custom {
       background: #ffffff;
