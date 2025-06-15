@@ -356,7 +356,7 @@ $result = mysqli_query($conn, $query);?>
     </section><!-- #clients -->
 <!-- testimonials -->
 
-       <?php include 'testimonal.php'?>
+      
 
 
  <section id="services">

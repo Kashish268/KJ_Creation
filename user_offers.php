@@ -168,10 +168,7 @@ Unbeatable offers, unmatched support<br><br>
 
         </body>
 
-        <?php 
-// In your main file where you want to include this:
-include('testimonal.php');
-?>
+        
 <?php include 'footer.php'; ?>
 <a href="https://chat.whatsapp.com/F0xId36zZE23wq7PiN4LwC" class="whatsapp-fixed" target="_blank" title="WhatsApp">
   <i class="fab fa-whatsapp"></i>
