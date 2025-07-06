@@ -43,18 +43,22 @@ if ($result && $result->num_rows > 0) {
     body {
       font-family: "Open Sans", sans-serif;
       margin: 0;
-      padding-top: 200px;
+      padding-top: 160px; /* Fixed Navbar total height */
     }
 
     .fixed-navbar {
       position: fixed;
       top: 0;
       width: 100%;
-       z-index: 3000; 
+      z-index: 3000;
       background: #fff;
       border-top: 5px solid #092e20;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Stronger shadow for visibility */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
 
+    /* Remove default padding from container and rows */
+    .no-padding {
+      padding: 0 !important;
     }
 
     .logo-section {
@@ -64,65 +68,41 @@ if ($result && $result->num_rows > 0) {
 
     .logo-left {
       background-color: #092e20;
-      width: 20%;
+      width: 12%;
     }
 
     .logo-right {
-  background: #ffffff;
-  width: 80%;
-  padding: 10px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
+      background: #ffffff;
+      width: 88%;
+      padding: 10px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
 
     .logo-text {
-  font-size: 13px;
-  font-weight: 600;
-  color: #092e20;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-top: 5px;
-  text-align: center;
-  padding: 0 10px; /* Add left and right padding */
-  word-break: break-word;
-}
-
-@media (max-width: 576px) {
-  .logo-text {
-    padding: 0 20px;
-    font-size: 12px; /* Slightly smaller if needed */
-  }
-}
-
-    /* .brand-logo {
-      max-height: 60px;
-      width: auto;
-    } */
-
-    /* .brand-logo {
-      max-height: 72px;
-      width: 290px;
-    } */
-
+      font-size: 13px;
+      font-weight: 600;
+      color: #092e20;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 5px;
+      text-align: center;
+      padding: 0 10px;
+      word-break: break-word;
+    }
 
    .brand-logo {
-  width: 100%;
-  max-width: 290px;  /* Restrict maximum width */
-  height: auto;      /* Maintain aspect ratio */
+  max-height: 80px; /* पहले 65px थी */
+  max-width: 220px; /* optional, control karne ke liye */
+  width: auto;
+  padding: 5px 0;
 }
-
-@media (max-width: 576px) {
-  .brand-logo {
-    max-width: 100px; /* Reduce width for mobile */
-  }
-}
-
 
     .navbar-custom {
       background: #ffffff;
+      padding: 0 !important;
     }
 
     .navbar-custom .nav-link {
@@ -130,12 +110,19 @@ if ($result && $result->num_rows > 0) {
       text-transform: uppercase;
       margin-right: 20px;
       font-weight: 600;
-      transition: color 0.3s;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 6px 12px;
+      border-radius: 2px;
+      display: inline-block;
     }
 
-    .navbar-custom .nav-link.active,
-    .navbar-custom .nav-link:hover {
-      color: #f46b2c !important;
+    .navbar-custom .nav-link:hover,
+    .navbar-custom .nav-link.active {
+      background: #f46b2c;
+      color: #fff !important;
+      border-radius: 4px;
+      padding: 4px 10px;
     }
 
     .contact-info-bar {
@@ -143,7 +130,6 @@ if ($result && $result->num_rows > 0) {
       color: white;
     }
 
-    .contact-info-bar i,
     .contact-info-bar span,
     .contact-info-bar a {
       color: white;
@@ -169,14 +155,99 @@ if ($result && $result->num_rows > 0) {
       display: none;
     }
 
+    .toggler-icon {
+      color: #092e20;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .login-col {
+      background: linear-gradient(90deg, #FF7F50, #FF4500);
+      cursor: pointer;
+      padding: 0 !important;
+      min-width: 140px; /* Restore original login button width */
+    }
+
+    .login-col a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      text-transform: uppercase;
+      width: 100%;
+      display: block;
+      padding: 12px 15px; /* Added horizontal padding for better appearance */
+      text-align: center;
+      margin: 0;
+      transition: none; 
+    }
+
+    .login-col a:hover {
+  color: #fff !important;
+  background: linear-gradient(90deg, #FF7F50, #FF4500) !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+
+    /* Fixed navbar container - restore px-3 for mobile */
+    .navbar-container {
+      padding: 0 !important;
+    }
+
+    /* Mobile specific padding */
+    @media (max-width: 991px) {
+      .navbar-container {
+        padding: 0 1rem !important; /* px-3 equivalent for mobile */
+      }
+    }
+
+    /* Adjusted navbar content with proper spacing */
+    .navbar-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 0 20px; /* Only internal padding */
+    }
+
+    /* Navigation links container with proper alignment */
+    .nav-links-container {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+
     @media (max-width: 576px) {
+      .logo-text {
+        padding: 0 20px;
+        font-size: 12px;
+      }
+
+      .brand-logo {
+        max-width: 90px;
+      }
+
       .navbar-brand-mobile {
         display: flex !important;
         align-items: center;
       }
 
       .logo-section {
-        display: none !important; /* completely hide green logo section on mobile */
+        display: none !important;
+      }
+
+      .navbar-content {
+        padding: 0 15px;
+      }
+
+      /* Additional mobile padding for navbar container */
+      .navbar-container {
+        padding: 0 1rem !important;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .navbar-custom .nav-link {
+        margin: 5px 10px;
       }
     }
   </style>
@@ -184,87 +255,107 @@ if ($result && $result->num_rows > 0) {
 
 <body>
   <div class="fixed-navbar">
-    <div class="container-fluid px-0">
-      <div class="row gx-0">
+    <div class="container-fluid no-padding">
+      <div class="row g-0">
 
         <!-- Logo section (desktop only) -->
         <div class="col-lg-4 logo-section d-none d-lg-flex">
           <div class="logo-left"></div>
           <div class="logo-right">
-           <a href="index.php" class="navbar-brand m-0 p-0 d-flex align-items-center justify-content-center">
-  <img src="img/kj_final.png" alt="KJ CREATIONS" class="brand-logo">
-</a>
-<a href="user_products.php" style="text-decoration: none;">
-  <div class="logo-text">CORPORATE | CUSTOMIZED | PERSONAL GIFTS</div>
-</a>
-
+            <a href="index.php" class="navbar-brand m-0 p-0 d-flex align-items-center justify-content-center">
+              <img src="img/kj_final.png" alt="KJ CREATIONS" class="brand-logo">
+            </a>
+            <a href="user_products.php" style="text-decoration: none;">
+              <div class="logo-text">CORPORATE | CUSTOMIZED | PERSONAL GIFTS</div>
+            </a>
           </div>
         </div>
 
         <!-- Contact Info + Navbar + Marquee -->
-        <div class="col-lg-8 px-0">
+        <div class="col-lg-8 no-padding">
           <!-- Contact Info -->
-          <div class="row gx-0 d-none d-lg-flex align-items-center contact-info-bar">
+          <div class="row g-0 d-none d-lg-flex align-items-center contact-info-bar">
             <div class="col-lg-7 px-5 text-start">
               <div class="h-100 d-inline-flex align-items-center py-2 me-4">
-                <i class="fa fa-envelope"></i>
+                <i class="fa fa-envelope" style="color: #f46b2c;"></i>
                 <span class="mb-0 ms-2">kjcreation4all@gmail.com</span>
               </div>
               <div class="h-100 d-inline-flex align-items-center py-2">
-                <i class="fa fa-phone-alt"></i>
+                <i class="fas fa-mobile" style="color: #f46b2c;"></i>
                 <span class="mb-0 ms-2">+91 98986 98228</span>
               </div>
             </div>
             <div class="col-lg-5 px-5 text-end">
               <div class="d-inline-flex align-items-center py-2">
-                  <a class="me-3" href="https://www.facebook.com/profile.php?id=61564031892075"><i class="fab fa-facebook-f"></i></a>
-              <a class="me-3" href="https://www.instagram.com/kjcreations4all?igsh=bHQzanh5NDQzZ2V2"><i class="fab fa-instagram"></i></a>
-              <a class="me-3" href="https://chat.whatsapp.com/F0xId36zZE23wq7PiN4LwC"><i class="fab fa-whatsapp"></i></a>
-              <!-- <a class="me-3" href="#"><i class="fa fa-envelope"></i></a> -->
+                <a class="me-3" href="https://www.facebook.com/profile.php?id=61564031892075" target="_blank">
+                  <img src="users/myimg/facebook.png" alt="Facebook" style="height: 22px; border-radius:5px;">
+                </a>
+                <a class="me-3" href="https://www.instagram.com/kjcreations4all/" target="_blank">
+                  <img src="users/myimg/instagram_icon.png" alt="Instagram" style="height: 22px;">
+                </a>
+                <a class="me-3" href="https://chat.whatsapp.com/F0xId36zZE23wq7PiN4LwC" target="_blank">
+                  <img src="users/myimg/whataspp.png" alt="WhatsApp" style="height: 22px; border-radius:5px;">
+                </a>
               </div>
             </div>
           </div>
 
           <!-- Navbar -->
-          <nav class="navbar navbar-expand-lg navbar-custom px-3">
-            <!-- Mobile view: Logo and Toggle in same line -->
+          <nav class="navbar navbar-expand-lg navbar-custom navbar-custom px-0">
+            <!-- Mobile header -->
             <div class="d-flex w-100 justify-content-between align-items-center d-lg-none">
               <a href="#" class="navbar-brand navbar-brand-mobile d-flex align-items-center">
                 <img src="img/kj_final.png" alt="KJ CREATIONS" class="brand-logo me-2">
-
               </a>
-
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <i class="fas fa-bars" style="color:#092e20; font-size: 24px;"></i>
+                <i class="fas fa-bars toggler-icon"></i>
               </button>
             </div>
 
-            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-              <div class="navbar-nav mr-auto py-0">
-                 <a href="index.php" class="nav-item nav-link <?php if($current_page == 'index.php'){echo 'active';} ?>">Home</a>
-              <a href="about.php" class="nav-item nav-link <?php if($current_page == 'about.php'){echo 'active';} ?>">About</a>
-              <a href="user_products.php" class="nav-item nav-link <?php if($current_page == 'user_products.php' || $current_page == 'product_details.php'){echo 'active';} ?>">Products</a>
-              <a href="user_offers.php" class="nav-item nav-link <?php if($current_page == 'user_offers.php'){echo 'active';} ?>">Offers & Reviews</a>
-              <a href="contact.php" class="nav-item nav-link <?php if($current_page == 'contact.php'){echo 'active';} ?>">Contact</a>
+            <!-- Desktop navbar content -->
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <div class="navbar-content d-none d-lg-flex">
+                <div class="nav-links-container">
+                  <div class="navbar-nav">
+                    <a href="index.php" class="nav-item nav-link <?php if($current_page == 'index.php'){echo 'active';} ?>">Home</a>
+                    <a href="about.php" class="nav-item nav-link <?php if($current_page == 'about.php'){echo 'active';} ?>">About</a>
+                    <a href="user_products.php" class="nav-item nav-link <?php if($current_page == 'user_products.php' || $current_page == 'product_details.php'){echo 'active';} ?>">Products</a>
+                    <a href="user_offers.php" class="nav-item nav-link <?php if($current_page == 'user_offers.php'){echo 'active';} ?>">Offers & Reviews</a>
+                    <a href="contact.php" class="nav-item nav-link <?php if($current_page == 'contact.php'){echo 'active';} ?>">Contact</a>
+                  </div>
+                </div>
+                <div class="login-col d-flex align-items-center">
+                  <a href="login.php" target="_blank" style="text-decoration:none;">LOGIN →</a>
+                </div>
               </div>
-              <a href="login.php" target="_blank" class="btn btn-primary py-2 px-4 rounded-pill d-none d-lg-block" style="background:linear-gradient(90deg, #FF7F50, #FF4500);border:none;">LOGIN</a>
+              
+              <!-- Mobile navbar content -->
+              <div class="d-block d-lg-none w-100">
+                <div class="navbar-nav py-2">
+                  <a href="index.php" class="nav-item nav-link <?php if($current_page == 'index.php'){echo 'active';} ?>">Home</a>
+                  <a href="about.php" class="nav-item nav-link <?php if($current_page == 'about.php'){echo 'active';} ?>">About</a>
+                  <a href="user_products.php" class="nav-item nav-link <?php if($current_page == 'user_products.php' || $current_page == 'product_details.php'){echo 'active';} ?>">Products</a>
+                  <a href="user_offers.php" class="nav-item nav-link <?php if($current_page == 'user_offers.php'){echo 'active';} ?>">Offers & Reviews</a>
+                  <a href="contact.php" class="nav-item nav-link <?php if($current_page == 'contact.php'){echo 'active';} ?>">Contact</a>
+                </div>
+                <div class="text-center pb-3">
+                  <a href="login.php" target="_blank" class="btn btn-primary py-2 px-4 rounded-pill" style="background:linear-gradient(90deg, #FF7F50, #FF4500);border:none; text-decoration:none;">LOGIN</a>
+                </div>
+              </div>
             </div>
           </nav>
 
           <!-- Marquee -->
-          <div class="row gx-0 marquee-row">
+          <div class="row g-0 marquee-row">
             <div class="col-12">
-               <marquee>
-  <?php
-    foreach ($headlines as $headline) {
-        echo "<span style='color: {$headline['color']}; margin-right: 50px;'>{$headline['text']}</span>";
-    }
-  ?>
-</marquee>
+              <marquee>
+                <?php foreach ($headlines as $headline) {
+                  echo "<span style='color: {$headline['color']}; margin-right: 50px;'>{$headline['text']}</span>";
+                } ?>
+              </marquee>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>

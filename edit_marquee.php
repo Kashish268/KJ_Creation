@@ -169,8 +169,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
     <?php include 'sidebar.php'; ?>
     <section id="content">
         <?php include 'navbar.php'; ?>
-        <main>
-            <h2 style="color: rgb(244, 107, 44); margin-bottom: 20px;">Edit Headline</h2>
+       <main>
+    <div style="margin-bottom: 30px;">
+        <h2 style="text-align: left; color: rgb(244, 107, 44); font-size:  36px; font-weight: 600; margin-bottom: 10px;">Edit Headlines</h2>
+        <p style="text-align: left; color: #c4c4c4; font-size: 1rem;">
+            <a href="marquee.php" style="text-decoration: none; color: #c4c4c4;">Headlines</a> 
+            <span style="margin: 0 8px;">&gt;</span>
+            <span style="color: rgb(244, 107, 44);">Edit Headlines</span>
+        </p>
+    </div>
             <form method="post">
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                 <label for="description">Enter Text:</label>

@@ -66,24 +66,7 @@ include 'database/config.php';
             </div>
           </div>
 
-          <div class="col-md-4 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="about-col">
-              <div class="img">
-                <img src="" alt="" class="img-fluid">
-                <div class="icon"><i class="ion-ios-cart-outline"></i></div> 
-<!-- Icon for products -->
-              </div>
-              <h2 class="title"><a href="#">Our Products</a></h2>
-              <p>
-              We offer high-quality products crafted with precision, 
-              ensuring durability and exceptional standards. We make premium gifts accessible 
-              by offering them at competitive prices,
-               without compromising on quality. 
-               Plus, with our exclusive offers, 
-               you can enjoy even greater value on our products.
-              </p>
-            </div>
-          </div>
+         
 
           <div class="col-md-4 wow fadeInUp" data-wow-delay="0.2s">
             <div class="about-col">
@@ -95,6 +78,25 @@ include 'database/config.php';
               <p>
               We aspire to be the go-to provider for personalized corporate and promotional gifts, renowned for creativity, quality, and exceptional service. Our vision is to create memorable experiences for our clients through innovative and tailor-made gift solutions.
 
+              </p>
+            </div>
+          </div>
+
+           <div class="col-md-4 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="about-col">
+              <div class="img">
+                <img src="" alt="" class="img-fluid">
+                <div class="icon"><i class="ion-ios-cart-outline"></i></div> 
+<!-- Icon for products -->
+              </div>
+              <h2 class="title"><a href="#">Our Products</a></h2>
+              <p>
+              We offer high-quality products crafted with precision, 
+              ensuring exceptional standards. We make premium gifts accessible 
+              by offering them at competitive prices,
+               without compromising on quality. 
+               Plus, with our exclusive offers, 
+               you can enjoy even greater value on our products.
               </p>
             </div>
           </div>
@@ -168,7 +170,18 @@ include 'database/config.php';
 </div>
 
     </section>
-    <section id="clients" class="wow fadeInUp">
+    <section id="clients" class="wow fadeInUp" 
+    style="padding-bottom: 45px;
+  background: linear-gradient(
+      to right, 
+      rgba(233, 78, 6, 0.681),  
+      rgba(255, 255, 255, 0.7),
+      rgba(233, 78, 6, 0.681)     
+    ),
+    url('users/myimg/client_background.png') center center repeat;
+  background-size: contain;
+  background-attachment: fixed;
+  color: black;">
       <div class="container-fuild">
 
         <header class="section-header" style="padding-bottom: 30px;">

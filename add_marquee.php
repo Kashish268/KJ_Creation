@@ -15,9 +15,9 @@ if (isset($_POST['sub'])) {
     $stmt = $conn->prepare("INSERT INTO headlines (text_value, color_code) VALUES (?, ?)");
     $stmt->bind_param("ss", $text_value, $color_code);
     if ($stmt->execute()) {
-        echo "<script>alert('Headline added successfully!');</script>";
+        echo "<script>alert('Headline added successfully!'); window.location.href='marquee.php';</script>";
     } else {
-        echo "<script>alert('Error: " . $conn->error . "');</script>";
+        echo "<script>alert('Error: " . $conn->error . "'); window.location.href='marquee.php';</script>";
     }
     $stmt->close();
 }
@@ -162,7 +162,7 @@ if (isset($_POST['sub'])) {
     <div style="margin-bottom: 30px;">
         <h2 style="text-align: left; color: rgb(244, 107, 44); font-size:  36px; font-weight: 600; margin-bottom: 10px;">Add Headlines</h2>
         <p style="text-align: left; color: #c4c4c4; font-size: 1rem;">
-            <a href="offers.php" style="text-decoration: none; color: #c4c4c4;">Headlines</a> 
+            <a href="marquee.php" style="text-decoration: none; color: #c4c4c4;">Headlines</a> 
             <span style="margin: 0 8px;">&gt;</span>
             <span style="color: rgb(244, 107, 44);">Add Headlines</span>
         </p>

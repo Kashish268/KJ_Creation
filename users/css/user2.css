@@ -132,12 +132,11 @@ h6 {
   margin: 0 0 20px 0;
   padding: 0;
 }
-
-/* Back to top button */
+/* WhatsApp Fixed Button */
 .whatsapp-fixed {
   position: fixed;
-  left: 15px;
-  bottom: 15px;
+  right: 15px;         /* Right side */
+  bottom: 70px;        /* Higher up (so Back to Top is below it) */
   background: #25d366;
   color: #fff;
   width: 44px;
@@ -152,24 +151,20 @@ h6 {
   justify-content: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   transition: background 0.5s;
-}
-.whatsapp-fixed,
-.whatsapp-fixed:focus,
-.whatsapp-fixed:active,
-.whatsapp-fixed:hover {
   text-decoration: none !important;
   border: none !important;
   outline: none !important;
-  box-shadow: none !important;
 }
+
 .whatsapp-fixed i {
-  padding-top: 0;
   color: #fff;
 }
 
+/* Back to Top Button */
 .back-to-top {
   position: fixed;
-  display: none;
+  right: 15px;         /* Align with WhatsApp */
+  bottom: 15px;        /* Below WhatsApp */
   background: rgb(244, 107, 44);
   color: #fff;
   width: 44px;
@@ -178,10 +173,9 @@ h6 {
   line-height: 1;
   font-size: 16px;
   border-radius: 50%;
-  right: 15px;
-  bottom: 15px;
   transition: background 0.5s;
   z-index: 11;
+  display: none;       /* Controlled by JS */
 }
 
 .back-to-top i {
@@ -189,56 +183,15 @@ h6 {
   color: #fff;
 }
 
-/* Prelaoder */
-
-#preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 9999;
-  overflow: hidden;
-  background: #fff;
+/* Optional hover states */
+.whatsapp-fixed:hover {
+  background: #1ebe5d;
 }
 
-#preloader:before {
-  content: "";
-  position: fixed;
-  top: calc(50% - 30px);
-  left: calc(50% - 30px);
-  border: 6px solid #f2f2f2;
-  border-top: 6px solid rgb(244, 107, 44);
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  -webkit-animation: animate-preloader 1s linear infinite;
-  animation: animate-preloader 1s linear infinite;
+.back-to-top:hover {
+  background: rgb(200, 80, 20);
 }
 
-@-webkit-keyframes animate-preloader {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes animate-preloader {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
 
 /*--------------------------------------------------------------
 # Header
@@ -1302,10 +1255,10 @@ body.mobile-nav-active #mobile-nav-toggle {
   color: rgb(244, 107, 44); /* Highlight on hover */
 }
 
-/* Product Information Row */
+/* Common Info Row */
 .info-row {
   display: flex;
-  justify-content: space-between; /* Align items to opposite sides */
+  justify-content: space-between;
   align-items: center;
   font-size: 14px;
   font-weight: 600;
@@ -1313,48 +1266,40 @@ body.mobile-nav-active #mobile-nav-toggle {
   margin-bottom: 5px;
 }
 
-/* Product Name - Align Left */
-.product-name {
+/* Left side items */
+.product-code,
+.product-category {
   text-align: left;
-  flex: 1; /* Allow flexible space */
+  color: rgb(73, 70, 70);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Right side items */
+.product-name {
+  text-align: right;
+  flex: 1;
   font-weight: bold;
   color: rgb(244, 107, 44);
 }
 
-/* Product Code - Align Right */
-.product-code {
-  text-align: right;
-  color: rgb(74, 72, 72);
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.product-code {
-  text-align: right;
-  color: rgb(73, 70, 70);
-  font-size: 14px;
-  font-weight: 500;
-}
-
-/* Price and Category Row */
 .product-price {
-  text-align: left;
-  font-size: 18px; /* Increased size */
-  font-weight: bold;
-  color: rgb(40, 41, 36); /* Green shade for emphasis */
-}
-
-.info-row.price-category {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.product-category {
   text-align: right;
-  color: rgb(73, 70, 70);
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(40, 41, 36);
+}
+
+/* View Count Row */
+.count-row {
+  justify-content: flex-start;
   font-size: 14px;
-  font-weight: 500;
+  color: #555;
+}
+
+.product-count i {
+  margin-right: 5px;
+  color: rgb(244, 107, 44);
 }
 
 /* Adjusting Product Code Styling */
@@ -1373,10 +1318,14 @@ body.mobile-nav-active #mobile-nav-toggle {
 /* Clients Section
 --------------------------------*/
 
+
 #clients {
   padding-bottom:45px;
  
 }
+
+
+
 
 .clients-carousel .client-logo {
   display: flex;

@@ -117,16 +117,23 @@ $totalProducts = count($products);
                 </div> -->
 
                 <div class="portfolio-info">
-    <div class="info-row">
-        <h4><a href="#" style="text-decoration: none;" class="product-name"><?php echo $product['name']; ?></a></h4>
-        <span class="product-code"><?php echo $product['p_code']; ?></span>
-    </div>
-    <div class="info-row">
-        <span class="product-price">₹<?php echo $product['price']; ?></span>
-        <span class="product-category"><?php echo $product['categories']; ?></span>
-    </div>
-</div>
-
+                <!-- First Row: Code (left) | Name (right) -->
+                <div class="info-row">
+                    <span class="product-code"><?php echo $product['p_code']; ?></span>
+                    <h4><a href="#" style="text-decoration: none;" class="product-name"><?php echo $product['name']; ?></a></h4>
+                </div>
+                <!-- Second Row: Category (left) | Price (right) -->
+                <div class="info-row">
+                    <span class="product-category"><?php echo $product['categories']; ?></span>
+                    <span class="product-price">₹<?php echo $product['price']; ?></span>
+                </div>
+                <!-- Third Row: View Count with Eye icon -->
+                <div class="info-row count-row">
+                    <span class="product-count">
+                        <i class="ion ion-eye"></i> <?php echo $product['count']; ?>
+                    </span>
+                </div>
+            </div>
             </div>
         </div>
     <?php

@@ -336,12 +336,12 @@ if (mysqli_num_rows($result) > 0) {
                 <h6 class="footer-section-title text-start text-uppercase mb-4">Contact</h6>
                 <div class="contact-info">
                     <p><i class="fas fa-map-marker-alt"></i> Rajkot, Gujarat</p>
-                    <p><i class="fas fa-phone-alt"></i> +91 96628 76676</p>
+<p><i class="fas fa-mobile-alt"></i> +91 96628 76676</p>
                     <p><i class="fas fa-envelope"></i> kjcreations4all@gmail.com</p>
                 </div>
                 <div class="d-flex pt-2">
                     <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/profile.php?id=61564031892075" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/kjcreations4all?igsh=bHQzanh5NDQzZ2V2" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="hhttps://www.instagram.com/kjcreations4all/" target="_blank"><i class="fab fa-instagram"></i></a>
                    <a class="btn btn-outline-light btn-social" href="https://chat.whatsapp.com/F0xId36zZE23wq7PiN4LwC" style="position:relative;">
         <i class="fab fa-whatsapp"></i>
         <span class="footer-hover-text">+91 96628 76676</span>
