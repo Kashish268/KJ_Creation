@@ -43,7 +43,7 @@ if ($result && $result->num_rows > 0) {
     body {
       font-family: "Open Sans", sans-serif;
       margin: 0;
-      padding-top: 160px; /* Fixed Navbar total height */
+      padding-top: 160px;
     }
 
     .fixed-navbar {
@@ -56,10 +56,7 @@ if ($result && $result->num_rows > 0) {
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
 
-    /* Remove default padding from container and rows */
-    .no-padding {
-      padding: 0 !important;
-    }
+    .no-padding { padding: 0 !important; }
 
     .logo-section {
       display: flex;
@@ -74,7 +71,6 @@ if ($result && $result->num_rows > 0) {
     .logo-right {
       background: #ffffff;
       width: 88%;
-      padding: 10px 0;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -87,18 +83,24 @@ if ($result && $result->num_rows > 0) {
       color: #092e20;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      margin-top: 5px;
+      margin-top: 10px;
       text-align: center;
-      padding: 0 10px;
       word-break: break-word;
     }
 
-   .brand-logo {
-  max-height: 80px; /* पहले 65px थी */
-  max-width: 220px; /* optional, control karne ke liye */
-  width: auto;
-  padding: 5px 0;
-}
+    .brand-logo {
+      max-height: 80px;
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .logo-wrapper {
+      display: inline-block;
+      text-align: center;
+      padding: 0px;
+      background: #ffffff;
+    }
 
     .navbar-custom {
       background: #ffffff;
@@ -107,22 +109,28 @@ if ($result && $result->num_rows > 0) {
 
     .navbar-custom .nav-link {
       color: #092e20 !important;
-      text-transform: uppercase;
       margin-right: 20px;
       font-weight: 600;
-      transition: all 0.3s ease;
-      position: relative;
-      padding: 6px 12px;
-      border-radius: 2px;
-      display: inline-block;
+      padding: 0;
+      border-radius: 0;
     }
 
-    .navbar-custom .nav-link:hover,
-    .navbar-custom .nav-link.active {
+    .navbar-custom .nav-text {
+      padding: 6px 12px;
+      border-radius: 4px;
+      display: inline-block;
+      transition: 0.3s;
+      text-transform: uppercase;
+    }
+
+    .navbar-custom .nav-text:hover {
       background: #f46b2c;
       color: #fff !important;
-      border-radius: 4px;
-      padding: 4px 10px;
+    }
+
+    .navbar-custom .nav-link.active .nav-text {
+      background: #f46b2c;
+      color: #fff !important;
     }
 
     .contact-info-bar {
@@ -135,9 +143,7 @@ if ($result && $result->num_rows > 0) {
       color: white;
     }
 
-    .marquee-row {
-      background: #092e20;
-    }
+    .marquee-row { background: #092e20; }
 
     .marquee-row marquee {
       color: #f46b2c;
@@ -146,14 +152,9 @@ if ($result && $result->num_rows > 0) {
       letter-spacing: 1px;
     }
 
-    .navbar-toggler:focus {
-      box-shadow: none;
-      outline: none;
-    }
+    .navbar-toggler:focus { box-shadow: none; outline: none; }
 
-    .navbar-brand-mobile {
-      display: none;
-    }
+    .navbar-brand-mobile { display: none; }
 
     .toggler-icon {
       color: #092e20;
@@ -165,7 +166,14 @@ if ($result && $result->num_rows > 0) {
       background: linear-gradient(90deg, #FF7F50, #FF4500);
       cursor: pointer;
       padding: 0 !important;
-      min-width: 140px; /* Restore original login button width */
+      min-width: 140px;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 100%;
+      display: flex;
+      align-items: center;
     }
 
     .login-col a {
@@ -175,105 +183,69 @@ if ($result && $result->num_rows > 0) {
       text-transform: uppercase;
       width: 100%;
       display: block;
-      padding: 12px 15px; /* Added horizontal padding for better appearance */
+      padding: 12px 15px;
       text-align: center;
       margin: 0;
-      transition: none; 
+      transition: none;
     }
 
     .login-col a:hover {
-  color: #fff !important;
-  background: linear-gradient(90deg, #FF7F50, #FF4500) !important;
-  text-decoration: none !important;
-  box-shadow: none !important;
-}
-
-    /* Fixed navbar container - restore px-3 for mobile */
-    .navbar-container {
-      padding: 0 !important;
+      color: #fff !important;
+      background: linear-gradient(90deg, #FF7F50, #FF4500) !important;
+      text-decoration: none !important;
+      box-shadow: none !important;
     }
 
-    /* Mobile specific padding */
-    @media (max-width: 991px) {
-      .navbar-container {
-        padding: 0 1rem !important; /* px-3 equivalent for mobile */
-      }
-    }
+    .navbar-container { padding: 0 !important; }
 
-    /* Adjusted navbar content with proper spacing */
     .navbar-content {
       display: flex;
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      padding: 0 20px; /* Only internal padding */
+      padding: 5px;
     }
 
-    /* Navigation links container with proper alignment */
     .nav-links-container {
       display: flex;
       align-items: center;
       flex: 1;
-    }
-
-    @media (max-width: 576px) {
-      .logo-text {
-        padding: 0 20px;
-        font-size: 12px;
-      }
-
-      .brand-logo {
-        max-width: 90px;
-      }
-
-      .navbar-brand-mobile {
-        display: flex !important;
-        align-items: center;
-      }
-
-      .logo-section {
-        display: none !important;
-      }
-
-      .navbar-content {
-        padding: 0 15px;
-      }
-
-      /* Additional mobile padding for navbar container */
-      .navbar-container {
-        padding: 0 1rem !important;
-      }
+      margin-right: 150px;
     }
 
     @media (max-width: 991px) {
-      .navbar-custom .nav-link {
-        margin: 5px 10px;
-      }
+      .navbar-container { padding: 0 1rem !important; }
+      .navbar-nav .nav-link { display: inline-block !important; padding: 6px 12px; }
+      .navbar-nav { text-align: center; }
+    }
+
+    @media (max-width: 576px) {
+      .logo-text { padding: 0 20px; font-size: 12px; }
+      .brand-logo { max-width: 90px; }
+      .navbar-brand-mobile { display: flex !important; align-items: center; }
+      .logo-section { display: none !important; }
+      .navbar-content { padding: 0 15px; }
     }
   </style>
 </head>
-
 <body>
   <div class="fixed-navbar">
     <div class="container-fluid no-padding">
       <div class="row g-0">
-
-        <!-- Logo section (desktop only) -->
         <div class="col-lg-4 logo-section d-none d-lg-flex">
           <div class="logo-left"></div>
           <div class="logo-right">
-            <a href="index.php" class="navbar-brand m-0 p-0 d-flex align-items-center justify-content-center">
-              <img src="img/kj_final.png" alt="KJ CREATIONS" class="brand-logo">
-            </a>
-            <a href="user_products.php" style="text-decoration: none;">
-              <div class="logo-text">CORPORATE | CUSTOMIZED | PERSONAL GIFTS</div>
-            </a>
+            <div class="logo-wrapper">
+              <a href="index.php" class="navbar-brand m-0 p-0 d-flex align-items-center justify-content-center">
+                <img src="img/kj_final.png" alt="KJ CREATIONS" class="brand-logo">
+              </a>
+              <a href="user_products.php" style="text-decoration: none;">
+                <div class="logo-text">CORPORATE | CUSTOMIZED | PERSONAL GIFTS</div>
+              </a>
+            </div>
           </div>
         </div>
-
-        <!-- Contact Info + Navbar + Marquee -->
         <div class="col-lg-8 no-padding">
-          <!-- Contact Info -->
           <div class="row g-0 d-none d-lg-flex align-items-center contact-info-bar">
             <div class="col-lg-7 px-5 text-start">
               <div class="h-100 d-inline-flex align-items-center py-2 me-4">
@@ -300,9 +272,7 @@ if ($result && $result->num_rows > 0) {
             </div>
           </div>
 
-          <!-- Navbar -->
-          <nav class="navbar navbar-expand-lg navbar-custom navbar-custom px-0">
-            <!-- Mobile header -->
+          <nav class="navbar navbar-expand-lg navbar-custom px-4">
             <div class="d-flex w-100 justify-content-between align-items-center d-lg-none">
               <a href="#" class="navbar-brand navbar-brand-mobile d-flex align-items-center">
                 <img src="img/kj_final.png" alt="KJ CREATIONS" class="brand-logo me-2">
@@ -311,25 +281,31 @@ if ($result && $result->num_rows > 0) {
                 <i class="fas fa-bars toggler-icon"></i>
               </button>
             </div>
-
-            <!-- Desktop navbar content -->
             <div class="collapse navbar-collapse" id="navbarCollapse">
               <div class="navbar-content d-none d-lg-flex">
                 <div class="nav-links-container">
                   <div class="navbar-nav">
-                    <a href="index.php" class="nav-item nav-link <?php if($current_page == 'index.php'){echo 'active';} ?>">Home</a>
-                    <a href="about.php" class="nav-item nav-link <?php if($current_page == 'about.php'){echo 'active';} ?>">About</a>
-                    <a href="user_products.php" class="nav-item nav-link <?php if($current_page == 'user_products.php' || $current_page == 'product_details.php'){echo 'active';} ?>">Products</a>
-                    <a href="user_offers.php" class="nav-item nav-link <?php if($current_page == 'user_offers.php'){echo 'active';} ?>">Offers & Reviews</a>
-                    <a href="contact.php" class="nav-item nav-link <?php if($current_page == 'contact.php'){echo 'active';} ?>">Contact</a>
+                    <a href="index.php" class="nav-item nav-link <?php if($current_page == 'index.php'){echo 'active';} ?>">
+                      <span class="nav-text">Home</span>
+                    </a>
+                    <a href="about.php" class="nav-item nav-link <?php if($current_page == 'about.php'){echo 'active';} ?>">
+                      <span class="nav-text">About</span>
+                    </a>
+                    <a href="user_products.php" class="nav-item nav-link <?php if($current_page == 'user_products.php' || $current_page == 'product_details.php'){echo 'active';} ?>">
+                      <span class="nav-text">Products</span>
+                    </a>
+                    <a href="user_offers.php" class="nav-item nav-link <?php if($current_page == 'user_offers.php'){echo 'active';} ?>">
+                      <span class="nav-text">Offers & Reviews</span>
+                    </a>
+                    <a href="contact.php" class="nav-item nav-link <?php if($current_page == 'contact.php'){echo 'active';} ?>">
+                      <span class="nav-text">Contact</span>
+                    </a>
                   </div>
                 </div>
                 <div class="login-col d-flex align-items-center">
                   <a href="login.php" target="_blank" style="text-decoration:none;">LOGIN →</a>
                 </div>
               </div>
-              
-              <!-- Mobile navbar content -->
               <div class="d-block d-lg-none w-100">
                 <div class="navbar-nav py-2">
                   <a href="index.php" class="nav-item nav-link <?php if($current_page == 'index.php'){echo 'active';} ?>">Home</a>
@@ -345,7 +321,6 @@ if ($result && $result->num_rows > 0) {
             </div>
           </nav>
 
-          <!-- Marquee -->
           <div class="row g-0 marquee-row">
             <div class="col-12">
               <marquee>
@@ -360,7 +335,6 @@ if ($result && $result->num_rows > 0) {
     </div>
   </div>
 
-  <!-- Bootstrap Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

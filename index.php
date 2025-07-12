@@ -336,7 +336,7 @@ Unbeatable offers, unmatched support<br><br>
   </section>
 
 
-    <section id="clients" class="wow fadeInUp" 
+      <section id="clients" class="wow fadeInUp" 
     style="padding-bottom: 45px;
   background: linear-gradient(
       to right, 
@@ -364,7 +364,7 @@ $result = mysqli_query($conn, $query);?>
 </div>
 
       </div>
-    </section><!-- #clients -->
+    </section>
 <!-- testimonials -->
 
 
